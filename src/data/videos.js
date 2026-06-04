@@ -1,0 +1,104 @@
+export const videoCategories = [
+  {
+    id: 'house-of-prayer',
+    label: 'House of Prayer',
+    icon: '🙏',
+    videos: [
+      { id: 'fWKcKb_5C7I', title: 'Praying for the Nations — PFJ', date: 'Apr 2026' },
+    ],
+  },
+  {
+    id: 'end-times',
+    label: 'End Times',
+    icon: '⌛',
+    videos: [
+      { id: 'nNySpzzVwRo', title: 'THIS Must Happen Before the Antichrist is Revealed', date: 'May 2026' },
+      { id: 'ri3ecIj4518', title: 'Ararat and Babylon (Jeremiah 51:27)', date: 'Apr 2026' },
+    ],
+  },
+  {
+    id: 'israel',
+    label: 'Israel',
+    icon: '✡️',
+    videos: [
+      { id: 'rl7d6RsCBAk', title: 'The Abrahamic Promise (Genesis 12)', date: 'May 2026' },
+      { id: '0UdlDeSa0oY', title: 'The Abrahamic Promise', date: 'May 2026' },
+      { id: 'rQmZOgqoCS4', title: 'Why Did God Choose Israel?', date: 'Apr 2026' },
+      { id: 'veYFH2KyLro', title: "What Did Israel's Disobedience Lead To?", date: 'May 2026' },
+      { id: 'lJEdVXVjCxc', title: 'Isaiah 19 Highway', date: 'Apr 2026' },
+    ],
+  },
+  {
+    id: 'missions-middle-east',
+    label: 'Missions & Middle East',
+    icon: '🌍',
+    videos: [
+      { id: '7KCTz4djQvI', title: "Armenia's 3 Fold Prophetic Destiny — PFJ", date: 'Apr 2026' },
+      { id: '6m77wMs1s5U', title: 'The Calling of Armenia — Encounter', date: 'Apr 2026' },
+      { id: 'V-ygOfpGGlk', title: 'God Releases His Mercy in Armenia', date: 'Apr 2026' },
+      { id: 'DcRU8C9444M', title: 'Ishmael — Biblical Meaning of the Name', date: 'Apr 2026' },
+      { id: 'R6Uj3M-v-Yg', title: 'Was Ishmael a Mistake?', date: 'Apr 2026' },
+      { id: 'Q1AgKw1ImXc', title: 'Where is the Center of the Nations?', date: 'May 2026' },
+    ],
+  },
+  {
+    id: 'bride-of-christ',
+    label: 'Bride of Christ',
+    icon: '💍',
+    videos: [
+      { id: 'KZ81WGHOrDg', title: "The Longing of David's Heart", date: 'May 2026' },
+    ],
+  },
+  {
+    id: 'christian-living',
+    label: 'Christian Living',
+    icon: '✝️',
+    videos: [
+      { id: 'IleeDqRav_Q', title: 'The Heart of a Father', date: 'Apr 2026' },
+      { id: 'djGu91cl78k', title: 'A Father Will Do Anything', date: 'May 2026' },
+      { id: 'aMshomfaNzM', title: "The Hope of Jesus' Calling", date: 'Apr 2026' },
+      { id: 'vObNHXCXbSA', title: 'Choose the Good Part', date: 'May 2026' },
+      { id: '0mqb88pasOA', title: 'The Gospel That Breaks Through Shame', date: 'May 2026' },
+    ],
+  },
+  {
+    id: 'theology',
+    label: 'Theology',
+    icon: '📖',
+    videos: [
+      { id: 'KKTY9tjeSjw', title: 'Christ: Summing Up All Things', date: 'May 2026' },
+      { id: 'jKO5DCL89IY', title: 'A Framework for Our Generation', date: 'Apr 2026' },
+      { id: '4fP7LhI60SI', title: 'His Rhema Word (John 15:7)', date: 'Jun 2026' },
+      { id: 'yBGC1DrqP-U', title: 'He is Far Above (Eph. 1:21)', date: 'May 2026' },
+      { id: 'bilqirWH6sM', title: 'Summing Up All Things (Eph 1:10)', date: 'May 2026' },
+      { id: 'zNITQRzHt2A', title: 'How to Conquer Kingdoms', date: 'Jun 2026' },
+      { id: '5cQWGg91c4E', title: 'Life from the Dead — Romans 11:15', date: 'Jun 2026' },
+      { id: 'J0aekQahT48', title: 'The Proto Evangelium', date: 'Apr 2026' },
+      { id: 'gzxjglputC4', title: 'The Protoevangelium: Genesis', date: 'Apr 2026' },
+      { id: 'n5U8nXZx59o', title: 'Framework:ME — An Introduction', date: 'Apr 2026' },
+    ],
+  },
+]
+
+// 1-minute shorts
+export const shortsData = [
+  { id: 'n5U8nXZx59o', title: 'Framework:ME — An Introduction' },
+  { id: 'KZ81WGHOrDg', title: "The Longing of David's Heart" },
+  { id: 'DcRU8C9444M', title: 'Ishmael — Biblical Meaning of the Name' },
+  { id: 'lJEdVXVjCxc', title: 'Isaiah 19 Highway' },
+  { id: 'veYFH2KyLro', title: "What Did Israel's Disobedience Lead To?" },
+  { id: 'bilqirWH6sM', title: 'Summing Up All Things (Eph 1:10)' },
+  { id: '0UdlDeSa0oY', title: 'The Abrahamic Promise' },
+  { id: 'rQmZOgqoCS4', title: 'Why Did God Choose Israel?' },
+  { id: 'aMshomfaNzM', title: "The Hope of Jesus' Calling" },
+  { id: 'ri3ecIj4518', title: 'Ararat and Babylon (Jeremiah 51:27)' },
+  { id: 'J0aekQahT48', title: 'The Proto Evangelium' },
+  { id: 'gzxjglputC4', title: 'The Protoevangelium: Genesis' },
+  { id: 'djGu91cl78k', title: 'A Father Will Do Anything' },
+  { id: 'vObNHXCXbSA', title: 'Choose the Good Part' },
+  { id: 'R6Uj3M-v-Yg', title: 'Was Ishmael a Mistake?' },
+  { id: 'Q1AgKw1ImXc', title: 'Where is the Center of the Nations?' },
+  { id: 'zNITQRzHt2A', title: 'How to Conquer Kingdoms' },
+  { id: 'nNySpzzVwRo', title: 'THIS Must Happen Before the Antichrist is Revealed' },
+  { id: '5cQWGg91c4E', title: 'Life from the Dead — Romans 11:15' },
+]
