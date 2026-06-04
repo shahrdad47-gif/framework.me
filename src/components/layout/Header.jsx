@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { getArticlesForNation } from '@/data/articles'
+import { getArticlesForNation } from '@/lib/articles'
 
 const navLinks = [
   { href: '/',             label: 'About' },

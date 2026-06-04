@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getArticleBySlug, articles } from '@/data/articles'
+import { articles } from '@/data/articles'
+import { getArticleBySlug } from '@/lib/articles'
 import { nations } from '@/data/nations'
 
 export async function generateStaticParams() {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { nations } from '@/data/nations'
-import { getArticlesForNation } from '@/data/articles'
+import { getArticlesForNation } from '@/lib/articles'
 
 export default function ArticlesByNation() {
   const searchParams = useSearchParams()
