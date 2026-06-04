@@ -2,12 +2,13 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import type { Nation } from '@/types'
 import { nations } from '@/data/nations'
 import { getArticlesForNation } from '@/lib/articles'
 
 export default function ArticlesByNation() {
   const searchParams = useSearchParams()
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState<Nation | null>(null)
 
   useEffect(() => {
     const key = searchParams.get('nation')

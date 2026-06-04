@@ -8,13 +8,17 @@ export async function generateStaticParams() {
   return articles.map(a => ({ slug: a.slug }))
 }
 
-export async function generateMetadata({ params }) {
+interface PageProps {
+  params: { slug: string }
+}
+
+export async function generateMetadata({ params }: PageProps) {
   const article = getArticleBySlug(params.slug)
   if (!article) return {}
   return { title: `${article.title} — Framework:ME` }
 }
 
-export default function ArticlePage({ params }) {
+export default function ArticlePage({ params }: PageProps) {
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
 

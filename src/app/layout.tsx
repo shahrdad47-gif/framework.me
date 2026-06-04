@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import type { ReactNode } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
@@ -8,7 +9,7 @@ export const metadata = {
     "A free teaching and resource library focused on understanding God's plan for the nations, especially centered on Israel and the Middle East.",
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>

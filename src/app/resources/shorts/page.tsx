@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { shortsData } from '@/data/videos'
 
-function ShortCard({ id, title }) {
+function ShortCard({ id, title }: { id: string; title: string }) {
   const [playing, setPlaying] = useState(false)
   return (
     <div className="short-card">

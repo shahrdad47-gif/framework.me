@@ -1,4 +1,6 @@
-export const articles = [
+import type { Article } from '@/types'
+
+export const articles: Article[] = [
   {
     slug: 'restoring-fortunes-iran',
     title: 'How to Pray for Iran — Restoring the Fortunes of Iran',

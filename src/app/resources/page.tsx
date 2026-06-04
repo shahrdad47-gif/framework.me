@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import Link from 'next/link'
 import { articles } from '@/data/articles'
 import { videoCategories } from '@/data/videos'
@@ -81,7 +82,7 @@ export default function ResourcesLanding() {
             {cards.map(card => (
               <Link key={card.href} href={card.href} className="res-card">
                 {/* Visual area */}
-                <div className="res-card-visual" style={{ '--card-accent': card.accent }}>
+                <div className="res-card-visual" style={{ '--card-accent': card.accent } as CSSProperties}>
                   <div className="res-card-pattern" />
                   <span className="res-card-symbol">{card.symbol}</span>
                   {card.badge && <span className="res-card-badge">{card.badge}</span>}

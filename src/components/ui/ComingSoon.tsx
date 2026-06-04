@@ -1,4 +1,10 @@
-export default function ComingSoon({ icon, title, description }) {
+interface Props {
+  icon?: string
+  title: string
+  description: string
+}
+
+export default function ComingSoon({ icon, title, description }: Props) {
   return (
     <div className="coming-soon-page">
       <div className="cs-inner">

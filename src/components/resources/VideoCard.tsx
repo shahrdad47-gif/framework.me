@@ -1,7 +1,13 @@
 'use client'
 import { useState } from 'react'
 
-export default function VideoCard({ id, title, date }) {
+interface Props {
+  id: string
+  title: string
+  date?: string
+}
+
+export default function VideoCard({ id, title, date }: Props) {
   const [playing, setPlaying] = useState(false)
 
   return (

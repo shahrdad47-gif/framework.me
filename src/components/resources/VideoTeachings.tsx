@@ -5,9 +5,9 @@ import VideoCard from './VideoCard'
 import EmptyState from '@/components/ui/EmptyState'
 
 export default function VideoTeachings() {
-  const [openId, setOpenId] = useState(null)
+  const [openId, setOpenId] = useState<string | null>(null)
 
-  const toggle = (id) => setOpenId(prev => prev === id ? null : id)
+  const toggle = (id: string) => setOpenId(prev => prev === id ? null : id)
 
   return (
     <div className="video-categories">
@@ -34,7 +34,7 @@ export default function VideoTeachings() {
                 {cat.videos.length === 0 ? (
                   <div className="video-placeholder">
                     <span>📹</span>
-                    <p>Add video IDs in <code>src/data/videos.js</code> → <code>{cat.id}</code></p>
+                    <p>Add video IDs in <code>src/data/videos.ts</code> → <code>{cat.id}</code></p>
                   </div>
                 ) : (
                   cat.videos.map(v => (

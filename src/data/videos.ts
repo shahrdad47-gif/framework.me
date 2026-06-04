@@ -1,4 +1,6 @@
-export const videoCategories = [
+import type { VideoCategory, Short } from '@/types'
+
+export const videoCategories: VideoCategory[] = [
   {
     id: 'house-of-prayer',
     label: 'House of Prayer',
@@ -81,7 +83,7 @@ export const videoCategories = [
 ]
 
 // 1-minute shorts
-export const shortsData = [
+export const shortsData: Short[] = [
   { id: 'n5U8nXZx59o', title: 'Framework:ME — An Introduction' },
   { id: 'KZ81WGHOrDg', title: "The Longing of David's Heart" },
   { id: 'DcRU8C9444M', title: 'Ishmael — Biblical Meaning of the Name' },
