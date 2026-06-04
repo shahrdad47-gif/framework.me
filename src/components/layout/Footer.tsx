@@ -1,11 +1,13 @@
 import Link from 'next/link'
 
 const navLinks = [
-  { href: '/',             label: 'About' },
-  { href: '/resources',    label: 'Resources' },
-  { href: '/contributors', label: 'Contributors' },
-  { href: '/geopolitics',  label: 'Geopolitics' },
-  { href: '/ministries',   label: 'Ministries' },
+  { href: '/',                   label: 'About' },
+  { href: '/resources/articles', label: 'Articles' },
+  { href: '/nations',            label: 'Nations & Prophecy' },
+  { href: '/end-times',          label: 'End Times' },
+  { href: '/geopolitics',        label: 'Geopolitics' },
+  { href: '/resources',          label: 'Resources' },
+  { href: '/contributors',       label: 'Authors' },
 ]
 
 const resourceLinks = [
