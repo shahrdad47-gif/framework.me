@@ -5,20 +5,29 @@ import { videoCategories } from '@/data/videos'
 function VideoCard({ id, title, date }: { id: string; title: string; date?: string }) {
   return (
     <Link href={`/resources/video-teachings/${id}`} className="ytv-card">
-      <div className="ytv-thumb">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" />
-        <div className="ytv-overlay">
-          <div className="ytv-play-btn">
-            <svg viewBox="0 0 24 24" width="28" height="28">
-              <path d="M8 5v14l11-7z" fill="white"/>
-            </svg>
-          </div>
-        </div>
+      {/* Full-bleed thumbnail */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
+        alt={title}
+        className="ytv-card-img"
+        loading="lazy"
+      />
+
+      {/* Dark gradient overlay */}
+      <div className="ytv-card-overlay" />
+
+      {/* Play icon — center */}
+      <div className="ytv-card-play">
+        <svg viewBox="0 0 24 24" width="40" height="40">
+          <path d="M8 5v14l11-7z" fill="white"/>
+        </svg>
       </div>
-      <div className="ytv-info">
-        <p className="ytv-title">{title}</p>
-        {date && <p className="ytv-date">{date}</p>}
+
+      {/* Title + date — bottom */}
+      <div className="ytv-card-info">
+        <p className="ytv-card-title">{title}</p>
+        {date && <p className="ytv-card-date">{date}</p>}
       </div>
     </Link>
   )
