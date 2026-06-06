@@ -14,6 +14,7 @@ export default function VideoCard({ id, title, date, categoryLabel, categoryIcon
 
   return (
     <div className="vt-card">
+      {/* Thumbnail */}
       <div className="vt-thumb" onClick={() => setPlaying(true)}>
         {playing ? (
           <iframe
@@ -34,13 +35,16 @@ export default function VideoCard({ id, title, date, categoryLabel, categoryIcon
           </>
         )}
       </div>
+
+      {/* Card body — order matches Derek Prince: series → tags → title → meta */}
       <div className="vt-card-body">
-        <span className="vt-series">{categoryIcon} {categoryLabel}</span>
-        <h3 className="vt-title">{title}</h3>
-        <div className="vt-card-footer">
+        <p className="vt-series">{categoryIcon} Series: {categoryLabel}</p>
+        <div className="vt-tags">
           <span className="vt-tag">{categoryLabel}</span>
-          {date && <span className="vt-date">{date}</span>}
+          <span className="vt-tag">Bible Teaching</span>
         </div>
+        <h3 className="vt-title">{title}</h3>
+        {date && <p className="vt-date">Framework:ME · {date}</p>}
       </div>
     </div>
   )
