@@ -376,6 +376,52 @@ h1, h2, h3, h4 {
   .ytv-grid { grid-template-columns: repeat(2, 1fr); gap: 14px 10px; }
 }
 
+/* ================================================================
+   VIDEO DETAIL PAGE — /resources/video-teachings/[id]
+   ================================================================ */
+.vd-page { display: flex; flex-direction: column; gap: 28px; }
+
+/* Breadcrumb */
+.vd-breadcrumb { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 0.78rem; }
+.vd-back { display: inline-flex; align-items: center; gap: 4px; color: var(--wine); font-weight: 600; transition: color var(--transition); }
+.vd-back:hover { color: var(--wine-deep); }
+.vd-breadcrumb-sep { color: #ccc; }
+.vd-breadcrumb-current { color: #888; font-weight: 500; }
+
+/* Main layout: player left, sidebar right */
+.vd-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+
+/* Player */
+.vd-main { display: flex; flex-direction: column; gap: 16px; }
+.vd-player { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 4px; overflow: hidden; }
+.vd-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+/* Video info */
+.vd-info { display: flex; flex-direction: column; gap: 8px; }
+.vd-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.vd-tag { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; color: #555; background: #f0f0f0; padding: 4px 12px; border-radius: 100px; }
+.vd-tag-date { background: transparent; color: #999; padding: 4px 0; }
+.vd-title { font-size: 1.35rem; font-weight: 800; color: #111; line-height: 1.3; letter-spacing: -0.01em; }
+.vd-channel { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888; font-weight: 500; }
+
+/* Sidebar */
+.vd-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.vd-sidebar-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.vd-related-list { display: flex; flex-direction: column; gap: 14px; }
+
+/* Related video card */
+.vd-rel-card { display: flex; gap: 10px; align-items: flex-start; transition: opacity 0.15s; }
+.vd-rel-card:hover { opacity: 0.78; }
+.vd-rel-thumb { flex-shrink: 0; width: 130px; aspect-ratio: 16/9; overflow: hidden; background: #e8e8e8; }
+.vd-rel-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vd-rel-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.vd-rel-title { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.vd-rel-date { font-family: 'Inter', sans-serif; font-size: 0.68rem; color: #999; }
+
+/* Responsive */
+@media (max-width: 860px) { .vd-layout { grid-template-columns: 1fr; } .vd-sidebar { margin-top: 8px; } .vd-related-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } .vd-rel-thumb { width: 100%; } .vd-rel-card { flex-direction: column; } }
+@media (max-width: 520px) { .vd-related-list { grid-template-columns: 1fr; } .vd-title { font-size: 1.1rem; } }
+
 /* Keep these for Shorts page */
 .video-thumb { position: relative; padding-top: 56.25%; background: var(--wine-deep); cursor: pointer; overflow: hidden; }
 .video-thumb img, .video-thumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none; }

@@ -1,39 +1,26 @@
 'use client'
-import { useState } from 'react'
+import Link from 'next/link'
 import { videoCategories } from '@/data/videos'
 
 function VideoCard({ id, title, date }: { id: string; title: string; date?: string }) {
-  const [playing, setPlaying] = useState(false)
-
   return (
-    <div className="ytv-card" onClick={() => !playing && setPlaying(true)}>
+    <Link href={`/resources/video-teachings/${id}`} className="ytv-card">
       <div className="ytv-thumb">
-        {playing ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        ) : (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" />
-            <div className="ytv-overlay">
-              <div className="ytv-play-btn">
-                <svg viewBox="0 0 24 24" width="28" height="28">
-                  <path d="M8 5v14l11-7z" fill="white"/>
-                </svg>
-              </div>
-            </div>
-          </>
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" />
+        <div className="ytv-overlay">
+          <div className="ytv-play-btn">
+            <svg viewBox="0 0 24 24" width="28" height="28">
+              <path d="M8 5v14l11-7z" fill="white"/>
+            </svg>
+          </div>
+        </div>
       </div>
       <div className="ytv-info">
         <p className="ytv-title">{title}</p>
         {date && <p className="ytv-date">{date}</p>}
       </div>
-    </div>
+    </Link>
   )
 }
 
