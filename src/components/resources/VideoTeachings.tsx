@@ -19,10 +19,12 @@ function VideoCard({ id, title, date }: { id: string; title: string; date?: stri
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" />
-            <div className="ytv-play-btn">
-              <svg viewBox="0 0 24 24" width="36" height="36">
-                <path d="M8 5v14l11-7z" fill="white"/>
-              </svg>
+            <div className="ytv-overlay">
+              <div className="ytv-play-btn">
+                <svg viewBox="0 0 24 24" width="28" height="28">
+                  <path d="M8 5v14l11-7z" fill="white"/>
+                </svg>
+              </div>
             </div>
           </>
         )}
@@ -43,10 +45,9 @@ export default function VideoTeachings() {
           <div className="ytv-section-head">
             <span className="ytv-section-icon">{cat.icon}</span>
             <h2 className="ytv-section-label">{cat.label}</h2>
-            <span className="ytv-section-count">{cat.videos.length} video{cat.videos.length !== 1 ? 's' : ''}</span>
+            <span className="ytv-section-count">{cat.videos.length}</span>
           </div>
-          {cat.description && <p className="ytv-section-desc">{cat.description}</p>}
-          <div className="ytv-row">
+          <div className="ytv-grid">
             {cat.videos.map(v => (
               <VideoCard key={v.id} id={v.id} title={v.title} date={v.date} />
             ))}
