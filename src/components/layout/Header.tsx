@@ -19,7 +19,6 @@ const countries = [
   { name: 'Iran',         svg: 'FME_Iran_map.svg',    key: 'iran' },
   { name: 'Lebanon',      svg: 'FME_Lebanon_map.svg',  key: 'lebanon' },
   { name: 'Syria',        svg: 'FME_Syria_map.svg',    key: 'syria' },
-  { name: 'Israel',       svg: 'FME_Israel_map.svg',   key: 'israel' },
   { name: 'Armenia',      svg: 'FME_Armenia_map.svg',  key: 'armenia' },
   { name: 'Jordan',       svg: 'FME_Jordan_map.svg',   key: 'jordan' },
   { name: 'Saudi Arabia', svg: 'FME_KSA_map.svg',      key: 'saudi-arabia' },

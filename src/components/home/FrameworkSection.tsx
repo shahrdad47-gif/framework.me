@@ -6,19 +6,15 @@ const expressions = [
     body: "God is perfecting His global Church — raising up a Bride who is lovesick, holy, and ready for the return of the King.",
   },
   {
-    num: '02', icon: '✡️', title: 'Israel', sub: "God's Covenant",
-    body: "The irrevocable covenants of God with Israel remain central to His plan — the restoration of Israel is the linchpin of end-time prophecy.",
-  },
-  {
-    num: '03', icon: '🌍', title: 'Missions', sub: 'Fulfilling the Great Commission',
+    num: '02', icon: '🌍', title: 'Missions', sub: 'Fulfilling the Great Commission',
     body: "The Gospel must be proclaimed to every tribe, tongue, and nation — particularly to the unreached peoples of the Middle East and beyond.",
   },
   {
-    num: '04', icon: '⌛', title: 'End Times', sub: 'Judgment of Nations',
+    num: '03', icon: '⌛', title: 'End Times', sub: 'Judgment of Nations',
     body: "The Scriptures reveal God's plan for the nations in the last days — a great shaking and realignment as history moves toward its appointed end.",
   },
   {
-    num: '05', icon: '🙏', title: 'House of Prayer', sub: 'Establishing the Dwelling Place of God',
+    num: '04', icon: '🙏', title: 'House of Prayer', sub: 'Establishing the Dwelling Place of God',
     body: "God is raising up 24/7 houses of prayer across the nations — the foundation of intercession that will sustain the global harvest and escort Christ's return.",
   },
 ]
