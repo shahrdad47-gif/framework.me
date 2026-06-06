@@ -289,7 +289,7 @@ h1, h2, h3, h4 {
 .vt-section-header { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
 .vt-section-icon { font-size: 1.4rem; line-height: 1; }
 .vt-section-title { font-size: 1.35rem; font-weight: 800; color: var(--wine-deep); letter-spacing: -0.01em; flex: 1; }
-.vt-section-count { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--text-light); background: var(--cream); border: 1px solid var(--border); padding: 3px 10px; border-radius: 100px; }
+.vt-section-count { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--text-light); background: #f0f0f0; border: 1px solid #e0e0e0; padding: 3px 10px; border-radius: 100px; }
 
 /* Card grid — 2 columns like Derek Prince */
 .vt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
@@ -715,7 +715,7 @@ h1, h2, h3, h4 {
 /* ================================================================
    RESOURCE SUB-PAGES (Video, Books, Articles, etc.)
    ================================================================ */
-.res-sub-page { background: var(--cream); min-height: calc(100vh - 74px); }
+.res-sub-page { background: #fff; min-height: calc(100vh - 74px); }
 
 .res-sub-hero {
     position: relative; overflow: hidden;
