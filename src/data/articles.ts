@@ -154,7 +154,7 @@ export const articles: Article[] = [
     title: 'Carrying a Burden for the Muslim World',
     author: 'Roger Lee',
     date: 'July 4, 2025',
-    nations: ['islam', 'iraq', 'syria', 'egypt', 'saudi-arabia'],
+    nations: ['islam'],
     summary:
       'God has a burden for the nations of the Middle East and for the sons of Ishmael. Through Old Testament prophecy, we see His heart of care and intercession for each ancient nation — all now under the bondage of Islam.',
     pdf: '/articles/carrying-burden-muslim-world.pdf',
