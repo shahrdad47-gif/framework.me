@@ -377,50 +377,111 @@ h1, h2, h3, h4 {
 }
 
 /* ================================================================
-   VIDEO DETAIL PAGE — /resources/video-teachings/[id]
+   VIDEO DETAIL PAGE — Derek Prince /sermons/103 style
    ================================================================ */
-.vd-page { display: flex; flex-direction: column; gap: 28px; }
+.vd-page { display: flex; flex-direction: column; }
 
-/* Breadcrumb */
-.vd-breadcrumb { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 0.78rem; }
-.vd-back { display: inline-flex; align-items: center; gap: 4px; color: var(--wine); font-weight: 600; transition: color var(--transition); }
-.vd-back:hover { color: var(--wine-deep); }
-.vd-breadcrumb-sep { color: #ccc; }
-.vd-breadcrumb-current { color: #888; font-weight: 500; }
+/* ── Dark hero ── */
+.vd-hero {
+  background: var(--wine-deep);
+  position: relative; overflow: hidden;
+}
+.vd-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(200,150,47,0.08) 0%, transparent 60%),
+    linear-gradient(160deg, #3a0e18 0%, #5a1826 60%, #3f0f1b 100%);
+}
+.vd-hero-inner {
+  position: relative; z-index: 1;
+  max-width: 920px; margin: 0 auto;
+  padding: 48px 40px 52px;
+}
+.vd-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45); margin-bottom: 20px;
+  transition: color var(--transition);
+}
+.vd-back:hover { color: rgba(255,255,255,0.9); }
+.vd-series-label {
+  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
+  color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.vd-hero-title {
+  font-size: clamp(1.7rem, 4vw, 2.8rem); font-weight: 800;
+  color: #fff; line-height: 1.2; letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.vd-hero-meta {
+  font-family: 'Inter', sans-serif; font-size: 0.82rem;
+  color: rgba(255,255,255,0.45); font-weight: 500;
+}
 
-/* Main layout: player left, sidebar right */
-.vd-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+/* ── Black player strip ── */
+.vd-player-wrap { background: #000; }
+.vd-player-inner {
+  max-width: 920px; margin: 0 auto;
+  position: relative; aspect-ratio: 16 / 9;
+}
+.vd-player-inner iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block;
+}
 
-/* Player */
-.vd-main { display: flex; flex-direction: column; gap: 16px; }
-.vd-player { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 4px; overflow: hidden; }
-.vd-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+/* ── White body — tags ── */
+.vd-body { background: #fff; border-bottom: 1px solid #f0f0f0; }
+.vd-body-inner {
+  max-width: 920px; margin: 0 auto;
+  padding: 20px 40px;
+}
+.vd-tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.vd-tag {
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+  color: #555; background: #f0f0f0; padding: 5px 14px; border-radius: 100px;
+}
 
-/* Video info */
-.vd-info { display: flex; flex-direction: column; gap: 8px; }
-.vd-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.vd-tag { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; color: #555; background: #f0f0f0; padding: 4px 12px; border-radius: 100px; }
-.vd-tag-date { background: transparent; color: #999; padding: 4px 0; }
-.vd-title { font-size: 1.35rem; font-weight: 800; color: #111; line-height: 1.3; letter-spacing: -0.01em; }
-.vd-channel { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888; font-weight: 500; }
+/* ── Other videos ── */
+.vd-more { background: #fff; padding: 48px 0 80px; }
+.vd-more-inner {
+  max-width: 920px; margin: 0 auto;
+  padding: 0 40px;
+}
+.vd-more-title {
+  font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800;
+  color: #111; margin-bottom: 24px;
+  padding-bottom: 14px; border-bottom: 2px solid #f0f0f0;
+}
+.vd-more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-/* Sidebar */
-.vd-sidebar { display: flex; flex-direction: column; gap: 14px; }
-.vd-sidebar-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-.vd-related-list { display: flex; flex-direction: column; gap: 14px; }
-
-/* Related video card */
-.vd-rel-card { display: flex; gap: 10px; align-items: flex-start; transition: opacity 0.15s; }
-.vd-rel-card:hover { opacity: 0.78; }
-.vd-rel-thumb { flex-shrink: 0; width: 130px; aspect-ratio: 16/9; overflow: hidden; background: #e8e8e8; }
-.vd-rel-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.vd-rel-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.vd-rel-title { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.vd-rel-date { font-family: 'Inter', sans-serif; font-size: 0.68rem; color: #999; }
+/* Other video card */
+.vd-more-card { display: flex; flex-direction: column; gap: 0; transition: opacity 0.15s; }
+.vd-more-card:hover { opacity: 0.82; }
+.vd-more-thumb {
+  position: relative; width: 100%; aspect-ratio: 16/9;
+  background: #e8e8e8; overflow: hidden;
+}
+.vd-more-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.vd-more-play {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.15); opacity: 0; transition: opacity 0.2s;
+}
+.vd-more-card:hover .vd-more-play { opacity: 1; }
+.vd-more-info { padding: 12px 0 0; }
+.vd-more-cat { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+.vd-more-name { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 700; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 5px; }
+.vd-more-date { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #999; }
 
 /* Responsive */
-@media (max-width: 860px) { .vd-layout { grid-template-columns: 1fr; } .vd-sidebar { margin-top: 8px; } .vd-related-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; } .vd-rel-thumb { width: 100%; } .vd-rel-card { flex-direction: column; } }
-@media (max-width: 520px) { .vd-related-list { grid-template-columns: 1fr; } .vd-title { font-size: 1.1rem; } }
+@media (max-width: 720px) {
+  .vd-hero-inner, .vd-body-inner, .vd-more-inner { padding-left: 20px; padding-right: 20px; }
+  .vd-more-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .vd-more-grid { grid-template-columns: 1fr; }
+  .vd-hero-inner { padding: 32px 20px 36px; }
+}
 
 /* Keep these for Shorts page */
 .video-thumb { position: relative; padding-top: 56.25%; background: var(--wine-deep); cursor: pointer; overflow: hidden; }
