@@ -246,7 +246,8 @@ h1, h2, h3, h4 {
 .diagram-wrap::before { content: ''; position: absolute; inset: -12px; border-radius: var(--radius-lg); background: var(--gold-dim); border: 1px solid rgba(200,150,47,0.25); z-index: 0; }
 .diagram-img { position: relative; z-index: 1; width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 
-.expressions-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.expressions-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.expr-card { flex: 0 1 220px; }
 .expr-card { background: var(--white); border-radius: var(--radius-lg); padding: 28px 20px 24px; text-align: center; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition); position: relative; overflow: hidden; }
 .expr-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--wine), var(--gold)); }
 .expr-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
@@ -377,24 +378,21 @@ h1, h2, h3, h4 {
    RESPONSIVE
    ================================================================ */
 @media (max-width: 1100px) {
-    .expressions-grid { grid-template-columns: repeat(3, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
 }
 @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 36px; }
-    .expressions-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 620px) {
     .hero-title { font-size: 3rem; }
     .hero-sub br { display: none; }
-    .expressions-grid { grid-template-columns: 1fr 1fr; }
     .nations-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
     .header-cta .btn-ghost { display: none; }
     .video-grid { grid-template-columns: 1fr; }
     .container { padding: 0 18px; }
 }
-@media (max-width: 440px) { .expressions-grid { grid-template-columns: 1fr; } }
+@media (max-width: 440px) { .expr-card { flex: 1 1 100%; } }
 
 /* ================================================================
    NATION ARTICLE COUNT BADGE
