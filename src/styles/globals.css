@@ -703,28 +703,49 @@ h1, h2, h3, h4 {
 .res-sub-page { background: var(--cream); min-height: calc(100vh - 74px); }
 
 .res-sub-hero {
-    background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine) 100%);
-    padding: 48px 0 52px; position: relative; overflow: hidden;
+    position: relative; overflow: hidden;
+    background: var(--wine-deep);
+    padding: 72px 0 80px;
+}
+.res-sub-hero-bg {
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse at 70% 40%, rgba(200,150,47,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 70%, rgba(107,30,46,0.5) 0%, transparent 50%),
+        linear-gradient(160deg, #3a0e18 0%, #5a1826 50%, #3f0f1b 100%);
+}
+.res-sub-hero-bg::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cellipse cx='200' cy='200' rx='190' ry='120' fill='none' stroke='%23C8962F' stroke-width='1'/%3E%3Cellipse cx='200' cy='200' rx='140' ry='85' fill='none' stroke='%23C8962F' stroke-width='1'/%3E%3Cellipse cx='200' cy='200' rx='90' ry='55' fill='none' stroke='%23C8962F' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 400px 400px;
 }
 .res-sub-hero::after {
     content: ''; position: absolute; bottom: 0; left: 0; right: 0;
     height: 1px; background: linear-gradient(90deg, transparent, rgba(200,150,47,0.4), transparent);
 }
+.res-sub-hero-inner { position: relative; z-index: 1; text-align: center; }
 .res-sub-back {
     display: inline-flex; align-items: center; gap: 6px;
     font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.5); margin-bottom: 18px;
+    color: rgba(255,255,255,0.45); margin-bottom: 22px;
     transition: color var(--transition);
 }
 .res-sub-back:hover { color: rgba(255,255,255,0.9); }
+.res-sub-eyebrow {
+    display: block;
+    font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 14px;
+}
 .res-sub-hero h1 {
-    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
-    color: var(--white); margin-bottom: 10px;
+    font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800;
+    color: var(--white); margin-bottom: 14px; letter-spacing: -0.02em;
 }
 .res-sub-hero p {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
-    color: rgba(255,255,255,0.65); max-width: 600px;
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300; color: rgba(255,255,255,0.7);
+    max-width: 580px; margin: 0 auto; line-height: 1.65;
 }
 .res-sub-body { padding: 48px 32px 80px; }
 
