@@ -280,66 +280,79 @@ h1, h2, h3, h4 {
 .res-panel-header p { font-size: 1rem; color: var(--text-light); }
 
 /* ================================================================
-   VIDEO TEACHINGS — Netflix-style horizontal rows per category
+   VIDEO TEACHINGS — Derek Prince /videos style category grid
    ================================================================ */
-.vt-platform { display: flex; flex-direction: column; gap: 48px; }
 
-/* Section */
-.vrow-section { display: flex; flex-direction: column; gap: 16px; }
-.vrow-header { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #eee; padding-bottom: 12px; }
-.vrow-icon { font-size: 1.3rem; }
-.vrow-title-section { font-family: 'Inter', sans-serif; font-size: 1.25rem; font-weight: 800; color: #111; flex: 1; }
-.vrow-count { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; color: #999; background: #f2f2f2; border: 1px solid #e5e5e5; padding: 3px 10px; border-radius: 100px; }
-
-/* Horizontal scroll row */
-.vrow-scroll {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scrollbar-width: thin;
-  scrollbar-color: #ddd transparent;
+/* ── Category grid (side by side) ── */
+.vtcat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin: -48px -32px -80px; /* bleed to edges of res-sub-body */
 }
-.vrow-scroll::-webkit-scrollbar { height: 4px; }
-.vrow-scroll::-webkit-scrollbar-track { background: transparent; }
-.vrow-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-
-/* Individual card in the row */
-.vrow-card {
-  flex: 0 0 260px;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  transition: opacity 0.18s;
-}
-.vrow-card:hover { opacity: 0.85; }
-
-/* Thumbnail */
-.vrow-thumb {
+.vtcat-card {
   position: relative;
-  width: 260px;
-  height: 146px; /* 16:9 of 260px */
-  background: #000;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: #111;
+  display: block;
+  width: 100%;
 }
-.vrow-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.vrow-thumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-.vrow-play {
+.vtcat-bg {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,0.2);
-  transition: background 0.18s;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
-.vrow-card:hover .vrow-play { background: rgba(0,0,0,0.08); }
-.vrow-play svg { width: 42px; height: 42px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); }
+.vtcat-card:hover .vtcat-bg { transform: scale(1.06); }
+.vtcat-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.1) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 22px 20px 20px;
+  transition: background 0.3s;
+}
+.vtcat-card:hover .vtcat-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.2) 100%); }
+.vtcat-icon { font-size: 1.5rem; margin-bottom: 6px; display: block; }
+.vtcat-name { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 4px; text-align: left; }
+.vtcat-sub { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; color: rgba(255,255,255,0.65); text-align: left; }
 
-/* Card info */
-.vrow-info { padding: 10px 2px 0; }
-.vrow-title { font-family: 'Inter', sans-serif; font-size: 0.84rem; font-weight: 600; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
-.vrow-date { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #999; }
+/* ── Category detail (videos inside a category) ── */
+.vtd-wrap { display: flex; flex-direction: column; gap: 24px; }
+.vtd-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
+  color: var(--wine); text-transform: uppercase; letter-spacing: 0.07em;
+  cursor: pointer; background: none; border: none; padding: 0; align-self: flex-start;
+  transition: color var(--transition);
+}
+.vtd-back:hover { color: var(--wine-deep); }
+.vtd-header { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #eee; padding-bottom: 14px; }
+.vtd-header span:first-child { font-size: 1.4rem; }
+.vtd-header h2 { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 800; color: #111; flex: 1; }
+.vtd-count { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; color: #999; background: #f2f2f2; border: 1px solid #e5e5e5; padding: 3px 10px; border-radius: 100px; }
+.vtd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
-@media (max-width: 580px) { .vrow-card { flex: 0 0 200px; } .vrow-thumb { width: 200px; height: 113px; } .vt-platform { gap: 36px; } }
+/* ── Video card inside detail view ── */
+.vtv-card { display: flex; flex-direction: column; cursor: pointer; transition: opacity 0.18s; }
+.vtv-card:hover { opacity: 0.84; }
+.vtv-thumb { position: relative; padding-top: 56.25%; background: #000; overflow: hidden; }
+.vtv-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.vtv-thumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.vtv-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.22); transition: background 0.18s; }
+.vtv-card:hover .vtv-play { background: rgba(0,0,0,0.08); }
+.vtv-play svg { width: 44px; height: 44px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); }
+.vtv-info { padding: 10px 0 0; }
+.vtv-title { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
+.vtv-date { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #999; }
+
+/* Responsive */
+@media (max-width: 900px) { .vtcat-grid { grid-template-columns: repeat(2, 1fr); } .vtd-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .vtcat-grid { grid-template-columns: 1fr; margin: -48px -18px -60px; } .vtd-grid { grid-template-columns: 1fr; } }
 
 /* Keep these for Shorts page */
 .video-thumb { position: relative; padding-top: 56.25%; background: var(--wine-deep); cursor: pointer; overflow: hidden; }
