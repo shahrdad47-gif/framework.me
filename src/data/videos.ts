@@ -19,6 +19,26 @@ export const videoCategories: VideoCategory[] = [
     ],
   },
   {
+    id: 'israel',
+    label: 'Israel',
+    icon: '✡️',
+    videos: [
+      { id: 'rl7d6RsCBAk', title: 'The Abrahamic Promise (Genesis 12)', date: 'May 2026' },
+      { id: '0UdlDeSa0oY', title: 'The Abrahamic Promise', date: 'May 2026' },
+      { id: 'rQmZOgqoCS4', title: 'Why Did God Choose Israel?', date: 'Apr 2026' },
+      { id: 'veYFH2KyLro', title: "What Did Israel's Disobedience Lead To?", date: 'May 2026' },
+      { id: 'lJEdVXVjCxc', title: 'Isaiah 19 Highway', date: 'Apr 2026' },
+    ],
+  },
+  {
+    id: 'bride-of-christ',
+    label: 'Bride of Christ',
+    icon: '💍',
+    videos: [
+      { id: 'KZ81WGHOrDg', title: "The Longing of David's Heart", date: 'May 2026' },
+    ],
+  },
+  {
     id: 'missions-middle-east',
     label: 'Missions & Middle East',
     icon: '🌍',
