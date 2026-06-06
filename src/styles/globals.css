@@ -280,115 +280,116 @@ h1, h2, h3, h4 {
 .res-panel-header p { font-size: 1rem; color: var(--text-light); }
 
 /* ================================================================
-   VIDEO TEACHINGS — Derek Prince /videos style
+   VIDEO TEACHINGS — YouTube rows + Derek Prince dark design
    ================================================================ */
 
-/* Dark page wrapper — bleeds to fill the white sub-body */
-.vtcat-page {
+/* Dark page — bleeds edge to edge */
+.ytv-page {
   margin: -48px -32px -80px;
-  background: #1a1a1a;
-  padding: 40px 32px 60px;
+  background: #0f0f0f;
+  padding: 40px 40px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
 }
 
-/* 2-column grid like Derek Prince */
-.vtcat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
+/* Section */
+.ytv-section { display: flex; flex-direction: column; gap: 0; }
+
+/* Section header */
+.ytv-section-head {
+  display: flex; align-items: center; gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 20px;
+}
+.ytv-section-icon { font-size: 1.3rem; }
+.ytv-section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: #fff; flex: 1;
+}
+.ytv-section-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem; font-weight: 600;
+  color: #666;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.ytv-section-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; color: #888;
+  line-height: 1.5; margin: -10px 0 18px;
 }
 
-/* Category card */
-.vtcat-card {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+/* Horizontal scrollable row of videos */
+.ytv-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+.ytv-row::-webkit-scrollbar { height: 4px; }
+.ytv-row::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+/* Individual video card */
+.ytv-card {
+  flex: 0 0 280px;
+  display: flex; flex-direction: column;
   cursor: pointer;
-  border: none;
-  padding: 0;
-  background: #2a2a2a;
-  display: block;
-  width: 100%;
+  transition: opacity 0.15s;
 }
-.vtcat-bg {
+.ytv-card:hover { opacity: 0.8; }
+
+/* Thumbnail */
+.ytv-thumb {
+  position: relative;
+  width: 280px; height: 158px; /* 16:9 */
+  background: #1a1a1a;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.ytv-thumb img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.45s ease;
-  filter: brightness(0.55);
+  object-fit: cover; display: block;
 }
-.vtcat-card:hover .vtcat-bg { transform: scale(1.05); filter: brightness(0.45); }
-
-/* Centered text overlay — like Derek Prince */
-.vtcat-overlay {
+.ytv-thumb iframe {
   position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 28px 32px;
+  width: 100%; height: 100%;
+  border: none;
 }
-.vtcat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-.vtcat-name {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 10px;
+.ytv-play-btn {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.25);
+  transition: background 0.15s;
 }
-.vtcat-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(0.72rem, 1.2vw, 0.85rem);
-  font-weight: 400;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.5;
-  margin-bottom: 14px;
-  max-width: 340px;
-}
-.vtcat-count {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+.ytv-card:hover .ytv-play-btn { background: rgba(0,0,0,0.1); }
 
-/* ── Category detail view ── */
-.vtd-wrap { display: flex; flex-direction: column; gap: 20px; }
-.vtd-back {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
-  color: var(--wine); text-transform: uppercase; letter-spacing: 0.07em;
-  cursor: pointer; background: none; border: none; padding: 0; align-self: flex-start;
-  transition: color var(--transition);
+/* Card info */
+.ytv-info { padding: 10px 2px 0; }
+.ytv-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem; font-weight: 600;
+  color: #e8e8e8; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+  margin-bottom: 5px;
 }
-.vtd-back:hover { color: var(--wine-deep); }
-.vtd-header { display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #eee; padding-bottom: 14px; }
-.vtd-header span:first-child { font-size: 1.4rem; }
-.vtd-header h2 { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 800; color: #111; flex: 1; }
-.vtd-count { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; color: #999; background: #f2f2f2; border: 1px solid #e5e5e5; padding: 3px 10px; border-radius: 100px; }
-.vtd-desc { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #555; line-height: 1.6; margin-top: -6px; }
-.vtd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-/* ── Video card inside detail view ── */
-.vtv-card { display: flex; flex-direction: column; cursor: pointer; transition: opacity 0.18s; }
-.vtv-card:hover { opacity: 0.82; }
-.vtv-thumb { position: relative; padding-top: 56.25%; background: #000; overflow: hidden; }
-.vtv-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.vtv-thumb iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-.vtv-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.22); transition: background 0.18s; }
-.vtv-card:hover .vtv-play { background: rgba(0,0,0,0.06); }
-.vtv-play svg { width: 44px; height: 44px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6)); }
-.vtv-info { padding: 10px 0 0; }
-.vtv-title { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
-.vtv-date { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #999; }
+.ytv-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; color: #666;
+}
 
 /* Responsive */
-@media (max-width: 760px) { .vtcat-grid { grid-template-columns: 1fr; } .vtd-grid { grid-template-columns: repeat(2, 1fr); } .vtcat-page { margin: -48px -18px -60px; padding: 28px 18px 48px; } }
-@media (max-width: 480px) { .vtd-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .ytv-page { padding: 28px 18px 48px; margin: -48px -18px -60px; gap: 40px; }
+  .ytv-card { flex: 0 0 220px; }
+  .ytv-thumb { width: 220px; height: 124px; }
+}
 
 /* Keep these for Shorts page */
 .video-thumb { position: relative; padding-top: 56.25%; background: var(--wine-deep); cursor: pointer; overflow: hidden; }
