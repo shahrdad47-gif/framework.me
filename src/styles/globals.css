@@ -282,17 +282,17 @@ h1, h2, h3, h4 {
 /* ================================================================
    VIDEO TEACHINGS — Derek Prince style sections + card grid
    ================================================================ */
-.vt-platform { display: flex; flex-direction: column; gap: 56px; }
+.vt-platform { display: flex; flex-direction: column; gap: 40px; }
 
 /* Category section */
-.vt-section { display: flex; flex-direction: column; gap: 20px; }
-.vt-section-header { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
+.vt-section { display: flex; flex-direction: column; gap: 14px; }
+.vt-section-header { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
 .vt-section-icon { font-size: 1.4rem; line-height: 1; }
 .vt-section-title { font-size: 1.35rem; font-weight: 800; color: var(--wine-deep); letter-spacing: -0.01em; flex: 1; }
 .vt-section-count { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--text-light); background: #f0f0f0; border: 1px solid #e0e0e0; padding: 3px 10px; border-radius: 100px; }
 
-/* Card grid — 2 columns like Derek Prince */
-.vt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+/* Card grid — 3 columns, tight gap like Derek Prince */
+.vt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
 /* Card */
 .vt-card { background: var(--white); border-radius: 0; overflow: hidden; border: none; box-shadow: none; transition: opacity 0.2s ease; display: flex; flex-direction: column; }
@@ -317,8 +317,8 @@ h1, h2, h3, h4 {
 .vt-date { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: #999; margin-top: auto; }
 
 /* Responsive */
-@media (max-width: 720px) { .vt-grid { grid-template-columns: 1fr; gap: 20px; } }
-@media (max-width: 580px) { .vt-platform { gap: 40px; } .vt-card-body { padding: 14px 16px 16px; } }
+@media (max-width: 900px) { .vt-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .vt-grid { grid-template-columns: 1fr; } .vt-platform { gap: 28px; } .vt-card-body { padding: 12px 14px 14px; } }
 
 /* Keep these for Shorts page */
 .video-thumb { position: relative; padding-top: 56.25%; background: var(--wine-deep); cursor: pointer; overflow: hidden; }
