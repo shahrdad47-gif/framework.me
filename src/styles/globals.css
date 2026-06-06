@@ -306,77 +306,66 @@ h1, h2, h3, h4 {
   background: #bbb; padding: 2px 9px; border-radius: 100px;
 }
 
-/* Responsive grid — fills naturally, max 4 cols */
+/* 3-column grid like Derek Prince sermons */
 .ytv-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-/* Card — full-bleed image with overlay text (Derek Prince /videos style) */
+/* ── Card — Derek Prince sermons style ── */
 .ytv-card {
-  position: relative;
-  display: block;
-  aspect-ratio: 4 / 3;
+  display: flex; flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
   overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.14);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 2px 12px rgba(0,0,0,0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  text-decoration: none;
 }
-.ytv-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+.ytv-card:hover { transform: translateY(-4px); box-shadow: 0 6px 24px rgba(0,0,0,0.14); }
 
-/* Full-bleed background image */
-.ytv-card-img {
+/* 16:9 thumbnail */
+.ytv-thumb {
+  position: relative;
+  width: 100%; aspect-ratio: 16 / 9;
+  overflow: hidden; background: #ddd; flex-shrink: 0;
+}
+.ytv-thumb img {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.35s ease;
 }
-.ytv-card:hover .ytv-card-img { transform: scale(1.06); }
+.ytv-card:hover .ytv-thumb img { transform: scale(1.04); }
 
-/* Dark gradient overlay — heavier at bottom */
-.ytv-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.82) 0%,
-    rgba(0,0,0,0.35) 45%,
-    rgba(0,0,0,0.05) 100%
-  );
-}
-
-/* Play icon — centered, fades in on hover */
-.ytv-card-play {
+/* Play overlay */
+.ytv-thumb-overlay {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity 0.2s;
+  background: rgba(0,0,0,0); transition: background 0.2s;
 }
-.ytv-card:hover .ytv-card-play { opacity: 1; }
+.ytv-card:hover .ytv-thumb-overlay { background: rgba(0,0,0,0.18); }
+.ytv-play-btn {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(0,0,0,0.65);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.ytv-card:hover .ytv-play-btn { opacity: 1; transform: scale(1); }
 
-/* Title + date — pinned to bottom */
-.ytv-card-info {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 16px 14px;
-  z-index: 1;
-}
-.ytv-card-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.88rem; font-weight: 700;
-  color: #fff; line-height: 1.35;
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
-  margin-bottom: 4px;
-}
-.ytv-card-date {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.68rem; color: rgba(255,255,255,0.55); font-weight: 500;
-}
+/* Card body — series → tags → title → date */
+.ytv-body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.ytv-series { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #999; font-weight: 500; }
+.ytv-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.ytv-tag { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 600; color: #555; background: #f0f0f0; padding: 3px 10px; border-radius: 100px; }
+.ytv-title { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 700; color: #111; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ytv-date { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: #999; margin-top: auto; }
 
 /* Responsive */
-@media (max-width: 640px) {
-  .ytv-page { gap: 36px; }
-  .ytv-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-}
+@media (max-width: 760px) { .ytv-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 480px) { .ytv-grid { grid-template-columns: 1fr; } .ytv-page { gap: 36px; } }
 
 /* ================================================================
    VIDEO DETAIL PAGE — Derek Prince /sermons/103 style
