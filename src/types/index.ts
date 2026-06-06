@@ -36,6 +36,7 @@ export interface VideoCategory {
   id: string
   label: string
   icon: string
+  description?: string
   videos: Video[]
 }
 

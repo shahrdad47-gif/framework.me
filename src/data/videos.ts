@@ -5,6 +5,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'house-of-prayer',
     label: 'House of Prayer',
     icon: '🙏',
+    description: 'Night and day intercession for the nations of the Middle East and the return of Christ.',
     videos: [
       { id: 'fWKcKb_5C7I', title: 'Praying for the Nations — PFJ', date: 'Apr 2026' },
     ],
@@ -13,6 +14,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'end-times',
     label: 'End Times',
     icon: '⌛',
+    description: 'Biblical prophecy and God\'s unfolding plan for the nations in the last days.',
     videos: [
       { id: 'nNySpzzVwRo', title: 'THIS Must Happen Before the Antichrist is Revealed', date: 'May 2026' },
       { id: 'ri3ecIj4518', title: 'Ararat and Babylon (Jeremiah 51:27)', date: 'Apr 2026' },
@@ -22,6 +24,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'israel',
     label: 'Israel',
     icon: '✡️',
+    description: 'God\'s covenant purposes for the Jewish people, the land, and end-time prophecy.',
     videos: [
       { id: 'rl7d6RsCBAk', title: 'The Abrahamic Promise (Genesis 12)', date: 'May 2026' },
       { id: '0UdlDeSa0oY', title: 'The Abrahamic Promise', date: 'May 2026' },
@@ -34,6 +37,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'bride-of-christ',
     label: 'Bride of Christ',
     icon: '💍',
+    description: 'The global Church prepared, purified, and made ready for the return of Jesus.',
     videos: [
       { id: 'KZ81WGHOrDg', title: "The Longing of David's Heart", date: 'May 2026' },
     ],
@@ -42,6 +46,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'missions-middle-east',
     label: 'Missions & Middle East',
     icon: '🌍',
+    description: 'Reaching the unreached peoples of the Muslim world with the Gospel of Jesus Christ.',
     videos: [
       { id: '7KCTz4djQvI', title: "Armenia's 3 Fold Prophetic Destiny — PFJ", date: 'Apr 2026' },
       { id: '6m77wMs1s5U', title: 'The Calling of Armenia — Encounter', date: 'Apr 2026' },
@@ -55,6 +60,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'christian-living',
     label: 'Christian Living',
     icon: '✝️',
+    description: 'Practical biblical teachings for walking faithfully with God in everyday life.',
     videos: [
       { id: 'IleeDqRav_Q', title: 'The Heart of a Father', date: 'Apr 2026' },
       { id: 'djGu91cl78k', title: 'A Father Will Do Anything', date: 'May 2026' },
@@ -67,6 +73,7 @@ export const videoCategories: VideoCategory[] = [
     id: 'theology',
     label: 'Theology',
     icon: '📖',
+    description: 'Deep dives into Scripture and the biblical framework for understanding God\'s plan.',
     videos: [
       { id: 'KKTY9tjeSjw', title: 'Christ: Summing Up All Things', date: 'May 2026' },
       { id: 'jKO5DCL89IY', title: 'A Framework for Our Generation', date: 'Apr 2026' },

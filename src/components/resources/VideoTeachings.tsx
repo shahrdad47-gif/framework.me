@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { videoCategories } from '@/data/videos'
 import type { VideoCategory } from '@/types'
 
-/* ── Individual video card shown inside a category ── */
+/* ── Video card inside a category ── */
 function VideoCard({ id, title, date }: { id: string; title: string; date?: string }) {
   const [playing, setPlaying] = useState(false)
   return (
@@ -49,6 +49,7 @@ function CategoryDetail({ cat, onBack }: { cat: VideoCategory; onBack: () => voi
         <h2>{cat.label}</h2>
         <span className="vtd-count">{cat.videos.length} video{cat.videos.length !== 1 ? 's' : ''}</span>
       </div>
+      {cat.description && <p className="vtd-desc">{cat.description}</p>}
       <div className="vtd-grid">
         {cat.videos.map(v => (
           <VideoCard key={v.id} id={v.id} title={v.title} date={v.date} />
@@ -58,7 +59,7 @@ function CategoryDetail({ cat, onBack }: { cat: VideoCategory; onBack: () => voi
   )
 }
 
-/* ── Main: category grid (side by side) ── */
+/* ── Category grid — side by side, dark background ── */
 export default function VideoTeachings() {
   const [selected, setSelected] = useState<VideoCategory | null>(null)
 
@@ -67,27 +68,30 @@ export default function VideoTeachings() {
   }
 
   return (
-    <div className="vtcat-grid">
-      {videoCategories.map(cat => {
-        const thumb = cat.videos[0]?.id
-        return (
-          <button key={cat.id} className="vtcat-card" onClick={() => setSelected(cat)}>
-            {thumb && (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src={`https://img.youtube.com/vi/${thumb}/hqdefault.jpg`}
-                alt={cat.label}
-                className="vtcat-bg"
-              />
-            )}
-            <div className="vtcat-overlay">
-              <span className="vtcat-icon">{cat.icon}</span>
-              <h3 className="vtcat-name">{cat.label}</h3>
-              <p className="vtcat-sub">{cat.videos.length} video{cat.videos.length !== 1 ? 's' : ''}</p>
-            </div>
-          </button>
-        )
-      })}
+    <div className="vtcat-page">
+      <div className="vtcat-grid">
+        {videoCategories.map(cat => {
+          const thumb = cat.videos[0]?.id
+          return (
+            <button key={cat.id} className="vtcat-card" onClick={() => setSelected(cat)}>
+              {thumb && (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={`https://img.youtube.com/vi/${thumb}/hqdefault.jpg`}
+                  alt={cat.label}
+                  className="vtcat-bg"
+                />
+              )}
+              <div className="vtcat-overlay">
+                <span className="vtcat-icon">{cat.icon}</span>
+                <h3 className="vtcat-name">{cat.label}</h3>
+                {cat.description && <p className="vtcat-desc">{cat.description}</p>}
+                <span className="vtcat-count">{cat.videos.length} video{cat.videos.length !== 1 ? 's' : ''}</span>
+              </div>
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }
