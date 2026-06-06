@@ -15,10 +15,11 @@ const navLinks = [
   { href: '/contributors',       label: 'Authors' },
 ]
 
-const countries = [
+const countries: { name: string; svg: string | null; key: string }[] = [
   { name: 'Iran',         svg: 'FME_Iran_map.svg',    key: 'iran' },
   { name: 'Lebanon',      svg: 'FME_Lebanon_map.svg',  key: 'lebanon' },
   { name: 'Syria',        svg: 'FME_Syria_map.svg',    key: 'syria' },
+  { name: 'Islam',        svg: null,                    key: 'islam' },
   { name: 'Armenia',      svg: 'FME_Armenia_map.svg',  key: 'armenia' },
   { name: 'Jordan',       svg: 'FME_Jordan_map.svg',   key: 'jordan' },
   { name: 'Saudi Arabia', svg: 'FME_KSA_map.svg',      key: 'saudi-arabia' },
@@ -91,7 +92,10 @@ export default function Header() {
                   className="hdr-mobile-country"
                   onClick={() => setMenuOpen(false)}
                 >
-                  <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} />
+                  {c.svg
+                    ? <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} />
+                    : <span className="hdr-country-symbol">☪️</span>
+                  }
                   <span>{c.name}</span>
                 </Link>
               ))}
@@ -110,12 +114,18 @@ export default function Header() {
                 {i > 0 && <span className="hdr-country-sep" />}
                 {hasArticles ? (
                   <Link href={`/resources/articles?nation=${c.key}`} className="hdr-country">
-                    <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} className="hdr-country-map" />
+                    {c.svg
+                      ? <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} className="hdr-country-map" />
+                      : <span className="hdr-country-symbol">☪️</span>
+                    }
                     <span className="hdr-country-name">{c.name}</span>
                   </Link>
                 ) : (
                   <span className="hdr-country hdr-country-disabled">
-                    <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} className="hdr-country-map" />
+                    {c.svg
+                      ? <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} className="hdr-country-map" />
+                      : <span className="hdr-country-symbol">☪️</span>
+                    }
                     <span className="hdr-country-name">{c.name}</span>
                   </span>
                 )}

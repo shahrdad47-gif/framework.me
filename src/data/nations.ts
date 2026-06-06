@@ -1,7 +1,7 @@
 import type { Nation } from '@/types'
 
 export const nations: Nation[] = [
-  { key: 'israel',       name: 'Israel',        flag: '🇮🇱' },
+  { key: 'islam',        name: 'Islam',          flag: '☪️' },
   { key: 'jordan',       name: 'Jordan',         flag: '🇯🇴' },
   { key: 'lebanon',      name: 'Lebanon',        flag: '🇱🇧' },
   { key: 'syria',        name: 'Syria',          flag: '🇸🇾' },
