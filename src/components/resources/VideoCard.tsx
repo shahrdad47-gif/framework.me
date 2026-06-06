@@ -35,9 +35,12 @@ export default function VideoCard({ id, title, date, categoryLabel, categoryIcon
         )}
       </div>
       <div className="vt-card-body">
-        <span className="vt-tag">{categoryIcon} {categoryLabel}</span>
+        <span className="vt-series">{categoryIcon} {categoryLabel}</span>
         <h3 className="vt-title">{title}</h3>
-        {date && <span className="vt-date">{date}</span>}
+        <div className="vt-card-footer">
+          <span className="vt-tag">{categoryLabel}</span>
+          {date && <span className="vt-date">{date}</span>}
+        </div>
       </div>
     </div>
   )

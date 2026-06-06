@@ -1,53 +1,33 @@
 'use client'
-import { useState } from 'react'
 import { videoCategories } from '@/data/videos'
 import VideoCard from './VideoCard'
 
 export default function VideoTeachings() {
-  const [activeCatId, setActiveCatId] = useState<string>('all')
-
-  const displayed = activeCatId === 'all'
-    ? videoCategories.flatMap(cat => cat.videos.map(v => ({ ...v, cat })))
-    : videoCategories
-        .filter(cat => cat.id === activeCatId)
-        .flatMap(cat => cat.videos.map(v => ({ ...v, cat })))
-
   return (
     <div className="vt-platform">
-
-      {/* ── Filter tabs ── */}
-      <div className="vt-tabs">
-        <button
-          className={`vt-tab${activeCatId === 'all' ? ' active' : ''}`}
-          onClick={() => setActiveCatId('all')}
-        >
-          All Videos
-        </button>
-        {videoCategories.map(cat => (
-          <button
-            key={cat.id}
-            className={`vt-tab${activeCatId === cat.id ? ' active' : ''}`}
-            onClick={() => setActiveCatId(cat.id)}
-          >
-            {cat.icon} {cat.label}
-          </button>
-        ))}
-      </div>
-
-      {/* ── Card grid ── */}
-      <div className="vt-grid">
-        {displayed.map(v => (
-          <VideoCard
-            key={`${v.cat.id}-${v.id}`}
-            id={v.id}
-            title={v.title}
-            date={v.date}
-            categoryLabel={v.cat.label}
-            categoryIcon={v.cat.icon}
-          />
-        ))}
-      </div>
-
+      {videoCategories.map(cat => (
+        <section key={cat.id} className="vt-section">
+          <div className="vt-section-header">
+            <span className="vt-section-icon">{cat.icon}</span>
+            <h2 className="vt-section-title">{cat.label}</h2>
+            <span className="vt-section-count">
+              {cat.videos.length} video{cat.videos.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+          <div className="vt-grid">
+            {cat.videos.map(v => (
+              <VideoCard
+                key={v.id}
+                id={v.id}
+                title={v.title}
+                date={v.date}
+                categoryLabel={cat.label}
+                categoryIcon={cat.icon}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   )
 }
