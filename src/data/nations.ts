@@ -6,6 +6,7 @@ export const nations: Nation[] = [
   { key: 'lebanon',      name: 'Lebanon',        flag: '🇱🇧' },
   { key: 'syria',        name: 'Syria',          flag: '🇸🇾' },
   { key: 'iraq',         name: 'Iraq',           flag: '🇮🇶' },
+  { key: 'israel',       name: 'Israel',         flag: '🇮🇱' },
   { key: 'iran',         name: 'Iran',           flag: '🇮🇷' },
   { key: 'egypt',        name: 'Egypt',          flag: '🇪🇬' },
   { key: 'saudi-arabia', name: 'Saudi Arabia',   flag: '🇸🇦' },
