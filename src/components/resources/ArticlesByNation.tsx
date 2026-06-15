@@ -42,15 +42,7 @@ export default function ArticlesByNation({ locale, labels }: Props) {
         </button>
 
         <div className="nation-articles-header">
-          {selected.flag_svg
-            ? (
-              <div className="nation-articles-flag-wrap">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={selected.flag_svg} alt={selected.name} className="nation-articles-flag-img" loading="lazy" />
-              </div>
-            )
-            : <span className="nation-articles-flag">{selected.flag}</span>
-          }
+          <span className="nation-articles-flag">{selected.flag}</span>
           <h3>{selected.name}</h3>
         </div>
 
@@ -95,15 +87,7 @@ export default function ArticlesByNation({ locale, labels }: Props) {
               className="nation-card"
               onClick={() => setSelected(nation)}
             >
-              {nation.flag_svg
-                ? (
-                  <div className="nation-flag-wrap">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={nation.flag_svg} alt={nation.name} className="nation-flag-img" loading="lazy" />
-                  </div>
-                )
-                : <span className="nation-flag">{nation.flag}</span>
-              }
+              <span className="nation-flag">{nation.flag}</span>
               <span className="nation-name">{nation.name}</span>
               {count > 0 && (
                 <span className="nation-count">{count}</span>

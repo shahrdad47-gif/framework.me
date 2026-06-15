@@ -25,7 +25,6 @@ export interface Nation {
   name: string
   flag: string
   svg?: string
-  flag_svg?: string
 }
 
 export interface Video {

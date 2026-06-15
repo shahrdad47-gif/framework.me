@@ -114,15 +114,7 @@ export default function LangArticleDetailPage({ slug, t, locale }: Props) {
                 <div className="sidebar-nations">
                   {relatedNations.map(n => (
                     <Link key={n.key} href={`/${locale}/articles?nation=${n.key}`} className="sidebar-nation">
-                      {n.flag_svg
-                        ? (
-                          <div className="sidebar-nation-flag-wrap">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={n.flag_svg} alt={n.name} className="sidebar-nation-flag-img" loading="lazy" />
-                          </div>
-                        )
-                        : <span>{n.flag}</span>
-                      }
+                      <span>{n.flag}</span>
                       <span>{n.name}</span>
                     </Link>
                   ))}
