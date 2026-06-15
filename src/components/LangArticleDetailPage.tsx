@@ -4,38 +4,33 @@ import Image from 'next/image'
 import { articles } from '@/data/articles'
 import { getArticleBySlug } from '@/lib/articles'
 import { nations } from '@/data/nations'
+import type { LangT } from '@/data/translations'
 
-export async function generateStaticParams() {
-  return articles.map(a => ({ slug: a.slug }))
+interface Props {
+  slug: string
+  t: LangT
+  locale: string
 }
 
-interface PageProps {
-  params: { slug: string }
-}
-
-export async function generateMetadata({ params }: PageProps) {
-  const article = getArticleBySlug(params.slug)
-  if (!article) return {}
-  return { title: `${article.title} — Framework:ME` }
-}
-
-export default function ArticlePage({ params }: PageProps) {
-  const article = getArticleBySlug(params.slug)
+export default function LangArticleDetailPage({ slug, t, locale }: Props) {
+  const article = getArticleBySlug(slug)
   if (!article) notFound()
 
   const relatedNations = nations.filter(n => article.nations.includes(n.key))
+  const isRtl = t.dir === 'rtl'
 
   return (
-    <div className="article-page">
+    <div className="article-page" dir={t.dir}>
 
       {/* ── Header ── */}
       <div className="article-hero">
         <div className="container">
-          <Link href="/resources?tab=articles" className="article-breadcrumb">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <Link href={`/${locale}/articles`} className="article-breadcrumb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+              style={isRtl ? { transform: 'scaleX(-1)' } : undefined}>
               <polyline points="15 18 9 12 15 6"/>
             </svg>
-            Articles by Nation
+            {t.sections.articles.title}
           </Link>
           <div className="article-nations-row">
             {relatedNations.map(n => (
@@ -48,8 +43,8 @@ export default function ArticlePage({ params }: PageProps) {
               </span>
             ))}
           </div>
-          <h1 className="article-title">{article.title}</h1>
-          <div className="article-meta">
+          <h1 className="article-title" dir="ltr">{article.title}</h1>
+          <div className="article-meta" dir="ltr">
             <span className="article-author">By {article.author}</span>
             <span className="article-dot">·</span>
             <span className="article-date">{article.date}</span>
@@ -62,7 +57,7 @@ export default function ArticlePage({ params }: PageProps) {
         <div className="container">
           <div className="article-layout">
 
-            <article className="article-content">
+            <article className="article-content" dir="ltr">
               {article.body.map((block, i) => {
                 if (block.type === 'paragraph') {
                   return <p key={i} className="article-p">{block.text}</p>
@@ -88,7 +83,6 @@ export default function ArticlePage({ params }: PageProps) {
                 return null
               })}
 
-              {/* PDF download */}
               {article.pdf && (
                 <div className="article-pdf-row">
                   <a
@@ -119,7 +113,7 @@ export default function ArticlePage({ params }: PageProps) {
                 <h4>Nations Covered</h4>
                 <div className="sidebar-nations">
                   {relatedNations.map(n => (
-                    <Link key={n.key} href={`/resources/articles?nation=${n.key}`} className="sidebar-nation">
+                    <Link key={n.key} href={`/${locale}/articles?nation=${n.key}`} className="sidebar-nation">
                       {n.flag_svg
                         ? (
                           <div className="sidebar-nation-flag-wrap">
@@ -149,7 +143,7 @@ export default function ArticlePage({ params }: PageProps) {
                   className="btn-give"
                   style={{ marginTop: '12px', width: '100%', justifyContent: 'center' }}
                 >
-                  Give
+                  {t.give.giveCTA}
                 </a>
               </div>
             </aside>

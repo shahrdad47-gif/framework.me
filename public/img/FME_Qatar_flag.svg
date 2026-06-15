@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <!-- Maroon background -->
+  <rect width="60" height="40" fill="#8D1B3D"/>
+  <!-- White left section with 9 maroon serrations -->
+  <path fill="white" d="M 0,0 L 18,0 L 12,2.2 L 18,4.4 L 12,6.7 L 18,8.9 L 12,11.1 L 18,13.3 L 12,15.6 L 18,17.8 L 12,20 L 18,22.2 L 12,24.4 L 18,26.7 L 12,28.9 L 18,31.1 L 12,33.3 L 18,35.6 L 12,37.8 L 18,40 L 0,40 Z"/>
+</svg>

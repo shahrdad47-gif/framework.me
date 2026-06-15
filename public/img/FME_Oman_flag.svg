@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <!-- Red vertical bar on left -->
+  <rect width="16" height="40" fill="#DB161B"/>
+  <!-- White stripe top right -->
+  <rect x="16" width="44" height="13.33" fill="#FFFFFF"/>
+  <!-- Red stripe middle right -->
+  <rect x="16" y="13.33" width="44" height="13.34" fill="#DB161B"/>
+  <!-- Green stripe bottom right -->
+  <rect x="16" y="26.67" width="44" height="13.33" fill="#008000"/>
+  <!-- Simplified national emblem (white, top-left of flag) -->
+  <path fill="white" d="M 4,6 L 8,4 L 12,6 L 12,12 L 8,14 L 4,12 Z"/>
+</svg>

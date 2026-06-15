@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="40" fill="#FFFFFF"/>
+  <!-- Blue horizontal stripes -->
+  <rect y="7" width="60" height="5" fill="#0038B8"/>
+  <rect y="28" width="60" height="5" fill="#0038B8"/>
+  <!-- Star of David (two triangles) -->
+  <polygon fill="none" stroke="#0038B8" stroke-width="1.8" points="30,12 36.9,24 23.1,24"/>
+  <polygon fill="none" stroke="#0038B8" stroke-width="1.8" points="30,28 36.9,16 23.1,16"/>
+</svg>

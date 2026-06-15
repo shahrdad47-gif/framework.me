@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="40" fill="#006C35"/>
+  <!-- White crescent moon -->
+  <circle cx="26" cy="20" r="12" fill="white"/>
+  <circle cx="30" cy="20" r="9.5" fill="#006C35"/>
+  <!-- White 5-pointed star -->
+  <polygon fill="white" points="40,20 37.8,18.4 38.6,15.5 40.8,17.1 43,15.5 43.8,18.4 41.6,20 43.8,21.6 43,24.5 40.8,22.9 38.6,24.5 37.8,21.6"/>
+</svg>

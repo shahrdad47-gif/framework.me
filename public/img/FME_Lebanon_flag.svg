@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="10" fill="#EF3340"/>
+  <rect y="10" width="60" height="20" fill="#FFFFFF"/>
+  <rect y="30" width="60" height="10" fill="#EF3340"/>
+  <!-- Green cedar tree centered in white -->
+  <path fill="#00A550" d="M30,12 L33,17 L31,17 L34,22 L32,22 L35,27 L32,27 L32,29 L28,29 L28,27 L25,27 L28,22 L26,22 L29,17 L27,17 Z"/>
+</svg>

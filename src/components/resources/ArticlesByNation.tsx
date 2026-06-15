@@ -2,13 +2,25 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Nation } from '@/types'
 import { nations } from '@/data/nations'
 import { getArticlesForNation } from '@/lib/articles'
 
-export default function ArticlesByNation() {
+interface Props {
+  locale?: string
+  labels?: { allNations?: string; readArticle?: string }
+}
+
+export default function ArticlesByNation({ locale, labels }: Props) {
   const searchParams = useSearchParams()
   const [selected, setSelected] = useState<Nation | null>(null)
+
+  const basePath    = locale ? `/${locale}/articles`          : '/resources/articles'
+  const articleHref = (slug: string) => locale ? `/${locale}/articles/${slug}` : `/articles/${slug}`
+
+  const allNationsLabel  = labels?.allNations  ?? 'All Nations'
+  const readArticleLabel = labels?.readArticle ?? 'Read Article →'
 
   useEffect(() => {
     const key = searchParams.get('nation')
@@ -23,15 +35,28 @@ export default function ArticlesByNation() {
 
     return (
       <div>
-        <button className="btn-back" onClick={() => { setSelected(null); window.history.replaceState(null, '', '/resources/articles') }}>
+        <button className="btn-back" onClick={() => { setSelected(null); window.history.replaceState(null, '', basePath) }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
-          All Nations
+          {allNationsLabel}
         </button>
 
         <div className="nation-articles-header">
-          <span className="nation-articles-flag">{selected.flag}</span>
+          {selected.flag_svg
+            ? (
+              <div className="nation-articles-flag-wrap">
+                <Image src={`/img/${selected.flag_svg}`} alt={selected.name} width={80} height={53} className="nation-articles-flag-img" />
+              </div>
+            )
+            : selected.svg
+            ? (
+              <div className="nation-articles-map-wrap">
+                <Image src={`/img/${selected.svg}`} alt={selected.name} width={56} height={56} className="nation-articles-map" />
+              </div>
+            )
+            : <span className="nation-articles-flag">{selected.flag}</span>
+          }
           <h3>{selected.name}</h3>
         </div>
 
@@ -42,7 +67,7 @@ export default function ArticlesByNation() {
         ) : (
           <div className="articles-list">
             {articleList.map(a => (
-              <Link key={a.slug} href={`/articles/${a.slug}`} className="article-card-link">
+              <Link key={a.slug} href={articleHref(a.slug)} className="article-card-link">
                 <div className="article-card">
                   <div className="article-card-meta">
                     <span className="article-card-author">{a.author}</span>
@@ -51,7 +76,7 @@ export default function ArticlesByNation() {
                   </div>
                   <h4>{a.title}</h4>
                   <p>{a.summary}</p>
-                  <span className="article-read-more">Read Article →</span>
+                  <span className="article-read-more">{readArticleLabel}</span>
                 </div>
               </Link>
             ))}
@@ -76,7 +101,20 @@ export default function ArticlesByNation() {
               className="nation-card"
               onClick={() => setSelected(nation)}
             >
-              <span className="nation-flag">{nation.flag}</span>
+              {nation.flag_svg
+                ? (
+                  <div className="nation-flag-wrap">
+                    <Image src={`/img/${nation.flag_svg}`} alt={nation.name} width={60} height={40} className="nation-flag-img" />
+                  </div>
+                )
+                : nation.svg
+                ? (
+                  <div className="nation-map-wrap">
+                    <Image src={`/img/${nation.svg}`} alt={nation.name} width={48} height={48} className="nation-map-img" />
+                  </div>
+                )
+                : <span className="nation-flag">{nation.flag}</span>
+              }
               <span className="nation-name">{nation.name}</span>
               {count > 0 && (
                 <span className="nation-count">{count}</span>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <!-- Red vertical bar on left -->
+  <rect width="16" height="40" fill="#EF3340"/>
+  <!-- Green stripe top right -->
+  <rect x="16" width="44" height="13.33" fill="#009A44"/>
+  <!-- White stripe middle right -->
+  <rect x="16" y="13.33" width="44" height="13.34" fill="#FFFFFF"/>
+  <!-- Black stripe bottom right -->
+  <rect x="16" y="26.67" width="44" height="13.33" fill="#000000"/>
+</svg>

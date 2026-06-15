@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="13.33" fill="#D21034"/>
+  <rect y="13.33" width="60" height="13.34" fill="#FFFFFF"/>
+  <rect y="26.67" width="60" height="13.33" fill="#000000"/>
+  <!-- Green triangle on left -->
+  <polygon fill="#007229" points="0,0 22,20 0,40"/>
+</svg>

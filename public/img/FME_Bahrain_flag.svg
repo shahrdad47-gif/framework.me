@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <!-- Red background -->
+  <rect width="60" height="40" fill="#CE1126"/>
+  <!-- White left section with 5 red serrations -->
+  <path fill="white" d="M 0,0 L 18,0 L 12,4 L 18,8 L 12,12 L 18,16 L 12,20 L 18,24 L 12,28 L 18,32 L 12,36 L 18,40 L 0,40 Z"/>
+</svg>

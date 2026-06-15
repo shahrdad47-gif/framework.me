@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="8" fill="#EF3340"/>
+  <rect y="8" width="60" height="24" fill="#000000"/>
+  <rect y="32" width="60" height="8" fill="#239E46"/>
+  <!-- White crescent and star on black -->
+  <circle cx="27" cy="20" r="8" fill="white"/>
+  <circle cx="30" cy="20" r="6.5" fill="#000000"/>
+  <polygon fill="white" points="36,20 34.2,18.7 35,16.7 36.8,17.8 38.6,16.7 37.4,18.7 39.2,20 37.4,21.3 38.6,23.3 36.8,22.2 35,23.3 34.2,21.3"/>
+</svg>

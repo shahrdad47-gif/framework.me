@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="13.33" fill="#CE1126"/>
+  <rect y="13.33" width="60" height="13.34" fill="#FFFFFF"/>
+  <rect y="26.67" width="60" height="13.33" fill="#000000"/>
+  <!-- Eagle of Saladin (simplified) -->
+  <path fill="#C09300" d="M26,16 L27,14 L30,13 L33,14 L34,16 L33,17 L34,22 L30,23 L26,22 L27,17 Z"/>
+  <rect x="27" y="22" width="6" height="2" fill="#C09300"/>
+</svg>

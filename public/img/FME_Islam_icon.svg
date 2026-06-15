@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Crescent moon -->
+  <path fill="#FFFFFF" stroke="none"
+    d="M 48,14 C 28,14 12,29 12,50 C 12,71 28,86 48,86
+       C 36,76 30,64 30,50 C 30,36 36,24 48,14 Z"/>
+  <!-- 5-pointed star -->
+  <polygon fill="#FFFFFF" stroke="none"
+    points="74,18 77,30 89,30 79,37 83,49 74,42 65,49 69,37 59,30 71,30"/>
+</svg>

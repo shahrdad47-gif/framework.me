@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40">
+  <rect width="60" height="13.33" fill="#000000"/>
+  <rect y="13.33" width="60" height="13.34" fill="#FFFFFF"/>
+  <rect y="26.67" width="60" height="13.33" fill="#007A3D"/>
+  <!-- Red triangle on left -->
+  <polygon fill="#CE1126" points="0,0 22,20 0,40"/>
+  <!-- White 7-pointed star inside triangle -->
+  <polygon fill="white" points="11,20 10.2,17.8 8,17.8 9.6,16.5 9,14.2 11,15.6 13,14.2 12.4,16.5 14,17.8 11.8,17.8 11.2,20 11,22.2 10.8,20 8.8,21.6 9.4,19.3 7.4,18 9.6,18 11,15.8"/>
+</svg>

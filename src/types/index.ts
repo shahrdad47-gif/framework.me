@@ -24,6 +24,8 @@ export interface Nation {
   key: string
   name: string
   flag: string
+  svg?: string
+  flag_svg?: string
 }
 
 export interface Video {
