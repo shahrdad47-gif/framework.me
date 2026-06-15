@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Nation } from '@/types'
 import { nations } from '@/data/nations'
 import { getArticlesForNation } from '@/lib/articles'
@@ -46,7 +45,8 @@ export default function ArticlesByNation({ locale, labels }: Props) {
           {selected.flag_svg
             ? (
               <div className="nation-articles-flag-wrap">
-                <Image src={`/img/${selected.flag_svg}`} alt={selected.name} width={80} height={53} className="nation-articles-flag-img" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={selected.flag_svg} alt={selected.name} className="nation-articles-flag-img" loading="lazy" />
               </div>
             )
             : <span className="nation-articles-flag">{selected.flag}</span>
@@ -98,7 +98,8 @@ export default function ArticlesByNation({ locale, labels }: Props) {
               {nation.flag_svg
                 ? (
                   <div className="nation-flag-wrap">
-                    <Image src={`/img/${nation.flag_svg}`} alt={nation.name} width={60} height={40} className="nation-flag-img" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={nation.flag_svg} alt={nation.name} className="nation-flag-img" loading="lazy" />
                   </div>
                 )
                 : <span className="nation-flag">{nation.flag}</span>

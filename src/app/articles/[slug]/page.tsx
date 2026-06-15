@@ -123,7 +123,8 @@ export default function ArticlePage({ params }: PageProps) {
                       {n.flag_svg
                         ? (
                           <div className="sidebar-nation-flag-wrap">
-                            <Image src={`/img/${n.flag_svg}`} alt={n.name} width={36} height={24} className="sidebar-nation-flag-img" />
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={n.flag_svg} alt={n.name} className="sidebar-nation-flag-img" loading="lazy" />
                           </div>
                         )
                         : <span>{n.flag}</span>
