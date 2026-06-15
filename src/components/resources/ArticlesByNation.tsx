@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Nation } from '@/types'
 import { nations } from '@/data/nations'
 import { getArticlesForNation } from '@/lib/articles'
@@ -42,7 +43,12 @@ export default function ArticlesByNation({ locale, labels }: Props) {
         </button>
 
         <div className="nation-articles-header">
-          <span className="nation-articles-flag">{selected.flag}</span>
+          {selected.svg
+            ? <div className="nation-map-wrap" style={{ width: 64, height: 64 }}>
+                <Image src={`/img/${selected.svg}`} alt={selected.name} width={52} height={52} className="nation-map-img" />
+              </div>
+            : <span className="nation-articles-flag">{selected.flag}</span>
+          }
           <h3>{selected.name}</h3>
         </div>
 
@@ -87,7 +93,12 @@ export default function ArticlesByNation({ locale, labels }: Props) {
               className="nation-card"
               onClick={() => setSelected(nation)}
             >
-              <span className="nation-flag">{nation.flag}</span>
+              {nation.svg
+                ? <div className="nation-map-wrap">
+                    <Image src={`/img/${nation.svg}`} alt={nation.name} width={44} height={44} className="nation-map-img" />
+                  </div>
+                : <span className="nation-flag">{nation.flag}</span>
+              }
               <span className="nation-name">{nation.name}</span>
               {count > 0 && (
                 <span className="nation-count">{count}</span>
