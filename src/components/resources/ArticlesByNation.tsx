@@ -43,13 +43,7 @@ export default function ArticlesByNation({ locale, labels }: Props) {
         </button>
 
         <div className="nation-articles-header">
-          {selected.flag_svg
-            ? (
-              <div className="nation-articles-flag-wrap">
-                <Image src={`/img/${selected.flag_svg}`} alt={selected.name} width={80} height={53} className="nation-articles-flag-img" />
-              </div>
-            )
-            : selected.svg
+          {selected.svg
             ? (
               <div className="nation-articles-map-wrap">
                 <Image src={`/img/${selected.svg}`} alt={selected.name} width={56} height={56} className="nation-articles-map" />
@@ -101,13 +95,7 @@ export default function ArticlesByNation({ locale, labels }: Props) {
               className="nation-card"
               onClick={() => setSelected(nation)}
             >
-              {nation.flag_svg
-                ? (
-                  <div className="nation-flag-wrap">
-                    <Image src={`/img/${nation.flag_svg}`} alt={nation.name} width={60} height={40} className="nation-flag-img" />
-                  </div>
-                )
-                : nation.svg
+              {nation.svg
                 ? (
                   <div className="nation-map-wrap">
                     <Image src={`/img/${nation.svg}`} alt={nation.name} width={48} height={48} className="nation-map-img" />

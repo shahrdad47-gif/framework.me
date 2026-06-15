@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <!-- Musandam exclave (small, top-right) -->
-  <path fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
+  <path fill="#FFFFFF"
     d="M 75,8 L 88,12 L 90,22 L 82,28 L 72,20 Z"/>
   <!-- Main body -->
-  <path fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
+  <path fill="#FFFFFF"
     d="M 25,18 L 52,8 L 72,15 L 88,32 L 90,55 L 82,72 L 70,85 L 52,92 L 35,88 L 25,75 L 28,55 L 22,38 L 20,25 Z"/>
 </svg>

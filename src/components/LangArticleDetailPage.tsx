@@ -114,13 +114,7 @@ export default function LangArticleDetailPage({ slug, t, locale }: Props) {
                 <div className="sidebar-nations">
                   {relatedNations.map(n => (
                     <Link key={n.key} href={`/${locale}/articles?nation=${n.key}`} className="sidebar-nation">
-                      {n.flag_svg
-                        ? (
-                          <div className="sidebar-nation-flag-wrap">
-                            <Image src={`/img/${n.flag_svg}`} alt={n.name} width={36} height={24} className="sidebar-nation-flag-img" />
-                          </div>
-                        )
-                        : n.svg
+                      {n.svg
                         ? (
                           <div className="sidebar-nation-map-wrap">
                             <Image src={`/img/${n.svg}`} alt={n.name} width={28} height={28} className="sidebar-nation-map" />

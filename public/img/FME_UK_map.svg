@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <!-- Great Britain (Scotland narrow top, England/Wales wider below) -->
-  <path fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
+  <path fill="#FFFFFF"
     d="M 40,5 L 62,8 L 70,22 L 64,38 L 74,52 L 67,68 L 57,80 L 44,84 L 30,74 L 24,60 L 30,46 L 24,30 L 32,15 Z"/>
   <!-- Northern Ireland (small) -->
-  <path fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"
+  <path fill="#FFFFFF"
     d="M 8,38 L 20,34 L 26,42 L 20,50 L 8,48 Z"/>
 </svg>

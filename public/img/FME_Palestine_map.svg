@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <!-- West Bank -->
-  <path fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"
+  <path fill="#FFFFFF"
     d="M 45,12 L 68,15 L 75,30 L 72,52 L 62,72 L 48,78 L 32,68 L 26,50 L 30,30 Z"/>
   <!-- Gaza Strip -->
-  <path fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"
+  <path fill="#FFFFFF"
     d="M 15,60 L 30,58 L 34,80 L 28,90 L 14,88 L 12,74 Z"/>
 </svg>
