@@ -1,7 +1,8 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { videoCategories } from '@/data/videos'
+import type { Video, VideoCategory } from '@/types'
 
 /* ── Tab SVG icons ── */
 const HousePrayerIcon = () => (
@@ -82,8 +83,8 @@ const tabIcons: Record<string, () => React.ReactElement> = {
   'theology':            BookIcon,
 }
 
-function VideoCard({ id, title, date, category }: {
-  id: string; title: string; date?: string; category: string
+function VideoCard({ id, title, date, category, speaker }: {
+  id: string; title: string; date?: string; category: string; speaker?: string
 }) {
   return (
     <Link href={`/resources/video-teachings/${id}`} className="ytv-card">
@@ -101,10 +102,16 @@ function VideoCard({ id, title, date, category }: {
       <div className="ytv-body">
         <p className="ytv-series">Framework:ME · {category}</p>
         <h3 className="ytv-title">{title}</h3>
+        {speaker && <p className="ytv-speaker">{speaker}</p>}
         {date && <p className="ytv-date">{date}</p>}
       </div>
     </Link>
   )
+}
+
+interface SearchResult {
+  video: Video
+  category: VideoCategory
 }
 
 interface Props {
@@ -112,55 +119,147 @@ interface Props {
   dir?: 'ltr' | 'rtl'
   videoLabel?: string
   videosLabel?: string
+  searchPlaceholder?: string
+  searchHints?: string[]
 }
 
-export default function VideoTeachings({ categoryNames, dir, videoLabel = 'video', videosLabel = 'videos' }: Props) {
+const DEFAULT_HINTS = ['Israel', 'End Times', 'Theology', 'Prayer']
+
+export default function VideoTeachings({ categoryNames, dir, videoLabel = 'video', videosLabel = 'videos', searchPlaceholder, searchHints }: Props) {
   const [activeId, setActiveId] = useState(videoCategories[0].id)
+  const [query, setQuery] = useState('')
+
   const active = videoCategories.find(c => c.id === activeId)!
   const getLabel = (cat: typeof active) => categoryNames?.[cat.id]?.label ?? cat.label
   const getDesc  = (cat: typeof active) => categoryNames?.[cat.id]?.desc  ?? cat.description
 
+  const searchResults = useMemo<SearchResult[] | null>(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return null
+    const results: SearchResult[] = []
+    for (const cat of videoCategories) {
+      for (const video of cat.videos) {
+        const catLabel = categoryNames?.[cat.id]?.label ?? cat.label
+        if (
+          video.title.toLowerCase().includes(q) ||
+          catLabel.toLowerCase().includes(q) ||
+          (video.speaker && video.speaker.toLowerCase().includes(q))
+        ) {
+          results.push({ video, category: cat })
+        }
+      }
+    }
+    return results
+  }, [query, categoryNames])
+
   return (
     <div className="ytv-page">
 
-      {/* ── Tab bar ── */}
-      <div className="ytv-tabs" dir={dir}>
-        {videoCategories.map(cat => {
-          const Icon = tabIcons[cat.id]
-          return (
-            <button
-              key={cat.id}
-              className={`ytv-tab${activeId === cat.id ? ' active' : ''}`}
-              onClick={() => setActiveId(cat.id)}
-            >
-              {Icon && <span className="ytv-tab-icon"><Icon /></span>}
-              <span className="ytv-tab-label">{getLabel(cat)}</span>
-            </button>
-          )
-        })}
-      </div>
-
-      {/* ── Active section header ── */}
-      <div className="ytv-active-head" dir={dir}>
-        <div className="ytv-active-head-top">
-          <h2 className="ytv-active-title">{getLabel(active)}</h2>
-          <span className="ytv-active-count">{active.videos.length} {active.videos.length === 1 ? videoLabel : videosLabel}</span>
-        </div>
-        {getDesc(active) && <p className="ytv-active-desc">{getDesc(active)}</p>}
-      </div>
-
-      {/* ── Video grid ── */}
-      <div className="ytv-grid" dir={dir}>
-        {active.videos.map(v => (
-          <VideoCard
-            key={v.id}
-            id={v.id}
-            title={v.title}
-            date={v.date}
-            category={getLabel(active)}
+      {/* ── Search bar ── */}
+      <div className="ytv-search-wrap">
+        <div className="ytv-search-box">
+          <svg className="ytv-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            className="ytv-search-input"
+            type="text"
+            placeholder={searchPlaceholder ?? 'Search by keyword, topic, or speaker…'}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
           />
-        ))}
+          {query && (
+            <button className="ytv-search-clear" onClick={() => setQuery('')} aria-label="Clear search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          )}
+        </div>
+        {!searchResults && (
+          <div className="ytv-search-hints">
+            <span>Try:</span>
+            {(searchHints ?? DEFAULT_HINTS).map(hint => (
+              <button key={hint} className="ytv-hint-chip" onClick={() => setQuery(hint)}>{hint}</button>
+            ))}
+          </div>
+        )}
       </div>
+
+      {searchResults ? (
+        /* ── Search results ── */
+        <div className="ytv-search-results">
+          <div className="ytv-search-meta">
+            {searchResults.length > 0
+              ? <span><strong>{searchResults.length}</strong> result{searchResults.length !== 1 ? 's' : ''} for &ldquo;{query}&rdquo;</span>
+              : <span>No results for &ldquo;{query}&rdquo;</span>
+            }
+          </div>
+          {searchResults.length > 0 ? (
+            <div className="ytv-grid" dir={dir}>
+              {searchResults.map(({ video, category }) => (
+                <VideoCard
+                  key={video.id}
+                  id={video.id}
+                  title={video.title}
+                  date={video.date}
+                  speaker={video.speaker}
+                  category={categoryNames?.[category.id]?.label ?? category.label}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="ytv-no-results">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <p>Try a different keyword, topic, or speaker name.</p>
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          {/* ── Tab bar ── */}
+          <div className="ytv-tabs" dir={dir}>
+            {videoCategories.map(cat => {
+              const Icon = tabIcons[cat.id]
+              return (
+                <button
+                  key={cat.id}
+                  className={`ytv-tab${activeId === cat.id ? ' active' : ''}`}
+                  onClick={() => setActiveId(cat.id)}
+                >
+                  {Icon && <span className="ytv-tab-icon"><Icon /></span>}
+                  <span className="ytv-tab-label">{getLabel(cat)}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* ── Active section header ── */}
+          <div className="ytv-active-head" dir={dir}>
+            <div className="ytv-active-head-top">
+              <h2 className="ytv-active-title">{getLabel(active)}</h2>
+              <span className="ytv-active-count">{active.videos.length} {active.videos.length === 1 ? videoLabel : videosLabel}</span>
+            </div>
+            {getDesc(active) && <p className="ytv-active-desc">{getDesc(active)}</p>}
+          </div>
+
+          {/* ── Video grid ── */}
+          <div className="ytv-grid" dir={dir}>
+            {active.videos.map(v => (
+              <VideoCard
+                key={v.id}
+                id={v.id}
+                title={v.title}
+                date={v.date}
+                speaker={v.speaker}
+                category={getLabel(active)}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
     </div>
   )

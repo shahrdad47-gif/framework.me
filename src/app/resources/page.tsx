@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import Link from 'next/link'
 import { articles } from '@/data/articles'
 import { videoCategories } from '@/data/videos'
+import { videoSeriesData } from '@/data/series'
 import { books } from '@/data/books'
 
 const cards = [
@@ -11,8 +12,17 @@ const cards = [
     accent: '#7E2A3C',
     title: 'Video Teachings',
     description:
-      'Explore teachings from the Framework:ME YouTube channel, organized across 7 biblical topics — House of Prayer, End Times, Israel, Missions, Bride of Christ, Christian Living, and Theology.',
+      'Explore deep biblical teachings to strengthen your faith and understanding of God\'s purposes.',
     badge: `${videoCategories.length} Categories`,
+  },
+  {
+    href: '/resources/series',
+    symbol: '◈',
+    accent: '#5A1229',
+    title: 'Series',
+    description:
+      'Go in depth on various topics by watching an entire series for a comprehensive understanding of God\'s plan.',
+    badge: `${videoSeriesData.length} Series`,
   },
   {
     href: '/resources/books',
@@ -20,7 +30,7 @@ const cards = [
     accent: '#4D1520',
     title: 'Books',
     description:
-      'Illuminate and expand your understanding of God\'s plan for the nations with our recommended library of Christian books on prophecy, Israel, and missions.',
+      'Download and read books that will illuminate and expand your understanding of God\'s plan for the nations.',
     badge: books.length ? `${books.length} Books` : null,
   },
   {
@@ -62,7 +72,6 @@ export default function ResourcesLanding() {
       <div className="res-landing-hero">
         <div className="res-landing-hero-bg" />
         <div className="container res-landing-hero-inner">
-          <p className="res-landing-eyebrow">Free &amp; Open to All</p>
           <h1 className="res-landing-title">Bible Teaching Resources</h1>
           <p className="res-landing-sub">
             A growing library of teachings, articles, books, and notes — freely available

@@ -32,11 +32,14 @@ export interface LangT {
     videoTeachings: {
       eyebrow: string; title: string; sub: string; back: string
       video: string; videos: string
+      searchPlaceholder?: string
+      searchHints?: string[]
       categories: Record<string, { label: string; desc: string }>
     }
     books: { title: string; sub: string; viewBook: string; comingSoon: string; back: string; by: string }
     notes: { title: string; sub: string; comingSoon: string; back: string }
     shorts: { title: string; sub: string; back: string }
+    series: { title: string; sub: string; back: string }
   }
   framework: {
     heading: string; lead: string; sub: string
@@ -120,6 +123,7 @@ export const translations: Record<Locale, LangT> = {
         badge: 'تعالیم در اسرائیل، خاورمیانه و ملت‌ها',
         cards: [
           { title: 'تعالیم ویدیویی', desc: 'تعالیمی از کانال یوتیوب Framework:ME در ۷ موضوع کتاب مقدسی — خانه دعا، آخرالزمان، اسرائیل، ماموریت، عروس مسیح، زندگی مسیحی و الهیات.', cta: 'مشاهده تعالیم' },
+          { title: 'سری‌ها', desc: 'با تماشای یک سری کامل، موضوعات مختلف کتاب مقدسی را به‌طور عمیق بررسی کنید.', cta: 'مشاهده سری‌ها' },
           { title: 'کتاب‌ها', desc: 'کتاب‌های مسیحی توصیه شده برای عمیق‌تر کردن درک شما از طرح خداوند برای ملت‌ها — نبوت، اسرائیل و ماموریت.', cta: 'مشاهده کتاب‌ها' },
           { title: 'مقالات بر اساس ملت', desc: 'مقالاتی درباره اهداف رستگاری‌بخش خداوند برای ملت‌های خاص — از اسرائیل تا خاورمیانه و فراتر از آن.', cta: 'مشاهده مقالات' },
           { title: 'یادداشت‌ها', desc: 'یادداشت‌های مطالعاتی و طرح‌های موعظه قابل دانلود برای مطالعه شخصی و گروهی.', cta: 'مشاهده یادداشت‌ها' },
@@ -134,6 +138,8 @@ export const translations: Record<Locale, LangT> = {
       videoTeachings: {
         eyebrow: 'منابع رایگان', title: 'تعالیم ویدیویی', sub: 'تعالیمی از کانال یوتیوب Framework:ME در موضوعات کتاب مقدسی.', back: '← همه منابع',
         video: 'ویدیو', videos: 'ویدیو',
+        searchPlaceholder: 'جستجو بر اساس کلیدواژه، موضوع یا سخنران…',
+        searchHints: ['اسرائیل', 'آخرالزمان', 'الهیات', 'دعا'],
         categories: {
           'house-of-prayer':      { label: 'خانه دعا',             desc: 'شفاعت شبانه‌روزی برای ملت‌های خاورمیانه و بازگشت مسیح.' },
           'end-times':            { label: 'آخرالزمان',             desc: 'نبوت کتاب مقدسی و طرح در حال تکامل خداوند برای ملت‌ها در روزهای آخر.' },
@@ -147,6 +153,7 @@ export const translations: Record<Locale, LangT> = {
       books: { title: 'کتاب‌ها', sub: 'مطالعه پیشنهادی برای درک عمیق‌تر طرح خداوند برای ملت‌ها و کلام نبوی.', viewBook: 'مشاهده کتاب', comingSoon: 'پیشنهادهای کتاب به زودی.', back: '← همه منابع', by: 'نوشته' },
       notes: { title: 'یادداشت‌ها', sub: 'یادداشت‌های مطالعاتی و طرح‌های موعظه قابل دانلود برای مطالعه شخصی و گروهی.', comingSoon: 'یادداشت‌های مطالعاتی به زودی.', back: '← همه منابع' },
       shorts: { title: 'کلیپ‌های ۱ دقیقه‌ای', sub: 'تعالیم سریع یک دقیقه‌ای برای تشویق روزانه و بینش کتاب مقدسی.', back: '← همه منابع' },
+      series: { title: 'سری‌ها', sub: 'با تماشای سری‌های کامل آموزشی، موضوعات کتاب مقدسی را به‌طور عمیق بررسی کنید.', back: '← همه منابع' },
     },
   },
 
@@ -216,6 +223,7 @@ export const translations: Record<Locale, LangT> = {
         badge: 'ուսուծմներ Իսրայելի, Մերձավոր Արեվելքքի եվ ազգների մասին',
         cards: [
           { title: 'Տեսաուսուծմներ', desc: 'Տեսաուսուծմներ Framework:ME YouTube ալիքի 7 բաժմնական նյութներօվ.', cta: 'ուսուծմասիրել' },
+          { title: 'Շարքեր', desc: 'Խոր ուսումնասիրեք տարբեր կրոնական թեմաներ՝ դիտելով ամբողջական ուսուծան շարքեր:', cta: 'Ուսումնասիրել Շարքեր' },
           { title: 'Գրքեր', desc: 'Անվճարաբանուծումներ կրոնական գրքերի գրադարան.', cta: 'ուսուծմասիրել Գրքեր' },
           { title: 'Հոդվածներ յստ Ազգի', desc: 'Հոդվածներ Աստվածո փռկագործական նպատակների մասին.', cta: 'ուսուծմասիրել Հոդվածներ' },
           { title: 'Նշումներ', desc: 'Ներբեռնելի ուսուծական Նշումներ.', cta: 'ուսուծմասիրել Նշումներ' },
@@ -230,6 +238,8 @@ export const translations: Record<Locale, LangT> = {
       videoTeachings: {
         eyebrow: 'Անվճար Ռեսուրսներ', title: 'Տեսաուսուծմներ', sub: 'Տեսաուսուծմներ Framework:ME YouTube ալիքի.', back: '← Բոլոր Ռեսուրսներ',
         video: 'տեսանյութ', videos: 'տեսանյութ',
+        searchPlaceholder: 'Որոնել ըստ բառ, թեմա կամ բանախոս…',
+        searchHints: ['Իսրայել', 'Վերջին Ժամանակներ', 'Աստվածաբանություն', 'Աղոթք'],
         categories: {
           'house-of-prayer':      { label: 'Աղոթքի Տուն', desc: 'շուրջորյական բարեխոսություն Մերձավոր Արեվելքքի ազգների եվ Կրիստոսի վերադարծու համար.' },
           'end-times':            { label: 'Վերջին Ժամանակներ',  desc: 'կրոնական մարգարեություն եվ Աստվածո ծրագիրն ազգների համար վերջին որերին.' },
@@ -243,6 +253,7 @@ export const translations: Record<Locale, LangT> = {
       books: { title: 'Գրքեր', sub: 'Անվճարաբանուծումներ կարդալու համար.', viewBook: 'Տեսնել Գիրքն', comingSoon: 'Գրքեր շուտով.', back: '← Բոլոր Ռեսուրսներ', by: 'հեղինակ' },
       notes: { title: 'Նշումներ', sub: 'Ներբեռնելի ուսուծական Նշումներ.', comingSoon: 'Նշումներ Շուտով.', back: '← Բոլոր Ռեսուրսներ' },
       shorts: { title: '1 Ռոպե կարճ տեսանյութեր', sub: '1 րոպե ուսուծմներ ամենորյա խրախրածումն.', back: '← Բոլոր Ռեսուրսներ' },
+      series: { title: 'Շարքեր', sub: 'Խոր ուսումնասիրեք կրոնական թեմաները ամբողջական ուսուծան շարքերով:', back: '← Բոլոր Ռեսուրսներ' },
     },
   },
 
@@ -312,6 +323,7 @@ export const translations: Record<Locale, LangT> = {
         badge: 'Ensinamentos sobre Israel, o Oriente Médio e as Nações',
         cards: [
           { title: 'Ensinamentos em Vídeo', desc: 'Explore ensinamentos do canal Framework:ME no YouTube, organizados em 7 temas bíblicos — Casa de Oração, Tempos do Fim, Israel, Missões, Noiva de Cristo, Vida Cristã e Teologia.', cta: 'Explorar Ensinamentos' },
+          { title: 'Séries', desc: 'Aprofunde-se em vários temas bíblicos assistindo a séries completas de ensinamento para uma compreensão abrangente.', cta: 'Explorar Séries' },
           { title: 'Livros', desc: 'Amplie sua compreensão do plano de Deus para as nações com nossa biblioteca de livros cristãos recomendados sobre profecia, Israel e missões.', cta: 'Explorar Livros' },
           { title: 'Artigos por Nação', desc: 'Artigos aprofundados sobre os propósitos redentores de Deus para nações específicas — de Israel ao Oriente Médio e além.', cta: 'Explorar Artigos' },
           { title: 'Notas', desc: 'Notas de estudo e esboços de sermões para download para reflexão pessoal e estudo em grupo.', cta: 'Explorar Notas' },
@@ -326,6 +338,8 @@ export const translations: Record<Locale, LangT> = {
       videoTeachings: {
         eyebrow: 'Recursos Gratuitos', title: 'Ensinamentos em Vídeo', sub: 'Ensinamentos do canal Framework:ME no YouTube organizados por tema bíblico.', back: '← Todos os Recursos',
         video: 'vídeo', videos: 'vídeos',
+        searchPlaceholder: 'Pesquisar por palavra-chave, tema ou palestrante…',
+        searchHints: ['Israel', 'Tempos do Fim', 'Teologia', 'Oração'],
         categories: {
           'house-of-prayer':      { label: 'Casa de Oração',             desc: 'Intercessão dia e noite pelas nações do Oriente Médio e o retorno de Cristo.' },
           'end-times':            { label: 'Tempos do Fim',               desc: 'Profecia bíblica e o plano de Deus para as nações nos últimos dias.' },
@@ -339,6 +353,7 @@ export const translations: Record<Locale, LangT> = {
       books: { title: 'Livros', sub: 'Leitura recomendada para o estudo mais profundo do plano de Deus para as nações.', viewBook: 'Ver Livro', comingSoon: 'Recomendações de livros em breve.', back: '← Todos os Recursos', by: 'por' },
       notes: { title: 'Notas', sub: 'Notas de estudo e esboços de sermões para download para reflexão pessoal e em grupo.', comingSoon: 'Notas de estudo em breve.', back: '← Todos os Recursos' },
       shorts: { title: 'Curtos de 1 Minuto', sub: 'Ensinamentos rápidos de um minuto para encorajamento diário.', back: '← Todos os Recursos' },
+      series: { title: 'Séries', sub: 'Aprofunde-se em temas bíblicos com séries completas de ensinamento para uma compreensão abrangente.', back: '← Todos os Recursos' },
     },
   },
 
@@ -408,6 +423,7 @@ export const translations: Record<Locale, LangT> = {
         badge: 'تعاليم حول إسرائيل والشرق الأوسط والأمم',
         cards: [
           { title: 'تعاليم مرئية', desc: 'استكشف تعاليم من قناة Framework:ME على يوتيوب، منظّمة في 7 مواضيع كتابية — بيت الصلاة، الأزمنة الأخيرة، إسرائيل، التبشير، عروس المسيح، الحياة المسيحية، واللاهوت.', cta: 'استكشف التعاليم' },
+          { title: 'السلاسل', desc: 'تعمّق في مختلف المواضيع الكتابية من خلال مشاهدة سلسلة كاملة لفهم شامل ومتعمّق.', cta: 'استكشف السلاسل' },
           { title: 'الكتب', desc: 'وسّع فهمك لخطة الله للأمم مع مكتبتنا الموصى بها من الكتب المسيحية حول النبوة وإسرائيل والتبشير.', cta: 'استكشف الكتب' },
           { title: 'مقالات حسب الأمة', desc: 'مقالات متعمّقة حول أغراض الله الفدائية لأمم محددة — من إسرائيل إلى الشرق الأوسط وما وراءه.', cta: 'استكشف المقالات' },
           { title: 'الملاحظات', desc: 'ملاحظات دراسية وخطط موعظة قابلة للتنزيل للتأمل الشخصي ودراسة المجموعات الصغيرة.', cta: 'استكشف الملاحظات' },
@@ -422,6 +438,8 @@ export const translations: Record<Locale, LangT> = {
       videoTeachings: {
         eyebrow: 'موارد مجانية', title: 'تعاليم مرئية', sub: 'تعاليم من قناة Framework:ME على يوتيوب منظّمة حسب الموضوع الكتابي.', back: '← جميع الموارد',
         video: 'مقطع', videos: 'مقاطع',
+        searchPlaceholder: 'ابحث بالكلمة المفتاحية أو الموضوع أو المتحدث…',
+        searchHints: ['إسرائيل', 'الأزمنة الأخيرة', 'اللاهوت', 'الصلاة'],
         categories: {
           'house-of-prayer':      { label: 'بيت الصلاة',                 desc: 'الشفاعة ليلاً ونهاراً من أجل أمم الشرق الأوسط وعودة المسيح.' },
           'end-times':            { label: 'الأزمنة الأخيرة',             desc: 'النبوة الكتابية وخطة الله الجارية للأمم في الأيام الأخيرة.' },
@@ -435,6 +453,7 @@ export const translations: Record<Locale, LangT> = {
       books: { title: 'الكتب', sub: 'قراءات مقترحة للدراسة الأعمق لخطة الله للأمم والكلمة النبوية.', viewBook: 'عرض الكتاب', comingSoon: 'توصيات الكتب قريباً.', back: '← جميع الموارد', by: 'بقلم' },
       notes: { title: 'الملاحظات', sub: 'ملاحظات دراسية وخطط موعظة قابلة للتنزيل للتأمل الشخصي ودراسة المجموعات.', comingSoon: 'ملاحظات الدراسة قريباً.', back: '← جميع الموارد' },
       shorts: { title: 'مقاطع دقيقة', sub: 'تعاليم سريعة مدتها دقيقة واحدة للتشجيع اليومي والبصيرة الكتابية.', back: '← جميع الموارد' },
+      series: { title: 'السلاسل', sub: 'تعمّق في المواضيع الكتابية من خلال سلاسل التعليم الكاملة لفهم شامل ومتعمّق.', back: '← جميع الموارد' },
     },
   },
 }

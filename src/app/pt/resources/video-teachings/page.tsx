@@ -23,7 +23,7 @@ export default function Page() {
         </div>
       </div>
       <div className="container res-sub-body">
-        <VideoTeachings categoryNames={s.categories} dir={t.dir} videoLabel={s.video} videosLabel={s.videos} />
+        <VideoTeachings categoryNames={s.categories} dir={t.dir} videoLabel={s.video} videosLabel={s.videos} searchPlaceholder={s.searchPlaceholder} searchHints={s.searchHints} />
       </div>
     </div>
   )

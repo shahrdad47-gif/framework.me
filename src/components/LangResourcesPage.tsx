@@ -2,24 +2,27 @@ import type { CSSProperties } from 'react'
 import Link from 'next/link'
 import type { LangT, Locale } from '@/data/translations'
 import { videoCategories } from '@/data/videos'
+import { videoSeriesData } from '@/data/series'
 import { articles } from '@/data/articles'
 import { books } from '@/data/books'
 
-const symbols = ['▶', '✦', '◉', '≡', '⚡']
-const accents = ['#7E2A3C', '#4D1520', '#5C1E2C', '#3D1018', '#6B1E2E']
+const symbols = ['▶', '◈', '✦', '◉', '≡', '⚡']
+const accents = ['#7E2A3C', '#5A1229', '#4D1520', '#5C1E2C', '#3D1018', '#6B1E2E']
 
 function getHrefs(locale: Locale) {
   const base = `/${locale}/resources`
   return [
     `${base}/video-teachings`,
+    `${base}/series`,
     `${base}/books`,
-    `/${locale}/articles`,   // articles page lives at /{locale}/articles, not /resources/articles
+    `/${locale}/articles`,
     `${base}/notes`,
     `${base}/shorts`,
   ]
 }
 const badges = [
   `${videoCategories.length} Categories`,
+  `${videoSeriesData.length} Series`,
   books.length ? `${books.length} Books` : null,
   articles.length ? `${articles.length} Articles` : null,
   null,

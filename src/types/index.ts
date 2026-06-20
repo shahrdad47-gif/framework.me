@@ -31,6 +31,16 @@ export interface Video {
   id: string
   title: string
   date?: string
+  speaker?: string
+}
+
+export interface VideoSeries {
+  id: string
+  title: string
+  description: string
+  speaker?: string
+  topic: string
+  episodes: Video[]
 }
 
 export interface VideoCategory {
@@ -51,6 +61,7 @@ export interface Book {
   author: string
   description: string
   link?: string
+  coverUrl?: string
 }
 
 export interface Contributor {

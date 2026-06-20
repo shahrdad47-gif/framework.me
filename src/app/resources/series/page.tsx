@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import VideoTeachings from '@/components/resources/VideoTeachings'
+import SeriesTeachings from '@/components/resources/SeriesTeachings'
+import { videoSeriesData } from '@/data/series'
 
-export const metadata = { title: 'Video Teachings — Framework:ME' }
+export const metadata = { title: 'Series — Framework:ME' }
 
-export default function VideoTeachingsPage() {
+export default function SeriesPage() {
   return (
     <div className="res-sub-page">
       <div className="res-sub-hero">
@@ -16,12 +17,13 @@ export default function VideoTeachingsPage() {
             All Resources
           </Link>
           <span className="res-sub-eyebrow">Framework:ME Resources</span>
-          <h1>Video Teachings</h1>
-          <p>Explore deep biblical teachings to strengthen your faith and understanding of God&apos;s purposes.</p>
+          <h1>Series</h1>
+          <p>Go deep on key biblical topics through curated multi-part teaching series.</p>
+          <div className="res-sub-hero-stat">{videoSeriesData.length} Series Available</div>
         </div>
       </div>
       <div className="container res-sub-body">
-        <VideoTeachings />
+        <SeriesTeachings />
       </div>
     </div>
   )
