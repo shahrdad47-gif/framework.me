@@ -954,6 +954,7 @@ h1, h2, h3, h4 {
     font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
     color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em;
     margin-bottom: 20px; transition: color var(--transition);
+    background: none; border: none; padding: 0; cursor: pointer;
 }
 .article-breadcrumb:hover { color: rgba(255,255,255,0.9); }
 .article-nations-row {
@@ -1259,6 +1260,7 @@ h1, h2, h3, h4 {
     text-transform: uppercase; letter-spacing: 0.1em;
     color: rgba(255,255,255,0.45); margin-bottom: 22px;
     transition: color var(--transition);
+    background: none; border: none; padding: 0; cursor: pointer;
 }
 .res-sub-back:hover { color: rgba(255,255,255,0.9); }
 .res-sub-eyebrow {

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import BackButton from '@/components/ui/BackButton'
 import EmptyState from '@/components/ui/EmptyState'
 import { getBooks } from '@/lib/db'
 
@@ -14,12 +15,7 @@ export default async function BooksPage() {
       <div className="res-sub-hero">
         <div className="res-sub-hero-bg" />
         <div className="container res-sub-hero-inner">
-          <Link href="/resources" className="res-sub-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            All Resources
-          </Link>
+          <BackButton fallbackHref="/resources" label={"All Resources"} className="res-sub-back" />
           <span className="res-sub-eyebrow">Framework:ME Resources</span>
           <h1>Books</h1>
           <p>Download and read books that will illuminate and expand your understanding of God&apos;s plan for the nations.</p>

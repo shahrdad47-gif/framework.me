@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import BackButton from '@/components/ui/BackButton'
 import EmptyState from '@/components/ui/EmptyState'
 import { books } from '@/data/books'
 import { translations } from '@/data/translations'
@@ -11,13 +12,7 @@ export default function Page() {
       <div className="res-sub-hero">
         <div className="res-sub-hero-bg" />
         <div className="container res-sub-hero-inner">
-          <Link href={`/hy/resources`} className="res-sub-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-              style={t.dir === 'rtl' ? { transform: 'scaleX(-1)' } : undefined}>
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            {s.back.replace(/^[←→]\s*/, '')}
-          </Link>
+          <BackButton fallbackHref="/hy/resources" label={s.back.replace(/^[←→]\s*/, '')} className="res-sub-back" rtl={t.dir === 'rtl'} />
           <span className="res-sub-eyebrow">Framework:ME</span>
           <h1>{s.title}</h1>
           <p>{s.sub}</p>

@@ -7,6 +7,7 @@ import { nations } from '@/data/nations'
 import type { LangT } from '@/data/translations'
 import { articleTranslations } from '@/data/article-translations'
 import type { Article } from '@/types'
+import BackButton from '@/components/ui/BackButton'
 
 interface Props {
   slug: string
@@ -31,13 +32,7 @@ export default async function LangArticleDetailPage({ slug, t, locale }: Props) 
       {/* ── Header ── */}
       <div className="article-hero">
         <div className="container">
-          <Link href={`/${locale}/articles`} className="article-breadcrumb">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-              style={isRtl ? { transform: 'scaleX(-1)' } : undefined}>
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            {t.sections.articles.title}
-          </Link>
+          <BackButton fallbackHref={`/${locale}/articles`} label={t.sections.articles.title} rtl={isRtl} />
           <div className="article-nations-row">
             {relatedNations.map(n => (
               <span key={n.key} className="article-nation-chip">
