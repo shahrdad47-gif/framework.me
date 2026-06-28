@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { shortsData } from '@/data/videos'
 
+// Shorts come from static data for now (no DB table yet — can be added later)
 export const metadata = { title: '1 Minute Shorts — Framework:ME' }
 
 export default function ShortsPage() {

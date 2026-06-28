@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
-import { getArticlesForNation } from '@/lib/articles'
+import { getArticlesForNationSync as getArticlesForNation } from '@/lib/articles-sync'
 import { translations, type Locale } from '@/data/translations'
 
 const navLinksEN = [

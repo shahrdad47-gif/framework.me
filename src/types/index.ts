@@ -15,6 +15,7 @@ export interface Article {
   author: string
   date: string
   nations: string[]
+  sections?: string[]   // e.g. ['geopolitics', 'end-times']
   summary: string
   pdf?: string
   body: ArticleBlock[]

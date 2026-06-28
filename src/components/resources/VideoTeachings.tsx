@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { videoCategories } from '@/data/videos'
+import { videoCategories as staticCategories } from '@/data/videos'
 import type { Video, VideoCategory } from '@/types'
 
 /* ── Tab SVG icons ── */
@@ -115,6 +115,7 @@ interface SearchResult {
 }
 
 interface Props {
+  categories?: VideoCategory[]
   categoryNames?: Record<string, { label: string; desc: string }>
   dir?: 'ltr' | 'rtl'
   videoLabel?: string
@@ -125,11 +126,12 @@ interface Props {
 
 const DEFAULT_HINTS = ['Israel', 'End Times', 'Theology', 'Prayer']
 
-export default function VideoTeachings({ categoryNames, dir, videoLabel = 'video', videosLabel = 'videos', searchPlaceholder, searchHints }: Props) {
-  const [activeId, setActiveId] = useState(videoCategories[0].id)
+export default function VideoTeachings({ categories: categoriesProp, categoryNames, dir, videoLabel = 'video', videosLabel = 'videos', searchPlaceholder, searchHints }: Props) {
+  const videoCategories = categoriesProp ?? staticCategories
+  const [activeId, setActiveId] = useState(videoCategories[0]?.id ?? '')
   const [query, setQuery] = useState('')
 
-  const active = videoCategories.find(c => c.id === activeId)!
+  const active = videoCategories.find(c => c.id === activeId) ?? videoCategories[0]!
   const getLabel = (cat: typeof active) => categoryNames?.[cat.id]?.label ?? cat.label
   const getDesc  = (cat: typeof active) => categoryNames?.[cat.id]?.desc  ?? cat.description
 

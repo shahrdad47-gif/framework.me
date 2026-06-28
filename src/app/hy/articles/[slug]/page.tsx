@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 interface PageProps { params: { slug: string } }
 
 export async function generateMetadata({ params }: PageProps) {
-  const article = getArticleBySlug(params.slug)
+  const article = await getArticleBySlug(params.slug)
   if (!article) return {}
   return { title: `${article.title} — Framework:ME` }
 }

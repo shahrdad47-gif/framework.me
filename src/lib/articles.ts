@@ -1,10 +1,3 @@
-import type { Article } from '@/types'
-import { articles } from '@/data/articles'
-
-export function getArticleBySlug(slug: string): Article | null {
-  return articles.find(a => a.slug === slug) ?? null
-}
-
-export function getArticlesForNation(nationKey: string): Article[] {
-  return articles.filter(a => a.nations.includes(nationKey))
-}
+// Re-exports all article queries from the unified DB layer.
+// Uses Neon DB when DATABASE_URL is set; falls back to static files otherwise.
+export { getArticles, getArticleBySlug, getArticlesForNation, getArticlesBySection } from './db'

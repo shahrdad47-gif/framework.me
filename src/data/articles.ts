@@ -11,6 +11,7 @@ export const articles: Article[] = [
     author: 'Roger Lee',
     date: 'June 13, 2025',
     nations: ['iran'],
+    sections: ['geopolitics', 'end-times'],
     summary:
       'After Israel\'s preemptive strike on Iran, Scripture gives us a prophetic roadmap for prayer. From Daniel 8 to Jeremiah 49, the Bible reveals God\'s plan for regime change, revival, and His throne being established in the ancient land of Elam.',
     pdf: '/articles/restoring-fortunes-iran.pdf',
@@ -96,9 +97,9 @@ export const articles: Article[] = [
     author: 'Roger Lee',
     date: 'December 31, 2024',
     nations: ['syria'],
+    sections: ['geopolitics'],
     summary:
       'The fall of the Assad regime after 54 years marks a historic turning point for Syria. This article examines the revolution, the cycle of violence that followed, and what the Gospel demands of us as we witness the darkness of the human heart and the absolute necessity of Jesus Christ.',
-    pdf: '/articles/response-syrian-revolution.pdf',
     body: [
       {
         type: 'paragraph',
@@ -159,6 +160,7 @@ export const articles: Article[] = [
     author: 'Roger Lee',
     date: 'July 4, 2025',
     nations: ['islam'],
+    sections: ['end-times'],
     summary:
       'God has a burden for the nations of the Middle East and for the sons of Ishmael. Through Old Testament prophecy, we see His heart of care and intercession for each ancient nation — all now under the bondage of Islam.',
     pdf: '/articles/carrying-burden-muslim-world.pdf',
@@ -185,56 +187,5 @@ export const articles: Article[] = [
     ],
   },
 
-  {
-    slug: 'gods-end-time-strategy-against-islam',
-    title: "God's End Time Strategy Against Islam",
-    author: 'Roger Lee',
-    date: 'March 6, 2025',
-    nations: ['islam'],
-    summary:
-      'For 1,500 years, 1.9 billion Muslims have prayed five times daily, filling the 10-40 window with demonic atmosphere. God\'s answer is the restored tabernacle of David — night and day worship and prayer — to break the spiritual stronghold of Islam and open the Muslim world to the Gospel.',
-    pdf: '/articles/gods-end-time-strategy-against-islam.pdf',
-    body: [
-      {
-        type: 'paragraph',
-        text: 'Islam began in 610 CE when the prophet Muhammad began receiving his first revelation in Mecca. There are 5 foundational tenets or pillars in Islam upon which Islamic faith and life is built upon. One of them is called Salat which is the Arabic word for prayer. All muslims are to pray 5 times a day facing Mecca. These prayers include the reciting of the opening chapter of the Qur\'an. Prayers include standing, bowing, sitting and prostrating as it shows allegiance, dependance and gratefulness to Allah.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Prayer is powerful in that it is engaging the active allegiance of our will to call upon someone higher or more powerful than we are. Through prayer we can call upon the true and living God through Jesus Christ as Christians do or call upon the Devil through all sorts of different false demonic systems such as false religions, witchcraft, voodoo, curses, etc. The Islamic faith in Allah fits into the latter where Muslims by their own volition give themselves and invite the power and influence of the Devil by engaging in prayer. Biblically this principle was established in the altar in the Old Testament. In the New Testament, Paul tells us in Romans 6:16 that "when you present yourself to someone as slaves for obedience (worship and prayer), you are slaves of the one whom you obey, either of sin resulting in death, or of obedience resulting in righteousness." Meaning, whoever you give your allegiance to, you empower that entity on the Earth in geographic regions. The Devil understands the spiritual power of creating and dominating atmospheres over geographic regions through filling it with demonic activity. He has stolen God\'s strategy for the Church and incorporated it into Islam by using the sons of Ishmael.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Thus for over 1500 years followers of Allah have been praying 5 times a day calling down the power of Allah, a false demonic god, to fill the atmosphere. Currently there are over 1.9 billion Muslims in the world concentrated in the Northern Africa, Middle East, Central Asia and Pacific regions. This global corridor also known as the 10-40 window contains the majority of Muslims. Correspondingly, it is also one of the most unreached areas of the world. The atmosphere of this global region has been suffocated by the demonic power of Islam.',
-      },
-      {
-        type: 'paragraph',
-        text: 'The good news is that the living God has an answer to break the brass heavens created by Islam over these regions. In the Bible, God\'s strategy to break and infiltrate Islam and the peoples is called night and day worship and prayer which was first instituted by King David when he set up the tabernacle of David. This prototype of night and day worship and prayer found in 1 Chronicles 16 was foundational to David\'s government. He placed the ark of the covenant under a tent in the capital city of Jerusalem with singers and musicians around it night and day. God responded to the worship and prayer from the tabernacle of David with His presence and prophetic spirit upon the nation of Israel.',
-      },
-      {
-        type: 'paragraph',
-        text: "God's end-time strategy to bring salvation among the Muslims is a three cord strand. Night and day prayer breaks the ancient powers of the principalities over the region so that the power of the Gospel might prevail in the hearts of men. Then both of these are tested, established and moved ahead by the humility of suffering which defeats the enemy even more and brings the kingdom of God. Night and day worship and prayer is likened to airstrikes in a war whereas the proclamation of the Gospel is carried by ground troops that come in after.",
-      },
-      {
-        type: 'paragraph',
-        text: 'I believe that the first regional strike begins by establishing night and day prayer in Muslim territories. The incense of the saints with the corresponding release of the presence and power of God disrupts and breaks the powers and principalities over the region.',
-      },
-      {
-        type: 'paragraph',
-        text: "This strategy was prophesied by Amos that God would raise up the tabernacle of David which is speaking of Davidic worship. One of the primary purposes of raising up the tabernacle of David is to possess the remnant of Edom or to bring salvation to the Arab people. The apostle James quotes Amos in Acts 15 and broadens the power and reach of the restoration of Davidic worship to encompass \"the rest of mankind\" in the Last Days and in the Millennial Kingdom.",
-      },
-      {
-        type: 'paragraph',
-        text: "We see the manifestation of night and day prayer proliferating through the nations of the earth in the last 25 years. Thousands of houses of prayer, praying churches and prayer strikes have launched independent of each other through the nations. The Holy Spirit fulfilling the strategy of the prophetic Word of God is orchestrating this global worship and prayer movement. After 25 years, I believe the Holy Spirit is beginning to send the wind and thrust of the worship and prayer movement to infiltrate and target the Muslim world! He is sending the worship and prayer movement to the East in preparing for the coming revival and harvest of the Muslim world.",
-      },
-      {
-        type: 'scripture-list',
-        items: [
-          { text: '"On that day I will raise up the tabernacle of David, which has fallen down, and repair its damages; I will raise up its ruins, and rebuild it as in the days of old; that they may possess the remnant of Edom, and all the Gentiles who are called by My name," says the LORD who does this thing.', ref: 'Amos 9:11-12 NKJV' },
-          { text: "'After this I will return and will rebuild the tabernacle of David, which has fallen down; I will rebuild its ruins, and I will set it up; so that the rest of mankind may seek the LORD, even all the Gentiles who are called by My name, says the LORD who does all these things.'", ref: 'Acts 15:16-17 NKJV' },
-        ],
-      },
-    ],
-  },
 ]
 

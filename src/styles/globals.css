@@ -1052,6 +1052,19 @@ h1, h2, h3, h4 {
 .article-pdf-row { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
 .article-pdf-btn { display: inline-flex; gap: 8px; }
 
+/* Article card actions row */
+.article-card-wrap { width: 100%; }
+.article-card-actions { display: flex; align-items: center; gap: 16px; margin-top: 10px; }
+.article-pdf-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--bronze); border: 1.5px solid var(--bronze);
+  border-radius: 20px; padding: 3px 10px;
+  text-decoration: none; transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.article-pdf-chip:hover { background: var(--bronze); color: #fff; }
+
 /* Sidebar */
 .article-sidebar { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 94px; }
 .sidebar-card {

@@ -1,8 +1,11 @@
-import LangComingSoon from '@/components/LangComingSoon'
+import LangEndTimesPage from '@/components/LangEndTimesPage'
 import { translations } from '@/data/translations'
-export const metadata = { title: 'Framework:ME' }
-export default function Page() {
-  const t = translations.fa
-  const s = t.sections.endTimes
-  return <LangComingSoon t={t} locale="fa" title={s.title} desc={s.desc} />
+import { getArticlesBySection } from '@/lib/db'
+
+export const dynamic = 'force-dynamic'
+export const metadata = { title: 'آخرالزمان — Framework:ME' }
+
+export default async function Page() {
+  const articles = await getArticlesBySection('end-times')
+  return <LangEndTimesPage t={translations.fa} locale="fa" articles={articles} />
 }

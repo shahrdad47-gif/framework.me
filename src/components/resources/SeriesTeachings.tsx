@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { videoSeriesData } from '@/data/series'
+import { videoSeriesData as staticSeries } from '@/data/series'
 import type { VideoSeries } from '@/types'
 
 function SeriesCard({ series }: { series: VideoSeries }) {
@@ -70,7 +70,8 @@ function SeriesCard({ series }: { series: VideoSeries }) {
   )
 }
 
-export default function SeriesTeachings() {
+export default function SeriesTeachings({ series: seriesProp }: { series?: VideoSeries[] } = {}) {
+  const videoSeriesData = seriesProp ?? staticSeries
   return (
     <div className="ser-page">
       <div className="ser-intro">

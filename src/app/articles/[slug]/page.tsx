@@ -14,13 +14,13 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const article = getArticleBySlug(params.slug)
+  const article = await getArticleBySlug(params.slug)
   if (!article) return {}
   return { title: `${article.title} — Framework:ME` }
 }
 
-export default function ArticlePage({ params }: PageProps) {
-  const article = getArticleBySlug(params.slug)
+export default async function ArticlePage({ params }: PageProps) {
+  const article = await getArticleBySlug(params.slug)
   if (!article) notFound()
 
   const relatedNations = nations.filter(n => article.nations.includes(n.key))

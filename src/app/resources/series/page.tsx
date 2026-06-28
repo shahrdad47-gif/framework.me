@@ -1,10 +1,13 @@
 import Link from 'next/link'
 import SeriesTeachings from '@/components/resources/SeriesTeachings'
-import { videoSeriesData } from '@/data/series'
+import { getVideoSeries } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Series — Framework:ME' }
 
-export default function SeriesPage() {
+export default async function SeriesPage() {
+  const series = await getVideoSeries()
+
   return (
     <div className="res-sub-page">
       <div className="res-sub-hero">
@@ -19,11 +22,11 @@ export default function SeriesPage() {
           <span className="res-sub-eyebrow">Framework:ME Resources</span>
           <h1>Series</h1>
           <p>Go deep on key biblical topics through curated multi-part teaching series.</p>
-          <div className="res-sub-hero-stat">{videoSeriesData.length} Series Available</div>
+          <div className="res-sub-hero-stat">{series.length} Series Available</div>
         </div>
       </div>
       <div className="container res-sub-body">
-        <SeriesTeachings />
+        <SeriesTeachings series={series} />
       </div>
     </div>
   )

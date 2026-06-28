@@ -1,9 +1,13 @@
 import Link from 'next/link'
 import VideoTeachings from '@/components/resources/VideoTeachings'
+import { getVideoCategories } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Video Teachings — Framework:ME' }
 
-export default function VideoTeachingsPage() {
+export default async function VideoTeachingsPage() {
+  const categories = await getVideoCategories()
+
   return (
     <div className="res-sub-page">
       <div className="res-sub-hero">
@@ -21,7 +25,7 @@ export default function VideoTeachingsPage() {
         </div>
       </div>
       <div className="container res-sub-body">
-        <VideoTeachings />
+        <VideoTeachings categories={categories} />
       </div>
     </div>
   )

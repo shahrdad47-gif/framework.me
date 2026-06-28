@@ -6,6 +6,7 @@ import { getArticleBySlug } from '@/lib/articles'
 import { nations } from '@/data/nations'
 import type { LangT } from '@/data/translations'
 import { articleTranslations } from '@/data/article-translations'
+import type { Article } from '@/types'
 
 interface Props {
   slug: string
@@ -13,13 +14,12 @@ interface Props {
   locale: string
 }
 
-export default function LangArticleDetailPage({ slug, t, locale }: Props) {
-  const article = getArticleBySlug(slug)
+export default async function LangArticleDetailPage({ slug, t, locale }: Props) {
+  const article: Article | null = await getArticleBySlug(slug)
   if (!article) notFound()
 
   const tx = articleTranslations[slug]?.[locale]
   const title   = tx?.title   ?? article.title
-  const summary = tx?.summary ?? article.summary
   const body    = tx?.body    ?? article.body
 
   const relatedNations = nations.filter(n => article.nations.includes(n.key))
