@@ -1,7 +1,6 @@
-import LangComingSoon from '@/components/LangComingSoon'
+import LangContributorsPage from '@/components/LangContributorsPage'
 import { translations } from '@/data/translations'
 export const metadata = { title: 'Contributors — Framework:ME' }
 export default function Page() {
-  const t = translations.hy
-  return <LangComingSoon t={t} locale="hy" title={t.sections.authors.title} desc={t.sections.authors.comingSoon} />
+  return <LangContributorsPage t={translations.hy} locale="hy" />
 }
