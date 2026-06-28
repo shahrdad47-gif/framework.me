@@ -2,11 +2,11 @@ import Image from 'next/image'
 
 const ChurchIcon = () => (
   <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="22" y1="2" x2="22" y2="11"/>
-    <line x1="17" y1="6.5" x2="27" y2="6.5"/>
-    <polyline points="4,22 22,8 40,22"/>
-    <rect x="4" y="22" width="36" height="20"/>
-    <rect x="16" y="30" width="12" height="12"/>
+    <line x1="22" y1="2" x2="22" y2="12"/>
+    <line x1="16" y1="7" x2="28" y2="7"/>
+    <polyline points="4,24 22,9 40,24"/>
+    <path d="M7 24v16h30V24"/>
+    <rect x="17" y="30" width="10" height="10"/>
   </svg>
 )
 
@@ -42,9 +42,10 @@ const HousePrayerIcon = () => (
   <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="4,22 22,6 40,22"/>
     <path d="M8 22v18h28V22"/>
-    <line x1="22" y1="13" x2="22" y2="21"/>
-    <line x1="18" y1="17" x2="26" y2="17"/>
-    <rect x="17" y="30" width="10" height="10"/>
+    <line x1="22" y1="13" x2="22" y2="22"/>
+    <line x1="17" y1="17" x2="27" y2="17"/>
+    <line x1="22" y1="30" x2="22" y2="40"/>
+    <line x1="16" y1="35" x2="28" y2="35"/>
   </svg>
 )
 
@@ -90,6 +91,18 @@ export default function FrameworkSection() {
             <strong>5 key expressions of God&apos;s heart</strong> that will mature and converge together
             to bring redemptive history to its glorious culmination.
           </p>
+        </div>
+
+        <div className="scripture-pair-box">
+          <div className="scripture-pair-verse">
+            <span className="scripture-pair-ref">Isaiah 40:3</span>
+            <p>&ldquo;A voice of one calling: &lsquo;In the wilderness prepare the way for the Lord; make straight in the desert a highway for our God.&rsquo;&rdquo;</p>
+          </div>
+          <div className="scripture-pair-divider" />
+          <div className="scripture-pair-verse">
+            <span className="scripture-pair-ref">Ephesians 1:10</span>
+            <p>&ldquo;To bring unity to all things in heaven and on earth under Christ.&rdquo;</p>
+          </div>
         </div>
 
         <div className="diagram-wrap">

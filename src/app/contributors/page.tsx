@@ -8,27 +8,42 @@ export default function Contributors() {
   return (
     <>
       <PageHeroSm
-        title="Contributors"
+        title="Authors & Contributors"
         subtitle="The voices and teachers behind Framework:ME."
       />
-      <div className="container" style={{ padding: '48px 32px 80px' }}>
+      <div className="founder-section">
         {contributors.length === 0 ? (
           <EmptyState icon="🤝" message="Contributor profiles coming soon." />
         ) : (
-          <div className="contributors-grid">
+          <div className="founder-list">
             {contributors.map((c, i) => {
+              const paragraphs = c.bio.split('\n\n')
               const initials = c.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
               return (
-                <div key={i} className="contributor-card">
-                  {c.photo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.photo} alt={c.name} className="contributor-avatar" />
-                  ) : (
-                    <div className="contributor-avatar-placeholder">{initials}</div>
-                  )}
-                  <h3>{c.name}</h3>
-                  <span className="role">{c.role}</span>
-                  <p>{c.bio}</p>
+                <div key={i} className="founder-card">
+                  {/* Photo panel */}
+                  <div className="founder-photo-panel">
+                    {c.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={c.photo} alt={c.name} className="founder-photo" />
+                    ) : (
+                      <div className="founder-photo-placeholder">{initials}</div>
+                    )}
+                    <div className="founder-photo-overlay" />
+                  </div>
+
+                  {/* Content panel */}
+                  <div className="founder-content">
+                    <p className="founder-eyebrow">Framework:ME</p>
+                    <h2 className="founder-name">{c.name}</h2>
+                    <span className="founder-role">{c.role}</span>
+                    <div className="founder-divider" />
+                    <div className="founder-bio">
+                      {paragraphs.map((p, j) => (
+                        <p key={j}>{p}</p>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )
             })}

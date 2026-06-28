@@ -7,9 +7,8 @@ import { getArticlesForNation } from '@/lib/articles'
 import { translations, type Locale } from '@/data/translations'
 
 const navLinksEN = [
-  { href: '/',                   label: 'About' },
+  { href: '/#who-we-are',        label: 'About' },
   { href: '/resources/articles', label: 'Articles' },
-  { href: '/nations',            label: 'Nations & Prophecy' },
   { href: '/end-times',          label: 'End Times' },
   { href: '/geopolitics',        label: 'Geopolitics' },
   { href: '/resources',          label: 'Resources' },
@@ -18,13 +17,32 @@ const navLinksEN = [
 
 const localeMap: Record<string, Locale> = { '/fa': 'fa', '/hy': 'hy', '/pt': 'pt', '/ar': 'ar' }
 
+const LOCALE_CODES = ['fa', 'hy', 'pt', 'ar'] as const
+
 const languages = [
-  { code: 'EN', label: 'English',   native: 'English',   href: '/',    active: true  },
-  { code: 'FA', label: 'Farsi',     native: 'فارسی',     href: '/fa',  active: false },
-  { code: 'HY', label: 'Armenian',  native: 'Հայerén',   href: '/hy',  active: false },
-  { code: 'PT', label: 'Portuguese',native: 'Português', href: '/pt',  active: false },
-  { code: 'AR', label: 'Arabic',    native: 'العربية',   href: '/ar',  active: false },
+  { code: 'EN', locale: null, label: 'English',    native: 'English'   },
+  { code: 'FA', locale: 'fa', label: 'Farsi',      native: 'فارسی'     },
+  { code: 'HY', locale: 'hy', label: 'Armenian',   native: 'Հայerén'   },
+  { code: 'PT', locale: 'pt', label: 'Portuguese', native: 'Português' },
+  { code: 'AR', locale: 'ar', label: 'Arabic',     native: 'العربية'   },
 ]
+
+function getLocalizedHref(pathname: string, targetLocale: string | null): string {
+  // Strip existing locale prefix
+  let basePath = pathname
+  for (const loc of LOCALE_CODES) {
+    if (pathname === `/${loc}`) { basePath = '/'; break }
+    if (pathname.startsWith(`/${loc}/`)) { basePath = pathname.slice(loc.length + 1); break }
+  }
+  // English articles list lives at /resources/articles; locales use /articles
+  if (basePath === '/resources/articles') basePath = '/articles'
+
+  if (targetLocale === null) {
+    if (basePath === '/articles') return '/resources/articles'
+    return basePath || '/'
+  }
+  return basePath === '/' ? `/${targetLocale}` : `/${targetLocale}${basePath}`
+}
 
 const countries: { name: string; svg: string | null; key: string }[] = [
   { name: 'Iran',         svg: 'FME_Iran_map.svg',    key: 'iran' },
@@ -63,7 +81,11 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  const currentLang = languages.find(l => l.href === pathname) ?? languages[0]
+  const currentLang = languages.find(l =>
+    l.locale === null
+      ? !LOCALE_CODES.some(loc => pathname === `/${loc}` || pathname.startsWith(`/${loc}/`))
+      : pathname === `/${l.locale}` || pathname.startsWith(`/${l.locale}/`)
+  ) ?? languages[0]
 
   // Detect locale from pathname to translate nav
   const localeKey = Object.keys(localeMap).find(k => pathname === k || pathname.startsWith(k + '/'))
@@ -74,7 +96,6 @@ export default function Header() {
     ? [
         { href: `/${activeLocale}`,                          label: navT.about },
         { href: `/${activeLocale}/articles`,                 label: navT.articles },
-        { href: `/${activeLocale}/nations`,                  label: navT.nations },
         { href: `/${activeLocale}/end-times`,                label: navT.endTimes },
         { href: `/${activeLocale}/geopolitics`,              label: navT.geopolitics },
         { href: `/${activeLocale}/resources`,                label: navT.resources },
@@ -125,6 +146,22 @@ export default function Header() {
             ))}
           </nav>
 
+          {/* Mobile-only nav link strip */}
+          <div className="hdr-mobile-flags">
+            {navLinks.map(({ href, label }, i) => (
+              <span key={href} className="hdr-mobile-flag-wrap">
+                {i > 0 && <span className="hdr-mobile-flag-sep" />}
+                <Link
+                  href={href}
+                  className={`hdr-mobile-flag hdr-mobile-flag-text${pathname === href ? ' active' : ''}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {label}
+                </Link>
+              </span>
+            ))}
+          </div>
+
           {/* Language switcher */}
           <div className="hdr-lang-wrap" ref={langRef}>
             <button
@@ -144,7 +181,7 @@ export default function Header() {
                 {languages.map(lang => (
                   <Link
                     key={lang.code}
-                    href={lang.href}
+                    href={getLocalizedHref(pathname, lang.locale)}
                     className={`hdr-lang-item${currentLang.code === lang.code ? ' active' : ''}`}
                     onClick={() => setLangOpen(false)}
                     dir={lang.code === 'FA' || lang.code === 'AR' ? 'rtl' : 'ltr'}
@@ -170,44 +207,46 @@ export default function Header() {
         {/* Mobile drawer */}
         {menuOpen && (
           <div className="hdr-mobile-drawer">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`hdr-mobile-link${pathname === href ? ' active' : ''}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
-            {/* Mobile language options */}
+            {/* Countries first in the dropdown */}
+            <div className="hdr-mobile-countries">
+              {countries.map(c => {
+                const hasArticles = getArticlesForNation(c.key).length > 0
+                return hasArticles ? (
+                  <Link
+                    key={c.key}
+                    href={`/resources/articles?nation=${c.key}`}
+                    className="hdr-mobile-country"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {c.svg
+                      ? <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} />
+                      : <span className="hdr-country-symbol">☪️</span>
+                    }
+                    <span>{c.name}</span>
+                  </Link>
+                ) : (
+                  <span key={c.key} className="hdr-mobile-country" style={{ opacity: 0.45, cursor: 'default' }}>
+                    {c.svg
+                      ? <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} />
+                      : <span className="hdr-country-symbol">☪️</span>
+                    }
+                    <span>{c.name}</span>
+                  </span>
+                )
+              })}
+            </div>
+            {/* Language options */}
             <div className="hdr-mobile-langs">
               {languages.map(lang => (
                 <Link
                   key={lang.code}
-                  href={lang.href}
+                  href={getLocalizedHref(pathname, lang.locale)}
                   className={`hdr-mobile-lang${currentLang.code === lang.code ? ' active' : ''}`}
                   onClick={() => setMenuOpen(false)}
                   dir={lang.code === 'FA' || lang.code === 'AR' ? 'rtl' : 'ltr'}
                 >
                   <span className="hdr-lang-code">{lang.code}</span>
                   <span className="hdr-lang-native">{lang.native}</span>
-                </Link>
-              ))}
-            </div>
-            <div className="hdr-mobile-countries">
-              {countries.map(c => (
-                <Link
-                  key={c.key}
-                  href={`/resources/articles?nation=${c.key}`}
-                  className="hdr-mobile-country"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {c.svg
-                    ? <Image src={`/img/${c.svg}`} alt={c.name} width={20} height={20} />
-                    : <span className="hdr-country-symbol">☪️</span>
-                  }
-                  <span>{c.name}</span>
                 </Link>
               ))}
             </div>

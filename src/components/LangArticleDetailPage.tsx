@@ -5,6 +5,7 @@ import { articles } from '@/data/articles'
 import { getArticleBySlug } from '@/lib/articles'
 import { nations } from '@/data/nations'
 import type { LangT } from '@/data/translations'
+import { articleTranslations } from '@/data/article-translations'
 
 interface Props {
   slug: string
@@ -15,6 +16,11 @@ interface Props {
 export default function LangArticleDetailPage({ slug, t, locale }: Props) {
   const article = getArticleBySlug(slug)
   if (!article) notFound()
+
+  const tx = articleTranslations[slug]?.[locale]
+  const title   = tx?.title   ?? article.title
+  const summary = tx?.summary ?? article.summary
+  const body    = tx?.body    ?? article.body
 
   const relatedNations = nations.filter(n => article.nations.includes(n.key))
   const isRtl = t.dir === 'rtl'
@@ -43,7 +49,7 @@ export default function LangArticleDetailPage({ slug, t, locale }: Props) {
               </span>
             ))}
           </div>
-          <h1 className="article-title" dir="ltr">{article.title}</h1>
+          <h1 className="article-title" dir={t.dir}>{title}</h1>
           <div className="article-meta" dir="ltr">
             <span className="article-author">By {article.author}</span>
             <span className="article-dot">·</span>
@@ -57,8 +63,8 @@ export default function LangArticleDetailPage({ slug, t, locale }: Props) {
         <div className="container">
           <div className="article-layout">
 
-            <article className="article-content" dir="ltr">
-              {article.body.map((block, i) => {
+            <article className="article-content" dir={t.dir}>
+              {body.map((block, i) => {
                 if (block.type === 'paragraph') {
                   return <p key={i} className="article-p">{block.text}</p>
                 }

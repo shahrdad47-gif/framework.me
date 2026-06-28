@@ -6,10 +6,10 @@ export default function Hero() {
       <div className="hero-bg"></div>
       <div className="hero-content">
         <p className="hero-eyebrow">Welcome to Framework:ME</p>
-        <h1 className="hero-title">Discover God&apos;s Plan<br /><em>for Ishmael</em></h1>
+        <h1 className="hero-title">Discover God&apos;s Plan for<br /><em>the Restoration of Isaac and Ishmael</em></h1>
         <p className="hero-sub">
-          A free teaching &amp; resource library focused on understanding<br />
-          God&apos;s plan for the nations — centered on Israel and the Middle East
+          A free teaching and resource library focused on understanding God&apos;s plan<br />
+          for the nations — centered on Israel, Ishmael and the Middle East
         </p>
         <div className="hero-divider"></div>
         <div className="hero-actions">

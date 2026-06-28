@@ -6,6 +6,7 @@ import Image from 'next/image'
 import type { Nation } from '@/types'
 import { nations } from '@/data/nations'
 import { getArticlesForNation } from '@/lib/articles'
+import { articleTranslations } from '@/data/article-translations'
 
 interface Props {
   locale?: string
@@ -58,20 +59,23 @@ export default function ArticlesByNation({ locale, labels }: Props) {
           </div>
         ) : (
           <div className="articles-list">
-            {articleList.map(a => (
-              <Link key={a.slug} href={articleHref(a.slug)} className="article-card-link">
-                <div className="article-card">
-                  <div className="article-card-meta">
-                    <span className="article-card-author">{a.author}</span>
-                    <span className="article-card-dot">·</span>
-                    <span className="article-card-date">{a.date}</span>
+            {articleList.map(a => {
+              const tx = locale ? articleTranslations[a.slug]?.[locale] : undefined
+              return (
+                <Link key={a.slug} href={articleHref(a.slug)} className="article-card-link">
+                  <div className="article-card">
+                    <div className="article-card-meta">
+                      <span className="article-card-author">{a.author}</span>
+                      <span className="article-card-dot">·</span>
+                      <span className="article-card-date">{a.date}</span>
+                    </div>
+                    <h4>{tx?.title ?? a.title}</h4>
+                    <p>{tx?.summary ?? a.summary}</p>
+                    <span className="article-read-more">{readArticleLabel}</span>
                   </div>
-                  <h4>{a.title}</h4>
-                  <p>{a.summary}</p>
-                  <span className="article-read-more">{readArticleLabel}</span>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            })}
           </div>
         )}
       </div>

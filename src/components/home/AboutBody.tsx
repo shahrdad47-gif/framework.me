@@ -4,14 +4,15 @@ export default function AboutBody() {
       <div className="container">
         <div className="about-grid">
 
-          <div className="about-text">
+          <div className="about-text" id="who-we-are">
             <h2 className="section-heading">Who We Are</h2>
             <div className="gold-rule"></div>
             <p>
               Framework ME is a free teaching and resource library focused on understanding God&apos;s plan
-              for the nations — especially centered on Israel and the Middle East. The eternal and authoritative
-              Word of God addresses and reveals the redemptive storyline of human history which is coming to a
-              climax with the return of Christ.
+              for the nations — especially centered on the nation of Israel and the Middle East which is the
+              context for the restoration of Isaac and Ishmael. The eternal and authoritative Word of God
+              addresses and reveals the redemptive storyline of human history which is coming to a climax
+              with the return of Christ.
             </p>
             <p>
               Our goal is to prepare the global Church and the nations for the return of Christ. This is done
@@ -37,8 +38,8 @@ export default function AboutBody() {
               <div className="mc-icon">✡</div>
               <h3>Our Focus</h3>
               <p>
-                Israel, the Middle East, and the convergence of prophetic movements that are bringing
-                history to its appointed culmination.
+                Israel, Ishmael, the Middle East, and the convergence of prophetic movements that are
+                bringing history to its appointed culmination.
               </p>
             </div>
           </div>

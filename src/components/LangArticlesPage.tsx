@@ -24,7 +24,13 @@ export default function LangArticlesPage({ t, locale }: { t: LangT; locale: stri
       </div>
       <div className="container res-sub-body">
         <Suspense>
-          <ArticlesByNation locale={locale} />
+          <ArticlesByNation
+            locale={locale}
+            labels={{
+              allNations: s.allNations,
+              readArticle: s.readArticle,
+            }}
+          />
         </Suspense>
       </div>
     </div>

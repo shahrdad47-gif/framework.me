@@ -1,5 +1,9 @@
 import type { Article } from '@/types'
 
+// Each article added here is automatically available at:
+//   /articles/[slug]  (English)
+//   /fa/articles/[slug]  /ar/articles/[slug]  /hy/articles/[slug]  /pt/articles/[slug]
+// No extra steps needed — just add the article object below and redeploy.
 export const articles: Article[] = [
   {
     slug: 'restoring-fortunes-iran',

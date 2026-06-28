@@ -27,7 +27,7 @@ export interface LangT {
     nations: { title: string; desc: string }
     endTimes: { title: string; desc: string }
     geopolitics: { title: string; desc: string }
-    articles: { title: string; sub: string; selectNation: string; back: string }
+    articles: { title: string; sub: string; selectNation: string; back: string; allNations: string; readArticle: string }
     authors: { title: string; sub: string; comingSoon: string }
     videoTeachings: {
       eyebrow: string; title: string; sub: string; back: string
@@ -133,7 +133,7 @@ export const translations: Record<Locale, LangT> = {
       nations: { title: 'ملت‌ها و نبوت', desc: 'نبوت کتاب مقدسی و اهداف رستگاری‌بخش خداوند برای ملت‌های خاورمیانه و فراتر از آن.' },
       endTimes: { title: 'آخرالزمان', desc: 'آموزش‌ها و منابعی درباره آخرالزمان‌شناسی کتاب مقدسی — درک نشانه‌ها، فصول و همسویی ملت‌ها در روزهای آخر.' },
       geopolitics: { title: 'ژئوپلیتیک', desc: 'تحلیل‌ها و نظرات ژئوپلیتیکی تفسیر شده از طریق عدسی کلام مقدس و نبوت کتاب مقدسی.' },
-      articles: { title: 'مقالات بر اساس ملت', sub: 'یک پرچم ملت را انتخاب کنید تا مقالات و تفسیرهایی درباره اهداف خداوند برای آن ملت بخوانید.', selectNation: 'انتخاب ملت', back: '← همه منابع' },
+      articles: { title: 'مقالات بر اساس ملت', sub: 'یک پرچم ملت را انتخاب کنید تا مقالات و تفسیرهایی درباره اهداف خداوند برای آن ملت بخوانید.', selectNation: 'انتخاب ملت', back: '← همه منابع', allNations: 'همه ملت‌ها', readArticle: '← خواندن مقاله' },
       authors: { title: 'نویسندگان', sub: 'صداها و معلمان پشت Framework:ME', comingSoon: 'پروفایل‌های نویسندگان به زودی در دسترس خواهند بود.' },
       videoTeachings: {
         eyebrow: 'منابع رایگان', title: 'تعالیم ویدیویی', sub: 'تعالیمی از کانال یوتیوب Framework:ME در موضوعات کتاب مقدسی.', back: '← همه منابع',
@@ -233,7 +233,7 @@ export const translations: Record<Locale, LangT> = {
       nations: { title: 'ազգներ եվ Մարգարեություն', desc: 'Աստվածո կրոնական մարգարեություն եվ փռկագործական նպատակներն Մերձավոր Արեվելքքի ազգների համար.' },
       endTimes: { title: 'Վերջին Ժամանակներ', desc: 'ուսուծմներ եվ Ռեսուրսներ կրոնական եսքատոլոգիայի — հասկանալ նշաններն եվ ազգների դասավորումն վերջին որերին.' },
       geopolitics: { title: 'Երկրաքաղաքականություն', desc: 'երկրաքաղաքական վերլուծում եվ մեկնաբանություններ Աստվածո Բանի լույսի նեռքո.' },
-      articles: { title: 'Հոդվածներ յստ Ազգի', sub: 'Ենտրել ազգի դրոշակն Աստվածո նպատակների մասին Հոդվածներ կարդալու.', selectNation: 'Ենտրել Ազգ', back: '← Բոլոր Ռեսուրսներ' },
+      articles: { title: 'Հոդվածներ յստ Ազգի', sub: 'Ենտրել ազգի դրոշակն Աստվածո նպատակների մասին Հոդվածներ կարդալու.', selectNation: 'Ենտրել Ազգ', back: '← Բոլոր Ռեսուրսներ', allNations: 'Բոլոր Ազգերը', readArticle: 'Կարդալ →' },
       authors: { title: 'Հեղինակներ', sub: 'Դզայներն եվ ուսուծիճներն Framework:ME-ի ըտեռեվ', comingSoon: 'Հեղինակների պրոֆիլներն Շուտով.' },
       videoTeachings: {
         eyebrow: 'Անվճար Ռեսուրսներ', title: 'Տեսաուսուծմներ', sub: 'Տեսաուսուծմներ Framework:ME YouTube ալիքի.', back: '← Բոլոր Ռեսուրսներ',
@@ -333,7 +333,7 @@ export const translations: Record<Locale, LangT> = {
       nations: { title: 'Nações e Profecia', desc: 'Profecia bíblica e os propósitos redentores de Deus para as nações do Oriente Médio e além.' },
       endTimes: { title: 'Tempos do Fim', desc: 'Ensinos e recursos sobre escatologia bíblica — compreendendo os sinais, estações e alinhamento das nações nos últimos dias.' },
       geopolitics: { title: 'Geopolítica', desc: 'Análise geopolítica e comentários interpretados através da lente da Palavra de Deus e da profecia bíblica.' },
-      articles: { title: 'Artigos por Nação', sub: 'Selecione uma bandeira de nação para ler artigos e comentários sobre os propósitos de Deus para aquela nação.', selectNation: 'Selecionar Nação', back: '← Todos os Recursos' },
+      articles: { title: 'Artigos por Nação', sub: 'Selecione uma bandeira de nação para ler artigos e comentários sobre os propósitos de Deus para aquela nação.', selectNation: 'Selecionar Nação', back: '← Todos os Recursos', allNations: 'Todas as Nações', readArticle: 'Ler Artigo →' },
       authors: { title: 'Autores', sub: 'As vozes e mestres por trás do Framework:ME', comingSoon: 'Perfis dos contribuidores em breve.' },
       videoTeachings: {
         eyebrow: 'Recursos Gratuitos', title: 'Ensinamentos em Vídeo', sub: 'Ensinamentos do canal Framework:ME no YouTube organizados por tema bíblico.', back: '← Todos os Recursos',
@@ -433,7 +433,7 @@ export const translations: Record<Locale, LangT> = {
       nations: { title: 'الأمم والنبوة', desc: 'النبوة الكتابية وأغراض الله الفدائية لأمم الشرق الأوسط وما وراءها.' },
       endTimes: { title: 'الأزمنة الأخيرة', desc: 'تعاليم وموارد حول الإسكاتولوجيا الكتابية — فهم العلامات والمواسم وتوافق الأمم في الأيام الأخيرة.' },
       geopolitics: { title: 'الجيوسياسة', desc: 'التحليل الجيوسياسي والتعليق المُفسَّر من خلال منظور الكلمة النبوية وكتاب مقدس.' },
-      articles: { title: 'مقالات حسب الأمة', sub: 'اختر علم أمة لقراءة مقالات وتعليقات حول أغراض الله لتلك الأمة.', selectNation: 'اختر أمة', back: '← جميع الموارد' },
+      articles: { title: 'مقالات حسب الأمة', sub: 'اختر علم أمة لقراءة مقالات وتعليقات حول أغراض الله لتلك الأمة.', selectNation: 'اختر أمة', back: '← جميع الموارد', allNations: 'جميع الأمم', readArticle: '← قراءة المقال' },
       authors: { title: 'المؤلفون', sub: 'الأصوات والمعلمون وراء Framework:ME', comingSoon: 'ملفات تعريف المؤلفين ستتوفر قريباً.' },
       videoTeachings: {
         eyebrow: 'موارد مجانية', title: 'تعاليم مرئية', sub: 'تعاليم من قناة Framework:ME على يوتيوب منظّمة حسب الموضوع الكتابي.', back: '← جميع الموارد',
