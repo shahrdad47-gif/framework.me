@@ -59,30 +59,7 @@ export default async function LangArticleDetailPage({ slug, t, locale }: Props) 
           <div className="article-layout">
 
             <article className="article-content" dir={t.dir}>
-              {body.map((block, i) => {
-                if (block.type === 'paragraph') {
-                  return <p key={i} className="article-p">{block.text}</p>
-                }
-                if (block.type === 'subheading') {
-                  return <h3 key={i} className="article-subheading">{block.text}</h3>
-                }
-                if (block.type === 'closing') {
-                  return <p key={i} className="article-p article-closing">{block.text}</p>
-                }
-                if (block.type === 'scripture-list') {
-                  return (
-                    <div key={i} className="scripture-list">
-                      {block.items.map((item, j) => (
-                        <div key={j} className="scripture-item">
-                          <div className="scripture-text">{item.text}</div>
-                          <div className="scripture-ref">{item.ref}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )
-                }
-                return null
-              })}
+              <div className="article-rich-body" dangerouslySetInnerHTML={{ __html: body }} />
 
               {article.pdf && (
                 <div className="article-pdf-row">

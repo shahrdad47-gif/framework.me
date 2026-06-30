@@ -1,14 +1,3 @@
-export interface ScriptureItem {
-  text: string
-  ref: string
-}
-
-export type ArticleBlock =
-  | { type: 'paragraph'; text: string }
-  | { type: 'subheading'; text: string }
-  | { type: 'closing'; text: string }
-  | { type: 'scripture-list'; items: ScriptureItem[] }
-
 export interface Article {
   slug: string
   title: string
@@ -18,7 +7,10 @@ export interface Article {
   sections?: string[]   // e.g. ['geopolitics', 'end-times']
   summary: string
   pdf?: string
-  body: ArticleBlock[]
+  // Rich-text HTML from the admin Quill editor — rendered with
+  // dangerouslySetInnerHTML, safe because src/lib/sanitize.ts strips it to
+  // an allowlist before it's ever stored.
+  body: string
 }
 
 export interface Nation {

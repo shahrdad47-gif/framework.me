@@ -26,9 +26,11 @@ async function main() {
       sections    TEXT[] NOT NULL DEFAULT '{}',
       summary     TEXT NOT NULL DEFAULT '',
       pdf         TEXT,
-      body        JSONB NOT NULL DEFAULT '[]'
+      body        JSONB NOT NULL DEFAULT '""',
+      created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `
+  await sql`ALTER TABLE articles ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
 
   await sql`
     CREATE TABLE IF NOT EXISTS books (
@@ -91,22 +93,24 @@ async function main() {
 
   // Seed articles
   for (const a of articles) {
+    const createdAt = new Date(a.date).toISOString()
     await sql`
-      INSERT INTO articles (slug, title, author, date, nations, sections, summary, pdf, body)
+      INSERT INTO articles (slug, title, author, date, nations, sections, summary, pdf, body, created_at)
       VALUES (
         ${a.slug}, ${a.title}, ${a.author}, ${a.date},
         ${a.nations}, ${a.sections ?? []},
-        ${a.summary}, ${a.pdf ?? null}, ${JSON.stringify(a.body)}
+        ${a.summary}, ${a.pdf ?? null}, ${JSON.stringify(a.body)}, ${createdAt}
       )
       ON CONFLICT (slug) DO UPDATE SET
-        title    = EXCLUDED.title,
-        author   = EXCLUDED.author,
-        date     = EXCLUDED.date,
-        nations  = EXCLUDED.nations,
-        sections = EXCLUDED.sections,
-        summary  = EXCLUDED.summary,
-        pdf      = EXCLUDED.pdf,
-        body     = EXCLUDED.body
+        title      = EXCLUDED.title,
+        author     = EXCLUDED.author,
+        date       = EXCLUDED.date,
+        nations    = EXCLUDED.nations,
+        sections   = EXCLUDED.sections,
+        summary    = EXCLUDED.summary,
+        pdf        = EXCLUDED.pdf,
+        body       = EXCLUDED.body,
+        created_at = EXCLUDED.created_at
     `
   }
   console.log(`Seeded ${articles.length} articles.`)

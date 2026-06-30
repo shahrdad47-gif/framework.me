@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Nation } from '@/types'
+import type { Nation, Article } from '@/types'
 import { nations } from '@/data/nations'
-import { getArticlesForNationSync as getArticlesForNation } from '@/lib/articles-sync'
 import { articleTranslations } from '@/data/article-translations'
 
 interface Props {
@@ -16,12 +15,17 @@ interface Props {
 export default function ArticlesByNation({ locale, labels }: Props) {
   const searchParams = useSearchParams()
   const [selected, setSelected] = useState<Nation | null>(null)
+  const [articles, setArticles] = useState<Article[]>([])
 
   const basePath    = locale ? `/${locale}/articles`          : '/resources/articles'
   const articleHref = (slug: string) => locale ? `/${locale}/articles/${slug}` : `/articles/${slug}`
 
   const allNationsLabel  = labels?.allNations  ?? 'All Nations'
   const readArticleLabel = labels?.readArticle ?? 'Read Article →'
+
+  useEffect(() => {
+    fetch('/api/data/articles').then(res => res.json()).then(setArticles).catch(() => {})
+  }, [])
 
   useEffect(() => {
     const key = searchParams.get('nation')
@@ -32,7 +36,7 @@ export default function ArticlesByNation({ locale, labels }: Props) {
   }, [searchParams])
 
   if (selected) {
-    const articleList = getArticlesForNation(selected.key)
+    const articleList = articles.filter(a => a.nations.includes(selected.key))
 
     return (
       <div>
@@ -110,7 +114,7 @@ export default function ArticlesByNation({ locale, labels }: Props) {
       </div>
       <div className="nations-grid">
         {nations.map(nation => {
-          const count = getArticlesForNation(nation.key).length
+          const count = articles.filter(a => a.nations.includes(nation.key)).length
           return (
             <button
               key={nation.key}

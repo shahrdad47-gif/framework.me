@@ -985,27 +985,37 @@ h1, h2, h3, h4 {
     display: grid; grid-template-columns: 1fr 300px; gap: 56px; align-items: start;
 }
 
-/* Article content */
+/* Article content — rich-text HTML from the admin Quill editor */
 .article-content { max-width: 100%; }
-.article-p {
+.article-rich-body p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.15rem; color: var(--text-mid);
     line-height: 1.9; margin-bottom: 24px;
 }
-.article-closing {
-    font-style: italic; font-weight: 500; color: var(--wine);
-    border-left: 3px solid var(--gold); padding-left: 20px;
-    margin-top: 8px;
-}
-
-/* Article subheading */
-.article-subheading {
+.article-rich-body h1, .article-rich-body h2, .article-rich-body h3 {
     font-size: 1.35rem; font-weight: 700;
     color: var(--wine-deep); margin: 36px 0 14px;
     padding-bottom: 8px;
     border-bottom: 2px solid var(--gold-dim);
     letter-spacing: -0.01em;
 }
+.article-rich-body blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 500; color: var(--wine);
+    background: var(--parchment); border: 1px solid var(--parchment2);
+    border-left: 4px solid var(--wine); border-radius: var(--radius);
+    padding: 16px 24px; margin: 24px 0;
+}
+.article-rich-body ul, .article-rich-body ol {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+    color: var(--text-mid); line-height: 1.9;
+    margin: 0 0 24px 24px;
+}
+.article-rich-body li { margin-bottom: 8px; }
+.article-rich-body a { color: var(--wine); text-decoration: underline; }
+.article-rich-body strong { font-weight: 700; color: var(--text); }
+.article-rich-body em { font-style: italic; }
+.article-rich-body > *:last-child { margin-bottom: 0; }
 
 /* Nation chip map icon on article hero */
 .article-nation-chip-map { display: block; object-fit: contain; filter: brightness(10); flex-shrink: 0; }
@@ -1026,28 +1036,6 @@ h1, h2, h3, h4 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 .sidebar-nation-flag-img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-/* Scripture list */
-.scripture-list {
-    background: var(--parchment);
-    border: 1px solid var(--parchment2);
-    border-left: 4px solid var(--wine);
-    border-radius: var(--radius);
-    padding: 24px 28px;
-    margin: 28px 0;
-    display: flex; flex-direction: column; gap: 14px;
-}
-.scripture-item { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.scripture-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; font-style: italic; font-weight: 500;
-    color: var(--text);
-}
-.scripture-ref {
-    font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700;
-    color: var(--wine); text-transform: uppercase; letter-spacing: 0.06em;
-    white-space: nowrap; flex-shrink: 0;
-}
 
 /* PDF button */
 .article-pdf-row { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
@@ -1094,9 +1082,6 @@ h1, h2, h3, h4 {
 @media (max-width: 860px) {
     .article-layout { grid-template-columns: 1fr; }
     .article-sidebar { position: static; }
-}
-@media (max-width: 560px) {
-    .scripture-item { flex-direction: column; gap: 4px; }
 }
 
 /* ================================================================
@@ -1441,15 +1426,6 @@ h1, h2, h3, h4 {
 }
 
 /* ================================================================
-   ARTICLE — subheading block
-   ================================================================ */
-.article-subheading {
-    font-size: 1.3rem; font-weight: 700; color: var(--wine);
-    margin: 32px 0 12px; padding-bottom: 8px;
-    border-bottom: 2px solid var(--gold-pale);
-}
-
-/* ================================================================
    GIVE SECTION
    ================================================================ */
 .give-section {
@@ -1629,3 +1605,136 @@ h1, h2, h3, h4 {
   color: var(--wine); transition: color var(--transition);
 }
 .lang-cta:hover { color: var(--red); }
+
+/* ================================================================
+   ADMIN PANEL
+   ================================================================ */
+
+.admin-shell { font-family: 'Inter', sans-serif; min-height: 60vh; background: var(--parchment); }
+
+.admin-topbar { background: var(--wine-deep); color: var(--white); }
+.admin-topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 32px;
+}
+.admin-brand { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
+
+.admin-content { padding: 36px 32px 64px; }
+
+.admin-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 6px;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem;
+  transition: all var(--transition); border: 1.5px solid transparent;
+}
+.admin-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.admin-btn-primary { background: var(--gold); color: var(--white); }
+.admin-btn-primary:hover:not(:disabled) { background: var(--gold-light); }
+.admin-btn-ghost { border-color: var(--wine-light); color: var(--wine); background: var(--white); }
+.admin-btn-ghost:hover:not(:disabled) { background: var(--wine); color: var(--white); }
+.admin-btn-danger { border-color: var(--red); color: var(--red); background: var(--white); }
+.admin-btn-danger:hover:not(:disabled) { background: var(--red); color: var(--white); }
+.admin-btn-danger-text {
+  color: var(--red); font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+}
+
+.admin-error {
+  background: rgba(190,30,45,0.08); color: var(--red); border: 1px solid rgba(190,30,45,0.25);
+  padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; margin-bottom: 16px;
+}
+
+/* Login */
+.admin-login-wrap { display: flex; align-items: center; justify-content: center; min-height: 70vh; padding: 32px; }
+.admin-login-card {
+  background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+  padding: 40px; width: 100%; max-width: 380px;
+}
+.admin-login-card h1 { font-size: 1.6rem; margin-bottom: 4px; }
+.admin-login-sub { font-family: 'Inter', sans-serif; color: var(--text-mid); font-size: 0.9rem; margin-bottom: 24px; }
+
+/* Article list */
+.admin-page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
+.admin-page-header h1 { font-size: 1.8rem; }
+.admin-page-sub { font-family: 'Inter', sans-serif; color: var(--text-mid); font-size: 0.9rem; }
+
+.admin-filter-bar { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 20px; }
+.admin-filter-bar label {
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-mid);
+}
+.admin-filter-bar select {
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.9rem; min-width: 200px;
+}
+
+.admin-table-wrap {
+  background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  overflow: hidden; overflow-x: auto;
+}
+.admin-table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+.admin-table th {
+  text-align: left; padding: 14px 18px; background: var(--gold-pale);
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-mid);
+}
+.admin-table td { padding: 14px 18px; border-top: 1px solid var(--border); vertical-align: top; }
+.admin-table-title { font-weight: 600; color: var(--text); }
+.admin-table-slug { font-size: 0.78rem; color: var(--text-light); }
+.admin-table-actions { display: flex; gap: 8px; align-items: center; white-space: nowrap; }
+.admin-table-empty { text-align: center; color: var(--text-light); padding: 32px !important; }
+
+.admin-pagination { display: flex; align-items: center; gap: 16px; margin-top: 20px; }
+.admin-pagination-status { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-mid); }
+
+/* Article form */
+.admin-article-form-page { max-width: 760px; }
+.admin-article-form-page h1 { margin-bottom: 24px; }
+
+.admin-form {
+  background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  padding: 32px; display: flex; flex-direction: column; gap: 20px;
+}
+.admin-field { display: flex; flex-direction: column; gap: 6px; }
+.admin-field > span, .admin-field > legend {
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text-mid);
+}
+.admin-field input[type="text"],
+.admin-field input[type="url"],
+.admin-field input[type="date"],
+.admin-field input:not([type]),
+.admin-field textarea,
+.admin-field select {
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text); width: 100%;
+}
+.admin-field textarea { resize: vertical; font-family: inherit; }
+.admin-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+fieldset.admin-field { border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+
+.admin-checkbox-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px 16px;
+}
+.admin-checkbox {
+  display: flex; align-items: center; gap: 6px; font-size: 0.9rem; font-weight: 400; color: var(--text);
+}
+
+/* Quill body editor */
+.admin-quill { background: var(--white); border-radius: var(--radius); overflow: hidden; }
+.admin-quill .ql-toolbar.ql-snow {
+  border-color: var(--border); border-radius: var(--radius) var(--radius) 0 0;
+  font-family: 'Inter', sans-serif;
+}
+.admin-quill .ql-container.ql-snow {
+  border-color: var(--border); border-radius: 0 0 var(--radius) var(--radius);
+  font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+}
+.admin-quill .ql-editor { min-height: 320px; line-height: 1.8; color: var(--text); }
+.admin-quill .ql-editor blockquote {
+  border-left: 3px solid var(--gold); padding-left: 16px; color: var(--wine); font-style: italic;
+}
+
+.admin-form-actions { display: flex; justify-content: flex-end; padding-top: 8px; }
+
+@media (max-width: 640px) {
+  .admin-field-row { grid-template-columns: 1fr; }
+  .admin-page-header { flex-direction: column; gap: 16px; }
+}

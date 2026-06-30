@@ -23,7 +23,10 @@ function getNeon(): SqlFn | null {
   if (!process.env.DATABASE_URL) return null
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { neon } = require('@neondatabase/serverless')
-  return neon(process.env.DATABASE_URL) as SqlFn
+  // Neon's HTTP driver issues queries via fetch() — without this, Next.js's
+  // automatic fetch cache would serve stale query results indefinitely after
+  // an admin edit, since identical SQL text + params hash to the same cache key.
+  return neon(process.env.DATABASE_URL, { fetchOptions: { cache: 'no-store' } }) as SqlFn
 }
 
 // ── Articles ──────────────────────────────────────────────────────────────────
@@ -103,7 +106,7 @@ function rowToArticle(row: Row): Article {
     sections: row.sections ?? [],
     summary:  row.summary ?? '',
     pdf:      row.pdf ?? undefined,
-    body:     row.body ?? [],
+    body:     row.body ?? '',
   }
 }
 

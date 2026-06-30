@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
-import { getArticlesForNationSync as getArticlesForNation } from '@/lib/articles-sync'
+import type { Article } from '@/types'
 import { translations, type Locale } from '@/data/translations'
 
 const navLinksEN = [
@@ -68,6 +68,7 @@ export default function Header() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen]   = useState(false)
   const [langOpen, setLangOpen]   = useState(false)
+  const [articles, setArticles]   = useState<Article[]>([])
   const langRef = useRef<HTMLDivElement>(null)
 
   // Close lang dropdown on outside click
@@ -80,6 +81,12 @@ export default function Header() {
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
+
+  useEffect(() => {
+    fetch('/api/data/articles').then(res => res.json()).then(setArticles).catch(() => {})
+  }, [])
+
+  const getArticlesForNation = (key: string) => articles.filter(a => a.nations.includes(key))
 
   const currentLang = languages.find(l =>
     l.locale === null
