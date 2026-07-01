@@ -12,6 +12,10 @@ export default function AdminDashboardLayout({ children }: { children: ReactNode
       <div className="admin-topbar">
         <div className="container admin-topbar-inner">
           <Link href="/admin/articles" className="admin-brand">Framework:ME Admin</Link>
+          <nav className="admin-nav">
+            <Link href="/admin/articles">Articles</Link>
+            <Link href="/admin/videos">Videos</Link>
+          </nav>
           <AdminLogoutButton />
         </div>
       </div>

@@ -1620,7 +1620,16 @@ h1, h2, h3, h4 {
 }
 .admin-brand { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
 
+.admin-nav { display: flex; gap: 24px; }
+.admin-nav a {
+  font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600;
+  color: rgba(255,255,255,0.75); transition: color var(--transition);
+}
+.admin-nav a:hover { color: var(--white); }
+
 .admin-content { padding: 36px 32px 64px; }
+
+.admin-page-header-actions { display: flex; gap: 10px; }
 
 .admin-btn {
   display: inline-flex; align-items: center; gap: 6px;
@@ -1755,6 +1764,12 @@ fieldset.admin-field { border: 1px solid var(--border); border-radius: 8px; padd
   padding: 14px 18px;
 }
 .admin-import-bar p { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text-mid); flex: 1; }
+
+/* Video admin */
+.admin-video-row { display: flex; align-items: center; gap: 12px; }
+.admin-video-thumb { width: 64px; height: 48px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+.admin-video-preview { margin: -8px 0 4px; }
+.admin-video-preview img { max-width: 320px; border-radius: var(--radius); box-shadow: var(--shadow-sm); }
 
 .admin-form-actions { display: flex; justify-content: flex-end; padding-top: 8px; }
 
