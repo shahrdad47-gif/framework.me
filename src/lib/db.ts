@@ -207,17 +207,32 @@ export async function getVideoById(id: string) {
 
   try {
     const rows = await sql`
-      SELECT v.id, v.title, v.date, v.speaker, v.category_id,
-             c.label AS category_label, c.icon AS category_icon
+      SELECT v.id, v.title, v.date, v.speaker, v.description, v.category_id,
+             c.label AS category_label, c.icon AS category_icon, c.description AS category_description
       FROM videos v
       JOIN video_categories c ON c.id = v.category_id
       WHERE v.id = ${id} LIMIT 1
     `
     if (!rows[0]) return null
     const r = rows[0]
+
+    const siblings = await sql`
+      SELECT id, title, date, speaker
+      FROM videos
+      WHERE category_id = ${r.category_id} AND status = 'published'
+      ORDER BY display_order ASC
+    `
+
     return {
-      video:    { id: r.id, title: r.title, date: r.date, speaker: r.speaker },
-      category: { id: r.category_id, label: r.category_label, icon: r.category_icon, videos: [] },
+      video: {
+        id: r.id, title: r.title, date: r.date ?? undefined, speaker: r.speaker ?? undefined,
+        description: r.description ?? '',
+      },
+      category: {
+        id: r.category_id, label: r.category_label, icon: r.category_icon ?? '',
+        description: r.category_description ?? '',
+        videos: siblings.map(v => ({ id: v.id, title: v.title, date: v.date ?? undefined, speaker: v.speaker ?? undefined })),
+      },
     }
   } catch {
     for (const cat of staticCategories) {

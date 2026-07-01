@@ -25,6 +25,10 @@ export interface Video {
   title: string
   date?: string
   speaker?: string
+  // Rich-text HTML from the admin Quill editor, same allowlist/sanitization
+  // as Article.body — rendered with dangerouslySetInnerHTML on the video
+  // detail page.
+  description?: string
 }
 
 export interface VideoSeries {

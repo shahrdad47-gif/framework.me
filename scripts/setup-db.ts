@@ -85,10 +85,12 @@ async function main() {
       category_id   TEXT NOT NULL REFERENCES video_categories(id),
       status        TEXT NOT NULL DEFAULT 'published',
       display_order INT NOT NULL DEFAULT 0,
+      description   TEXT NOT NULL DEFAULT '',
       created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `
   await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
+  await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS description TEXT NOT NULL DEFAULT ''`
 
   await sql`
     CREATE TABLE IF NOT EXISTS video_series (

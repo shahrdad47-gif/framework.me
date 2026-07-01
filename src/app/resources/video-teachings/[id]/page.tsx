@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { videoCategories } from '@/data/videos'
-import type { Video, VideoCategory } from '@/types'
+import { getVideoById } from '@/lib/db'
 
 export function generateStaticParams() {
   return videoCategories.flatMap(cat =>
@@ -10,28 +10,19 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  for (const cat of videoCategories) {
-    const video = cat.videos.find(v => v.id === params.id)
-    if (video) return { title: `${video.title} — Framework:ME` }
-  }
+  const found = await getVideoById(params.id)
+  if (found) return { title: `${found.video.title} — Framework:ME` }
   return { title: 'Video — Framework:ME' }
 }
 
-function findVideo(id: string): { video: Video; cat: VideoCategory; index: number } | null {
-  for (const cat of videoCategories) {
-    const index = cat.videos.findIndex(v => v.id === id)
-    if (index !== -1) return { video: cat.videos[index], cat, index }
-  }
-  return null
-}
-
-export default function VideoDetailPage({ params }: { params: { id: string } }) {
-  const found = findVideo(params.id)
+export default async function VideoDetailPage({ params }: { params: { id: string } }) {
+  const found = await getVideoById(params.id)
   if (!found) return notFound()
 
-  const { video, cat, index } = found
+  const { video, category: cat } = found
+  const index = cat.videos.findIndex(v => v.id === params.id)
   const prev = index > 0 ? cat.videos[index - 1] : null
-  const next = index < cat.videos.length - 1 ? cat.videos[index + 1] : null
+  const next = index !== -1 && index < cat.videos.length - 1 ? cat.videos[index + 1] : null
   const related = cat.videos.filter(v => v.id !== params.id)
 
   return (
@@ -101,6 +92,9 @@ export default function VideoDetailPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Description */}
+          {video.description && (
+            <div className="vd-desc article-rich-body" dangerouslySetInnerHTML={{ __html: video.description }} />
+          )}
           {cat.description && <p className="vd-desc">{cat.description}</p>}
 
           {/* Related */}

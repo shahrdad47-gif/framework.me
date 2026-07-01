@@ -1,6 +1,7 @@
 'use client'
 import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import QuillEditor from './QuillEditor'
 
 interface VideoCategoryOption {
   id: string
@@ -12,6 +13,7 @@ interface ExistingVideo {
   title: string
   date?: string
   speaker?: string
+  description?: string
   categoryId: string
   status: string
 }
@@ -37,6 +39,7 @@ export default function VideoForm({ mode, categories, initial }: VideoFormProps)
   const [title, setTitle] = useState(initial?.title ?? '')
   const [date, setDate] = useState(initial?.date ?? '')
   const [speaker, setSpeaker] = useState(initial?.speaker ?? '')
+  const [description, setDescription] = useState(initial?.description ?? '')
   const [categoryId, setCategoryId] = useState(initial?.categoryId ?? categories[0]?.id ?? '')
   const [status, setStatus] = useState(initial?.status ?? 'published')
   const [error, setError] = useState('')
@@ -53,6 +56,7 @@ export default function VideoForm({ mode, categories, initial }: VideoFormProps)
       title,
       date: date.trim() || undefined,
       speaker: speaker.trim() || undefined,
+      description,
       categoryId,
       status,
     }
@@ -105,6 +109,11 @@ export default function VideoForm({ mode, categories, initial }: VideoFormProps)
       <label className="admin-field">
         <span>Title</span>
         <input value={title} onChange={e => setTitle(e.target.value)} required />
+      </label>
+
+      <label className="admin-field">
+        <span>Description (optional)</span>
+        <QuillEditor value={description} onChange={setDescription} placeholder="Write a description for this video…" />
       </label>
 
       <div className="admin-field-row">

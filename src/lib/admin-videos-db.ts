@@ -7,6 +7,7 @@
 
 import { neon } from '@neondatabase/serverless'
 import type { VideoCategory, Video } from '@/types'
+import { sanitizeArticleBody } from '@/lib/sanitize'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Row = Record<string, any>
@@ -63,6 +64,7 @@ export type VideoInput = {
   title: string
   date?: string
   speaker?: string
+  description?: string
   categoryId: string
   status: 'published' | 'draft'
 }
@@ -73,6 +75,7 @@ function rowToVideo(row: Row): Video & { categoryId: string; categoryLabel?: str
     title: row.title,
     date: row.date ?? undefined,
     speaker: row.speaker ?? undefined,
+    description: row.description ?? '',
     categoryId: row.category_id,
     categoryLabel: row.category_label,
     status: row.status,
@@ -88,6 +91,7 @@ export function validateVideoInput(data: Row, opts: { requireId: boolean }): str
   if (typeof data.title !== 'string' || !data.title.trim()) return 'Title is required'
   if (data.date !== undefined && data.date !== null && typeof data.date !== 'string') return 'Date must be a string'
   if (data.speaker !== undefined && data.speaker !== null && typeof data.speaker !== 'string') return 'Speaker must be a string'
+  if (data.description !== undefined && data.description !== null && typeof data.description !== 'string') return 'Description must be a string'
   if (typeof data.categoryId !== 'string' || !data.categoryId.trim()) return 'Section is required'
   if (data.status !== 'published' && data.status !== 'draft') return 'Status must be "published" or "draft"'
   return null
@@ -127,7 +131,7 @@ export async function getVideosAdmin(opts: {
 export async function getVideoAdmin(id: string) {
   const sql = getSql()
   const rows = await sql`
-    SELECT v.id, v.title, v.date, v.speaker, v.category_id, v.status, c.label AS category_label
+    SELECT v.id, v.title, v.date, v.speaker, v.description, v.category_id, v.status, c.label AS category_label
     FROM videos v JOIN video_categories c ON c.id = v.category_id
     WHERE v.id = ${id} LIMIT 1
   `
@@ -144,9 +148,12 @@ export async function createVideoAdmin(data: VideoInput) {
 
   const maxOrder = await sql`SELECT COALESCE(MAX(display_order), -1) AS m FROM videos WHERE category_id = ${data.categoryId}`
   const rows = await sql`
-    INSERT INTO videos (id, title, date, speaker, category_id, status, display_order)
-    VALUES (${data.id}, ${data.title}, ${data.date ?? null}, ${data.speaker ?? null}, ${data.categoryId}, ${data.status}, ${maxOrder[0].m + 1})
-    RETURNING id, title, date, speaker, category_id, status
+    INSERT INTO videos (id, title, date, speaker, description, category_id, status, display_order)
+    VALUES (
+      ${data.id}, ${data.title}, ${data.date ?? null}, ${data.speaker ?? null},
+      ${sanitizeArticleBody(data.description ?? '')}, ${data.categoryId}, ${data.status}, ${maxOrder[0].m + 1}
+    )
+    RETURNING id, title, date, speaker, description, category_id, status
   `
   return rowToVideo(rows[0])
 }
@@ -162,10 +169,11 @@ export async function updateVideoAdmin(id: string, data: Omit<VideoInput, 'id'>)
       title       = ${data.title},
       date        = ${data.date ?? null},
       speaker     = ${data.speaker ?? null},
+      description = ${sanitizeArticleBody(data.description ?? '')},
       category_id = ${data.categoryId},
       status      = ${data.status}
     WHERE id = ${id}
-    RETURNING id, title, date, speaker, category_id, status
+    RETURNING id, title, date, speaker, description, category_id, status
   `
   return rows[0] ? rowToVideo(rows[0]) : null
 }
