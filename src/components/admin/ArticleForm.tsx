@@ -1,9 +1,10 @@
 'use client'
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { nations } from '@/data/nations'
 import type { Article } from '@/types'
 import QuillEditor from './QuillEditor'
+import PdfUploadField from './PdfUploadField'
 
 const SECTIONS = ['geopolitics', 'end-times'] as const
 
@@ -31,6 +32,35 @@ export default function ArticleForm({ mode, initial }: ArticleFormProps) {
   const [body, setBody] = useState(initial?.body ?? '')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  const [importing, setImporting] = useState(false)
+  const importInputRef = useRef<HTMLInputElement>(null)
+
+  async function handleImportFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if ((title.trim() || body.trim()) && !window.confirm('This will replace the current title and body. Continue?')) {
+      if (importInputRef.current) importInputRef.current.value = ''
+      return
+    }
+
+    setError('')
+    setImporting(true)
+    const form = new FormData()
+    form.append('file', file)
+    const res = await fetch('/api/admin/parse-document', { method: 'POST', body: form })
+    setImporting(false)
+    if (importInputRef.current) importInputRef.current.value = ''
+
+    if (res.ok) {
+      const data = await res.json()
+      setTitle(data.title)
+      setBody(data.body)
+    } else {
+      const data = await res.json().catch(() => ({}))
+      setError(data.error || 'Could not import that file')
+    }
+  }
 
   function toggleNation(key: string) {
     setSelectedNations(prev => prev.includes(key) ? prev.filter(n => n !== key) : [...prev, key])
@@ -88,6 +118,25 @@ export default function ArticleForm({ mode, initial }: ArticleFormProps) {
   return (
     <form className="admin-form" onSubmit={handleSubmit}>
       {error && <p className="admin-error">{error}</p>}
+
+      <div className="admin-import-bar">
+        <p>Import the title and body from a .docx, .md, or .txt file — you can still edit everything below before saving.</p>
+        <button
+          type="button"
+          className="admin-btn admin-btn-ghost"
+          onClick={() => importInputRef.current?.click()}
+          disabled={importing}
+        >
+          {importing ? 'Importing…' : 'Import from file'}
+        </button>
+        <input
+          ref={importInputRef}
+          type="file"
+          accept=".docx,.md,.markdown,.txt"
+          onChange={handleImportFile}
+          hidden
+        />
+      </div>
 
       <label className="admin-field">
         <span>Slug {mode === 'edit' && '(cannot be changed)'}</span>
@@ -153,15 +202,10 @@ export default function ArticleForm({ mode, initial }: ArticleFormProps) {
         <textarea value={summary} onChange={e => setSummary(e.target.value)} rows={3} required />
       </label>
 
-      <label className="admin-field">
-        <span>PDF URL (optional)</span>
-        <input
-          type="url"
-          value={pdf}
-          onChange={e => setPdf(e.target.value)}
-          placeholder="https://example.com/article.pdf"
-        />
-      </label>
+      <div className="admin-field">
+        <span>PDF (optional)</span>
+        <PdfUploadField value={pdf} onChange={setPdf} />
+      </div>
 
       <label className="admin-field">
         <span>Body</span>

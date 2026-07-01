@@ -33,6 +33,16 @@ async function main() {
   await sql`ALTER TABLE articles ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
 
   await sql`
+    CREATE TABLE IF NOT EXISTS pdf_files (
+      id           TEXT PRIMARY KEY,
+      filename     TEXT NOT NULL,
+      content_type TEXT NOT NULL DEFAULT 'application/pdf',
+      data         BYTEA NOT NULL,
+      created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `
+
+  await sql`
     CREATE TABLE IF NOT EXISTS books (
       id            SERIAL PRIMARY KEY,
       title         TEXT NOT NULL,

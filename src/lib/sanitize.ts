@@ -8,7 +8,7 @@ import sanitizeHtml from 'sanitize-html'
  */
 export function sanitizeArticleBody(html: string): string {
   return sanitizeHtml(html, {
-    allowedTags: ['p', 'br', 'h1', 'h2', 'h3', 'strong', 'em', 'u', 's', 'a', 'blockquote', 'ol', 'ul', 'li'],
+    allowedTags: ['p', 'br', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'u', 's', 'a', 'blockquote', 'ol', 'ul', 'li'],
     allowedAttributes: { a: ['href', 'target', 'rel'] },
     allowedSchemes: ['http', 'https', 'mailto'],
     transformTags: {
