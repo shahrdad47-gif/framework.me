@@ -43,6 +43,17 @@ async function main() {
   `
 
   await sql`
+    CREATE TABLE IF NOT EXISTS study_notes (
+      slug        TEXT PRIMARY KEY,
+      title       TEXT NOT NULL,
+      description TEXT NOT NULL DEFAULT '',
+      pdf         TEXT NOT NULL,
+      date        TEXT NOT NULL,
+      created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `
+
+  await sql`
     CREATE TABLE IF NOT EXISTS books (
       id            SERIAL PRIMARY KEY,
       title         TEXT NOT NULL,

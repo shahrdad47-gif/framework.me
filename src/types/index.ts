@@ -63,3 +63,11 @@ export interface Contributor {
   bio: string
   photo?: string
 }
+
+export interface Note {
+  slug: string
+  title: string
+  description: string
+  pdf: string
+  date: string
+}

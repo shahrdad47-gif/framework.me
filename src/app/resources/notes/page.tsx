@@ -1,10 +1,14 @@
-import Link from 'next/link'
 import BackButton from '@/components/ui/BackButton'
 import EmptyState from '@/components/ui/EmptyState'
+import ArticlePdfChip from '@/components/ui/ArticlePdfChip'
+import { getNotes } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Notes — Framework:ME' }
 
-export default function NotesPage() {
+export default async function NotesPage() {
+  const notes = await getNotes()
+
   return (
     <div className="res-sub-page">
       <div className="res-sub-hero">
@@ -17,7 +21,24 @@ export default function NotesPage() {
         </div>
       </div>
       <div className="container res-sub-body">
-        <EmptyState icon="📝" message="Study notes coming soon." />
+        {notes.length === 0 ? (
+          <EmptyState icon="📝" message="Study notes coming soon." />
+        ) : (
+          <div className="articles-list">
+            {notes.map(n => (
+              <div key={n.slug} className="article-card">
+                <div className="article-card-meta">
+                  <span className="article-card-date">{n.date}</span>
+                </div>
+                <h4>{n.title}</h4>
+                {n.description && <p>{n.description}</p>}
+                <div className="article-card-actions">
+                  <ArticlePdfChip href={n.pdf} />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

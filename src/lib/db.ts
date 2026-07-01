@@ -7,9 +7,10 @@
  *   npx tsx scripts/setup-db.ts
  */
 
-import type { Article, Book, VideoCategory, VideoSeries } from '@/types'
+import type { Article, Book, Note, VideoCategory, VideoSeries } from '@/types'
 import { articles as staticArticles } from '@/data/articles'
 import { books as staticBooks }       from '@/data/books'
+import { notes as staticNotes }       from '@/data/notes'
 import { videoCategories as staticCategories } from '@/data/videos'
 import { videoSeriesData as staticSeries } from '@/data/series'
 
@@ -107,6 +108,30 @@ function rowToArticle(row: Row): Article {
     summary:  row.summary ?? '',
     pdf:      row.pdf ?? undefined,
     body:     row.body ?? '',
+  }
+}
+
+// ── Notes ─────────────────────────────────────────────────────────────────────
+
+export async function getNotes(): Promise<Note[]> {
+  const sql = getNeon()
+  if (!sql) return staticNotes
+
+  try {
+    const rows = await sql`
+      SELECT slug, title, description, pdf, date
+      FROM study_notes
+      ORDER BY created_at DESC
+    `
+    return rows.map(r => ({
+      slug:        r.slug,
+      title:       r.title,
+      description: r.description ?? '',
+      pdf:         r.pdf,
+      date:        r.date,
+    }))
+  } catch {
+    return staticNotes
   }
 }
 
