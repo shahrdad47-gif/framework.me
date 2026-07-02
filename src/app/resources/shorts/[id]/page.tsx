@@ -1,26 +1,28 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { shortsData } from '@/data/videos'
-import type { Short } from '@/types'
+import { getShorts } from '@/lib/db'
 
 export function generateStaticParams() {
   return shortsData.map(s => ({ id: s.id }))
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const short = shortsData.find(s => s.id === params.id)
+  const shorts = await getShorts()
+  const short = shorts.find(s => s.id === params.id)
   if (short) return { title: `${short.title} — Framework:ME` }
   return { title: 'Short — Framework:ME' }
 }
 
-export default function ShortDetailPage({ params }: { params: { id: string } }) {
-  const index = shortsData.findIndex(s => s.id === params.id)
+export default async function ShortDetailPage({ params }: { params: { id: string } }) {
+  const shorts = await getShorts()
+  const index = shorts.findIndex(s => s.id === params.id)
   if (index === -1) return notFound()
 
-  const short = shortsData[index]
-  const prev = index > 0 ? shortsData[index - 1] : null
-  const next = index < shortsData.length - 1 ? shortsData[index + 1] : null
-  const related = shortsData.filter(s => s.id !== params.id).slice(0, 10)
+  const short = shorts[index]
+  const prev = index > 0 ? shorts[index - 1] : null
+  const next = index < shorts.length - 1 ? shorts[index + 1] : null
+  const related = shorts.filter(s => s.id !== params.id).slice(0, 10)
 
   return (
     <div className="vd-page">
@@ -84,9 +86,13 @@ export default function ShortDetailPage({ params }: { params: { id: string } }) 
             <span className="vd-meta-tag">Bible Teaching</span>
           </div>
 
-          <p className="vd-desc">
-            A quick one-minute teaching from Framework:ME — bite-sized biblical insight, perfect for daily encouragement and sharing.
-          </p>
+          {short.description ? (
+            <div className="vd-desc article-rich-body" dangerouslySetInnerHTML={{ __html: short.description }} />
+          ) : (
+            <p className="vd-desc">
+              A quick one-minute teaching from Framework:ME — bite-sized biblical insight, perfect for daily encouragement and sharing.
+            </p>
+          )}
 
           {related.length > 0 && (
             <div className="vd-related">

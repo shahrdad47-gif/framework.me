@@ -8,7 +8,7 @@
 import { neon } from '@neondatabase/serverless'
 import { articles } from '../src/data/articles'
 import { books }    from '../src/data/books'
-import { videoCategories } from '../src/data/videos'
+import { videoCategories, shortsData } from '../src/data/videos'
 import { videoSeriesData } from '../src/data/series'
 
 const sql = neon(process.env.DATABASE_URL!)
@@ -91,6 +91,17 @@ async function main() {
   `
   await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
   await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS description TEXT NOT NULL DEFAULT ''`
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS shorts (
+      id            TEXT PRIMARY KEY,
+      title         TEXT NOT NULL,
+      description   TEXT NOT NULL DEFAULT '',
+      status        TEXT NOT NULL DEFAULT 'published',
+      display_order INT NOT NULL DEFAULT 0,
+      created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `
 
   await sql`
     CREATE TABLE IF NOT EXISTS video_series (
@@ -178,6 +189,19 @@ async function main() {
     }
   }
   console.log(`Seeded ${videoCategories.length} video categories.`)
+
+  // Seed shorts
+  for (let si = 0; si < shortsData.length; si++) {
+    const s = shortsData[si]
+    await sql`
+      INSERT INTO shorts (id, title, description, display_order)
+      VALUES (${s.id}, ${s.title}, ${s.description ?? ''}, ${si})
+      ON CONFLICT (id) DO UPDATE SET
+        title         = EXCLUDED.title,
+        display_order = EXCLUDED.display_order
+    `
+  }
+  console.log(`Seeded ${shortsData.length} shorts.`)
 
   // Seed series
   for (let si = 0; si < videoSeriesData.length; si++) {

@@ -7,11 +7,11 @@
  *   npx tsx scripts/setup-db.ts
  */
 
-import type { Article, Book, Note, VideoCategory, VideoSeries } from '@/types'
+import type { Article, Book, Note, Short, VideoCategory, VideoSeries } from '@/types'
 import { articles as staticArticles } from '@/data/articles'
 import { books as staticBooks }       from '@/data/books'
 import { notes as staticNotes }       from '@/data/notes'
-import { videoCategories as staticCategories } from '@/data/videos'
+import { videoCategories as staticCategories, shortsData as staticShorts } from '@/data/videos'
 import { videoSeriesData as staticSeries } from '@/data/series'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -240,6 +240,29 @@ export async function getVideoById(id: string) {
       if (video) return { video, category: cat }
     }
     return null
+  }
+}
+
+// ── Shorts ────────────────────────────────────────────────────────────────────
+
+export async function getShorts(): Promise<Short[]> {
+  const sql = getNeon()
+  if (!sql) return staticShorts
+
+  try {
+    const rows = await sql`
+      SELECT id, title, description
+      FROM shorts
+      WHERE status = 'published'
+      ORDER BY display_order ASC
+    `
+    return rows.map(r => ({
+      id:          r.id,
+      title:       r.title,
+      description: r.description ?? '',
+    }))
+  } catch {
+    return staticShorts
   }
 }
 

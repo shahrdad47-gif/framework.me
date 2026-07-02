@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import BackButton from '@/components/ui/BackButton'
-import { shortsData } from '@/data/videos'
+import { getShorts } from '@/lib/db'
 
-// Shorts come from static data for now (no DB table yet — can be added later)
+export const dynamic = 'force-dynamic'
 export const metadata = { title: '1 Minute Shorts — Framework:ME' }
 
-export default function ShortsPage() {
+export default async function ShortsPage() {
+  const shorts = await getShorts()
+
   return (
     <div className="res-sub-page">
       <div className="res-sub-hero">
@@ -19,7 +21,7 @@ export default function ShortsPage() {
       </div>
       <div className="container res-sub-body">
         <div className="shorts-grid">
-          {shortsData.map(s => (
+          {shorts.map(s => (
             <Link key={s.id} href={`/resources/shorts/${s.id}`} className="short-card">
               <div className="short-thumb">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

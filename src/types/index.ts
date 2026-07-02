@@ -51,6 +51,9 @@ export interface VideoCategory {
 export interface Short {
   id: string
   title: string
+  // Rich-text HTML from the admin Quill editor, same allowlist/sanitization
+  // as Article.body — rendered with dangerouslySetInnerHTML.
+  description?: string
 }
 
 export interface Book {
