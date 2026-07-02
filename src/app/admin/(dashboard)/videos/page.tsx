@@ -74,7 +74,11 @@ export default async function AdminVideosPage({ searchParams }: PageProps) {
                 <td>{v.categoryLabel}</td>
                 <td>{v.speaker || '—'}</td>
                 <td>{v.date || '—'}</td>
-                <td>{v.status === 'published' ? '✓ Published' : 'Draft'}</td>
+                <td>
+                  <span className={`admin-badge ${v.status === 'published' ? 'admin-badge-success' : 'admin-badge-muted'}`}>
+                    {v.status === 'published' ? 'Published' : 'Draft'}
+                  </span>
+                </td>
                 <td className="admin-table-actions">
                   <Link href={`/admin/videos/${v.id}/edit`} className="admin-btn admin-btn-ghost">Edit</Link>
                   <DeleteVideoButton id={v.id} title={v.title} />

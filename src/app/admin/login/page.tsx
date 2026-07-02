@@ -30,8 +30,9 @@ export default function AdminLoginPage() {
   return (
     <div className="admin-login-wrap">
       <form className="admin-login-card" onSubmit={handleSubmit}>
+        <div className="admin-login-mark">FM</div>
         <h1>Admin Login</h1>
-        <p className="admin-login-sub">Framework:ME article management</p>
+        <p className="admin-login-sub">Framework:ME content management</p>
         <label className="admin-field">
           <span>Password</span>
           <input

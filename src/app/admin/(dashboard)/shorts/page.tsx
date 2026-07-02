@@ -51,7 +51,11 @@ export default async function AdminShortsPage({ searchParams }: PageProps) {
                     </div>
                   </div>
                 </td>
-                <td>{s.status === 'draft' ? 'Draft' : '✓ Published'}</td>
+                <td>
+                  <span className={`admin-badge ${s.status === 'draft' ? 'admin-badge-muted' : 'admin-badge-success'}`}>
+                    {s.status === 'draft' ? 'Draft' : 'Published'}
+                  </span>
+                </td>
                 <td className="admin-table-actions">
                   <Link href={`/admin/shorts/${s.id}/edit`} className="admin-btn admin-btn-ghost">Edit</Link>
                   <DeleteShortButton id={s.id} title={s.title} />
