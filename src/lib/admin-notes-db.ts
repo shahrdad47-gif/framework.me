@@ -6,6 +6,7 @@
 
 import { neon } from '@neondatabase/serverless'
 import type { Note } from '@/types'
+import { sanitizeArticleBody } from '@/lib/sanitize'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Row = Record<string, any>
@@ -91,7 +92,7 @@ export async function createNoteAdmin(data: NoteInput): Promise<Note> {
 
   const rows = await sql`
     INSERT INTO study_notes (slug, title, description, pdf, date, created_at)
-    VALUES (${data.slug}, ${data.title}, ${data.description}, ${data.pdf}, ${data.date}, ${data.createdAt})
+    VALUES (${data.slug}, ${data.title}, ${sanitizeArticleBody(data.description)}, ${data.pdf}, ${data.date}, ${data.createdAt})
     RETURNING slug, title, description, pdf, date
   `
   return rowToNote(rows[0])
@@ -102,7 +103,7 @@ export async function updateNoteAdmin(slug: string, data: Omit<NoteInput, 'slug'
   const rows = await sql`
     UPDATE study_notes SET
       title       = ${data.title},
-      description = ${data.description},
+      description = ${sanitizeArticleBody(data.description)},
       pdf         = ${data.pdf},
       date        = ${data.date},
       created_at  = ${data.createdAt}

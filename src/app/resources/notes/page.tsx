@@ -31,7 +31,9 @@ export default async function NotesPage() {
                   <span className="article-card-date">{n.date}</span>
                 </div>
                 <h4>{n.title}</h4>
-                {n.description && <p>{n.description}</p>}
+                {n.description && (
+                  <div className="article-rich-body" dangerouslySetInnerHTML={{ __html: n.description }} />
+                )}
                 <div className="article-card-actions">
                   <ArticlePdfChip href={n.pdf} />
                 </div>

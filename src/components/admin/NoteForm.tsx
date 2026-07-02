@@ -3,6 +3,7 @@ import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Note } from '@/types'
 import PdfUploadField from './PdfUploadField'
+import QuillEditor from './QuillEditor'
 
 function isoToDateInput(iso: string): string {
   return iso.slice(0, 10)
@@ -79,16 +80,15 @@ export default function NoteForm({ mode, initial }: NoteFormProps) {
         <input value={title} onChange={e => setTitle(e.target.value)} required />
       </label>
 
-      <div className="admin-field-row">
-        <label className="admin-field">
-          <span>Description (optional)</span>
-          <input value={description} onChange={e => setDescription(e.target.value)} />
-        </label>
-        <label className="admin-field">
-          <span>Date</span>
-          <input type="date" value={dateInput} onChange={e => setDateInput(e.target.value)} required />
-        </label>
-      </div>
+      <label className="admin-field">
+        <span>Description (optional)</span>
+        <QuillEditor value={description} onChange={setDescription} placeholder="Describe this note…" />
+      </label>
+
+      <label className="admin-field">
+        <span>Date</span>
+        <input type="date" value={dateInput} onChange={e => setDateInput(e.target.value)} required />
+      </label>
 
       <div className="admin-field">
         <span>PDF</span>
