@@ -110,9 +110,11 @@ async function main() {
       description   TEXT,
       topic         TEXT,
       speaker       TEXT,
-      display_order INT NOT NULL DEFAULT 0
+      display_order INT NOT NULL DEFAULT 0,
+      created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `
+  await sql`ALTER TABLE video_series ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
 
   await sql`
     CREATE TABLE IF NOT EXISTS series_episodes (

@@ -21,7 +21,9 @@ function SeriesCard({ series }: { series: VideoSeries }) {
         <div className="ser-info">
           <span className="ser-topic-chip">{series.topic}</span>
           <h3 className="ser-title">{series.title}</h3>
-          <p className="ser-desc">{series.description}</p>
+          {series.description && (
+            <div className="ser-desc article-rich-body" dangerouslySetInnerHTML={{ __html: series.description }} />
+          )}
           {series.speaker && (
             <p className="ser-speaker">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{display:'inline',marginRight:'5px',verticalAlign:'middle'}}>

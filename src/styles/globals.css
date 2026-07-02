@@ -1771,6 +1771,20 @@ fieldset.admin-field { border: 1px solid var(--border); border-radius: 8px; padd
 .admin-video-preview { margin: -8px 0 4px; }
 .admin-video-preview img { max-width: 320px; border-radius: var(--radius); box-shadow: var(--shadow-sm); }
 
+/* Series episode list */
+.admin-episodes { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
+.admin-episode-row { border: 1px solid var(--border); border-radius: 8px; padding: 14px; background: var(--cream); }
+.admin-episode-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.admin-episode-num { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--wine); text-transform: uppercase; letter-spacing: 0.05em; }
+.admin-episode-fields { display: flex; gap: 14px; align-items: flex-start; }
+.admin-episode-preview { margin: 0; flex-shrink: 0; }
+.admin-episode-preview img { max-width: 120px; }
+.admin-episode-inputs { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.admin-episode-inputs input {
+  padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.9rem; width: 100%;
+}
+
 .admin-form-actions { display: flex; justify-content: flex-end; padding-top: 8px; }
 
 @media (max-width: 640px) {
