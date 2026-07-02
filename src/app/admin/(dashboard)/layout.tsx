@@ -18,6 +18,7 @@ export default function AdminDashboardLayout({ children }: { children: ReactNode
             <Link href="/admin/shorts">Shorts</Link>
             <Link href="/admin/series">Series</Link>
             <Link href="/admin/notes">Notes</Link>
+            <Link href="/admin/books">Books</Link>
           </nav>
           <AdminLogoutButton />
         </div>

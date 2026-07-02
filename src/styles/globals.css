@@ -1750,6 +1750,12 @@ fieldset.admin-field { border: 1px solid var(--border); border-radius: 8px; padd
   padding: 8px 12px; font-family: 'Inter', sans-serif; font-size: 0.85rem;
 }
 .admin-pdf-current a { color: var(--wine); text-decoration: underline; word-break: break-all; }
+.admin-image-current {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--cream); border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 12px;
+}
+.admin-image-current img { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; }
 .admin-pdf-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .admin-pdf-or { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--text-light); }
 .admin-pdf-url-input {

@@ -61,7 +61,19 @@ async function main() {
       description   TEXT NOT NULL DEFAULT '',
       link          TEXT,
       cover_url     TEXT,
-      display_order INT NOT NULL DEFAULT 0
+      display_order INT NOT NULL DEFAULT 0,
+      created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `
+  await sql`ALTER TABLE books ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS images (
+      id           TEXT PRIMARY KEY,
+      filename     TEXT NOT NULL,
+      content_type TEXT NOT NULL DEFAULT 'image/jpeg',
+      data         BYTEA NOT NULL,
+      created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `
 

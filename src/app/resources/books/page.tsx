@@ -40,7 +40,9 @@ export default async function BooksPage() {
                 <h2 className="book-featured-title">{singleBook.title}</h2>
                 <p className="book-featured-author">by {singleBook.author}</p>
                 <div className="book-featured-divider" />
-                <p className="book-featured-desc">{singleBook.description}</p>
+                {singleBook.description && (
+                  <div className="book-featured-desc article-rich-body" dangerouslySetInnerHTML={{ __html: singleBook.description }} />
+                )}
                 {singleBook.link && (
                   <a href={singleBook.link} target="_blank" rel="noopener noreferrer" className="btn-give">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -65,7 +67,9 @@ export default async function BooksPage() {
                 )}
                 <h3>{b.title}</h3>
                 <p className="book-author">by {b.author}</p>
-                <p>{b.description}</p>
+                {b.description && (
+                  <div className="article-rich-body" dangerouslySetInnerHTML={{ __html: b.description }} />
+                )}
                 {b.link && (
                   <a href={b.link} target="_blank" rel="noopener noreferrer" className="btn-give" style={{ marginTop: '14px', fontSize: '0.8rem', padding: '8px 18px' }}>
                     Read Online
