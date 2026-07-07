@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { neon } from '@neondatabase/serverless'
+import { neon } from '@/lib/neon-shim'
 import { randomUUID } from 'crypto'
 
 const MAX_SIZE = 4 * 1024 * 1024 // stay under Vercel's serverless body-size limit

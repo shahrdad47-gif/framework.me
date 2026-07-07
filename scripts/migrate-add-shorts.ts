@@ -4,7 +4,7 @@
  * doesn't go blank the moment it starts reading from the database.
  * Run with: npx tsx --env-file=.env.local scripts/migrate-add-shorts.ts
  */
-import { neon } from '@neondatabase/serverless'
+import { neon } from '../src/lib/neon-shim'
 import { shortsData } from '../src/data/videos'
 
 const sql = neon(process.env.DATABASE_URL!)

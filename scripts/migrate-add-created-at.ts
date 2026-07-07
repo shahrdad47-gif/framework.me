@@ -4,7 +4,7 @@
  * Run with: npx tsx scripts/migrate-add-created-at.ts
  */
 
-import { neon } from '@neondatabase/serverless'
+import { neon } from '../src/lib/neon-shim'
 
 const sql = neon(process.env.DATABASE_URL!)
 

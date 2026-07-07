@@ -23,7 +23,7 @@ type SqlFn = (strings: TemplateStringsArray, ...values: any[]) => Promise<Row[]>
 function getNeon(): SqlFn | null {
   if (!process.env.DATABASE_URL) return null
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { neon } = require('@neondatabase/serverless')
+  const { neon } = require('./neon-shim')
   // Neon's HTTP driver issues queries via fetch() — without this, Next.js's
   // automatic fetch cache would serve stale query results indefinitely after
   // an admin edit, since identical SQL text + params hash to the same cache key.

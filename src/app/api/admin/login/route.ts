@@ -10,9 +10,10 @@ export async function POST(req: NextRequest) {
 
   const token = await signAdminToken()
   const res = NextResponse.json({ ok: true })
+  const proto = req.headers.get('x-forwarded-proto') ?? req.nextUrl.protocol.replace(':', '')
   res.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: proto === 'https',
     sameSite: 'lax',
     path: '/',
     maxAge: 60 * 60 * 8,

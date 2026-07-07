@@ -4,7 +4,7 @@
  * Run with: npx tsx --env-file=.env.local scripts/migrate-add-pdf-files.ts
  */
 
-import { neon } from '@neondatabase/serverless'
+import { neon } from '../src/lib/neon-shim'
 
 const sql = neon(process.env.DATABASE_URL!)
 

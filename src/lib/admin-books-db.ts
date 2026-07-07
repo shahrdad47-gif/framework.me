@@ -5,7 +5,7 @@
  * admin mutations require a live Neon connection.
  */
 
-import { neon } from '@neondatabase/serverless'
+import { neon } from '@/lib/neon-shim'
 import type { Book } from '@/types'
 import { sanitizeArticleBody } from '@/lib/sanitize'
 

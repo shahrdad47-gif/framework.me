@@ -3,7 +3,7 @@
  * articles' body) for the video-detail page.
  * Run with: npx tsx --env-file=.env.local scripts/migrate-add-video-description.ts
  */
-import { neon } from '@neondatabase/serverless'
+import { neon } from '../src/lib/neon-shim'
 
 const sql = neon(process.env.DATABASE_URL!)
 

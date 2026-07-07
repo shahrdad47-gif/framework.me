@@ -5,7 +5,7 @@
  * Neon connection.
  */
 
-import { neon } from '@neondatabase/serverless'
+import { neon } from '@/lib/neon-shim'
 import type { VideoCategory, Video } from '@/types'
 import { sanitizeArticleBody } from '@/lib/sanitize'
 

@@ -4,7 +4,7 @@
  * has an unrelated, empty "notes" table with a different schema.
  * Run with: npx tsx --env-file=.env.local scripts/migrate-add-notes.ts
  */
-import { neon } from '@neondatabase/serverless'
+import { neon } from '../src/lib/neon-shim'
 
 const sql = neon(process.env.DATABASE_URL!)
 

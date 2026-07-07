@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { neon } from '@neondatabase/serverless'
+import { neon } from '@/lib/neon-shim'
 
 export async function GET(_req: Request, { params }: { params: { id: string } }) {
   if (!process.env.DATABASE_URL) {

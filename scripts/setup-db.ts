@@ -5,7 +5,7 @@
  * Requires DATABASE_URL in your environment (from .env.local or Vercel dashboard).
  */
 
-import { neon } from '@neondatabase/serverless'
+import { neon } from '../src/lib/neon-shim'
 import { articles } from '../src/data/articles'
 import { books }    from '../src/data/books'
 import { videoCategories, shortsData } from '../src/data/videos'
