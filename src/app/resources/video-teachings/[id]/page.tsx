@@ -68,24 +68,6 @@ export default async function VideoDetailPage({ params }: { params: { id: string
                 <span className="vd-nav-btn vd-nav-off">Next</span>
               )}
             </div>
-
-            {video.notes && (
-              <div className="vd-notes-box">
-                <div className="vd-notes-info">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                  </svg>
-                  <div className="vd-notes-info-text">
-                    <span className="vd-notes-title">Notes</span>
-                    <span className="vd-notes-sub">Follow along with this teaching</span>
-                  </div>
-                </div>
-                <a href={video.notes} target="_blank" rel="noopener noreferrer" className="vd-notes-btn">
-                  Download PDF
-                </a>
-              </div>
-            )}
           </div>
         </div>
 
@@ -114,6 +96,25 @@ export default async function VideoDetailPage({ params }: { params: { id: string
             <div className="vd-desc article-rich-body" dangerouslySetInnerHTML={{ __html: video.description }} />
           )}
           {cat.description && <p className="vd-desc">{cat.description}</p>}
+
+          {/* Notes */}
+          {video.notes && (
+            <div className="vd-notes-box vd-notes-box-light">
+              <div className="vd-notes-info">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <div className="vd-notes-info-text">
+                  <span className="vd-notes-title">Notes</span>
+                  <span className="vd-notes-sub">Follow along with this teaching</span>
+                </div>
+              </div>
+              <a href={video.notes} target="_blank" rel="noopener noreferrer" className="vd-notes-btn">
+                Download PDF
+              </a>
+            </div>
+          )}
 
           {/* Related */}
           {related.length > 0 && (

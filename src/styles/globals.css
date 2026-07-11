@@ -555,6 +555,12 @@ h1, h2, h3, h4 {
   transition: background 0.15s;
 }
 .vd-notes-btn:hover { background: var(--gold-light); }
+.vd-notes-box-light {
+  background: #f7f5f1; border: 1px solid #e8e2d5; border-top: none;
+  border-radius: 8px; margin: 28px 0;
+}
+.vd-notes-box-light .vd-notes-info { color: #1a1a1a; }
+.vd-notes-box-light .vd-notes-sub { color: #777; }
 
 /* ── RIGHT column ── */
 .vd-right {
