@@ -536,6 +536,26 @@ h1, h2, h3, h4 {
 }
 .vd-nav-all:hover { background: rgba(200,150,47,0.1); border-color: var(--gold); }
 
+/* Notes */
+.vd-notes-box {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 16px 20px; background: #1a1a1a; border-top: 1px solid #2a2a2a;
+}
+.vd-notes-info { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.85); }
+.vd-notes-info svg { flex-shrink: 0; color: var(--gold-light); }
+.vd-notes-info-text { display: flex; flex-direction: column; gap: 2px; }
+.vd-notes-title { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700; }
+.vd-notes-sub { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: rgba(255,255,255,0.5); }
+.vd-notes-btn {
+  display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.02em; white-space: nowrap;
+  color: #1a1a1a; background: var(--gold);
+  padding: 8px 16px; border-radius: 4px;
+  transition: background 0.15s;
+}
+.vd-notes-btn:hover { background: var(--gold-light); }
+
 /* ── RIGHT column ── */
 .vd-right {
   background: #fff;
@@ -629,6 +649,8 @@ h1, h2, h3, h4 {
   .vd-player-portrait { max-height: 70vw; }
   .vd-right { min-height: auto; border-left: none; border-top: 1px solid #e8e8e8; padding: 28px 20px 48px; }
   .vd-related-thumb { width: 90px; }
+  .vd-notes-box { padding: 12px 14px; }
+  .vd-notes-sub { display: none; }
 }
 @media (max-width: 480px) {
   .vd-nav-row { padding: 10px 14px; }
