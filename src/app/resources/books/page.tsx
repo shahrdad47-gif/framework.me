@@ -43,15 +43,24 @@ export default async function BooksPage() {
                 {singleBook.description && (
                   <div className="book-featured-desc article-rich-body" dangerouslySetInnerHTML={{ __html: singleBook.description }} />
                 )}
-                {singleBook.link && (
-                  <a href={singleBook.link} target="_blank" rel="noopener noreferrer" className="btn-give">
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+                  {singleBook.link && (
+                    <a href={singleBook.link} target="_blank" rel="noopener noreferrer" className="btn-give">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      Read Now
+                    </a>
+                  )}
+                  <a href="https://read.bookcreator.com/vm4dnmNRvqNaj48Cv7KRcrKn5qr1/xLG_hsL-RV2rU0LLdnmiKQ" target="_blank" rel="noopener noreferrer" className="btn-give">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                       <polyline points="14 2 14 8 20 8"/>
                     </svg>
-                    Read Now
+                    Read on BookCreator
                   </a>
-                )}
+                </div>
               </div>
             </div>
           </div>
