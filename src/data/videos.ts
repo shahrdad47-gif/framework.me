@@ -87,6 +87,13 @@ export const videoCategories: VideoCategory[] = [
       { id: 'n5U8nXZx59o', title: 'Framework:ME — An Introduction', date: 'Apr 2026' },
     ],
   },
+  {
+    id: 'forerunner-message',
+    label: 'Forerunner Message',
+    icon: '🔥',
+    description: 'A prophetic call to prepare the way for the return of Jesus, in the spirit of John the Baptist.',
+    videos: [],
+  },
 ]
 
 // 1-minute shorts

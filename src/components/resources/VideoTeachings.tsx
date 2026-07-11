@@ -73,6 +73,12 @@ const BookIcon = () => (
   </svg>
 )
 
+const FlameIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 4c4 8-6 10-6 18a10 10 0 0 0 20 0c0-4-3-6-3-6 0 4-2 6-4 6 2-8-7-10-7-18z"/>
+  </svg>
+)
+
 const tabIcons: Record<string, () => React.ReactElement> = {
   'house-of-prayer':     HousePrayerIcon,
   'end-times':           EndTimesIcon,
@@ -81,6 +87,7 @@ const tabIcons: Record<string, () => React.ReactElement> = {
   'missions-middle-east': MissionsIcon,
   'christian-living':    CrossIcon,
   'theology':            BookIcon,
+  'forerunner-message':  FlameIcon,
 }
 
 function VideoCard({ id, title, date, category, speaker }: {
