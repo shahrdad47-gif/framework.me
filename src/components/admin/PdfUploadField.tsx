@@ -61,7 +61,8 @@ export default function PdfUploadField({ value, onChange }: PdfUploadFieldProps)
         />
         <span className="admin-pdf-or">or paste a URL (optional)</span>
         <input
-          type="url"
+          type="text"
+          inputMode="url"
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder="https://example.com/article.pdf"
