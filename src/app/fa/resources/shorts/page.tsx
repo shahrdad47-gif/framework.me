@@ -20,7 +20,7 @@ export default function Page() {
       <div className="container res-sub-body">
         <div className="shorts-grid">
           {shortsData.map(v => (
-            <Link key={v.id} href={`/resources/shorts/${v.id}`} className="short-card">
+            <Link key={v.id} href={`/fa/resources/shorts/${v.id}`} className="short-card">
               <div className="short-thumb">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy" />

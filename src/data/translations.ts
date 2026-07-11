@@ -35,11 +35,16 @@ export interface LangT {
       searchPlaceholder?: string
       searchHints?: string[]
       categories: Record<string, { label: string; desc: string }>
+      detail: { allVideos: string; moreFrom: string }
     }
     books: { title: string; sub: string; viewBook: string; comingSoon: string; back: string; by: string }
     notes: { title: string; sub: string; comingSoon: string; back: string }
-    shorts: { title: string; sub: string; back: string }
+    shorts: {
+      title: string; sub: string; back: string
+      detail: { allShorts: string; moreShorts: string; oneMinuteShort: string; defaultDesc: string }
+    }
     series: { title: string; sub: string; back: string }
+    player: { prev: string; next: string; bibleTeaching: string; notesTitle: string; notesSub: string; downloadPdf: string }
   }
   framework: {
     heading: string; lead: string; sub: string
@@ -149,11 +154,22 @@ export const translations: Record<Locale, LangT> = {
           'christian-living':     { label: 'زندگی مسیحی',           desc: 'آموزش عملی برای پیروی از مسیح در زندگی روزمره.' },
           'theology':             { label: 'الهیات',                 desc: 'درک آموزه‌های کتاب مقدسی که ایمان و تمرین مسیحی را شکل می‌دهند.' },
         },
+        detail: { allVideos: 'همه ویدیوها', moreFrom: 'بیشتر از' },
       },
       books: { title: 'کتاب‌ها', sub: 'مطالعه پیشنهادی برای درک عمیق‌تر طرح خداوند برای ملت‌ها و کلام نبوی.', viewBook: 'مشاهده کتاب', comingSoon: 'پیشنهادهای کتاب به زودی.', back: '← همه منابع', by: 'نوشته' },
       notes: { title: 'یادداشت‌ها', sub: 'یادداشت‌های مطالعاتی و طرح‌های موعظه قابل دانلود برای مطالعه شخصی و گروهی.', comingSoon: 'یادداشت‌های مطالعاتی به زودی.', back: '← همه منابع' },
-      shorts: { title: 'کلیپ‌های ۱ دقیقه‌ای', sub: 'تعالیم سریع یک دقیقه‌ای برای تشویق روزانه و بینش کتاب مقدسی.', back: '← همه منابع' },
+      shorts: {
+        title: 'کلیپ‌های ۱ دقیقه‌ای', sub: 'تعالیم سریع یک دقیقه‌ای برای تشویق روزانه و بینش کتاب مقدسی.', back: '← همه منابع',
+        detail: {
+          allShorts: 'همه کلیپ‌ها', moreShorts: 'کلیپ‌های بیشتر', oneMinuteShort: 'کلیپ ۱ دقیقه‌ای',
+          defaultDesc: 'یک تعلیم کوتاه یک‌دقیقه‌ای از Framework:ME — بینشی کوتاه و کتاب‌مقدسی برای تشویق روزانه و اشتراک‌گذاری.',
+        },
+      },
       series: { title: 'سری‌ها', sub: 'با تماشای سری‌های کامل آموزشی، موضوعات کتاب مقدسی را به‌طور عمیق بررسی کنید.', back: '← همه منابع' },
+      player: {
+        prev: 'قبلی', next: 'بعدی', bibleTeaching: 'تعلیم کتاب مقدسی',
+        notesTitle: 'یادداشت‌ها', notesSub: 'همراه با این تعلیم دنبال کنید', downloadPdf: 'دانلود PDF',
+      },
     },
   },
 
@@ -249,11 +265,22 @@ export const translations: Record<Locale, LangT> = {
           'christian-living':     { label: 'Կրիստոնեական Կյանք',  desc: 'գորնավոր ուսուծում Կրիստոսին հետեվորդելու համար.' },
           'theology':             { label: 'Աստվածաբանություն',  desc: 'կրոնական վարդապետական ուսուծումների հասկանում.' },
         },
+        detail: { allVideos: 'Բոլոր Տեսանյութերը', moreFrom: 'Ավելին՝' },
       },
       books: { title: 'Գրքեր', sub: 'Անվճարաբանուծումներ կարդալու համար.', viewBook: 'Տեսնել Գիրքն', comingSoon: 'Գրքեր շուտով.', back: '← Բոլոր Ռեսուրսներ', by: 'հեղինակ' },
       notes: { title: 'Նշումներ', sub: 'Ներբեռնելի ուսուծական Նշումներ.', comingSoon: 'Նշումներ Շուտով.', back: '← Բոլոր Ռեսուրսներ' },
-      shorts: { title: '1 Ռոպե կարճ տեսանյութեր', sub: '1 րոպե ուսուծմներ ամենորյա խրախրածումն.', back: '← Բոլոր Ռեսուրսներ' },
+      shorts: {
+        title: '1 Ռոպե կարճ տեսանյութեր', sub: '1 րոպե ուսուծմներ ամենորյա խրախրածումն.', back: '← Բոլոր Ռեսուրսներ',
+        detail: {
+          allShorts: 'Բոլոր Կարճերը', moreShorts: 'Ավելի Կարճ Տեսանյութեր', oneMinuteShort: '1 Րոպե Կարճ Տեսանյութ',
+          defaultDesc: 'Կարճ մեկ րոպեանոց ուսուցում Framework:ME-ից — կրոնական խորաթափանցություն ամենօրյա խրախուսանքի և կիսվելու համար։',
+        },
+      },
       series: { title: 'Շարքեր', sub: 'Խոր ուսումնասիրեք կրոնական թեմաները ամբողջական ուսուծան շարքերով:', back: '← Բոլոր Ռեսուրսներ' },
+      player: {
+        prev: 'Նախորդ', next: 'Հաջորդ', bibleTeaching: 'Կրոնական Ուսուցում',
+        notesTitle: 'Նշումներ', notesSub: 'Հետևեք այս ուսուցմանը', downloadPdf: 'Ներբեռնել PDF',
+      },
     },
   },
 
@@ -349,11 +376,22 @@ export const translations: Record<Locale, LangT> = {
           'christian-living':     { label: 'Vida Cristã',                 desc: 'Ensino prático para seguir a Cristo na vida cotidiana.' },
           'theology':             { label: 'Teologia',                    desc: 'Compreendendo as doutrinas bíblicas que moldam a fé e a prática cristã.' },
         },
+        detail: { allVideos: 'Todos os Vídeos', moreFrom: 'Mais de' },
       },
       books: { title: 'Livros', sub: 'Leitura recomendada para o estudo mais profundo do plano de Deus para as nações.', viewBook: 'Ver Livro', comingSoon: 'Recomendações de livros em breve.', back: '← Todos os Recursos', by: 'por' },
       notes: { title: 'Notas', sub: 'Notas de estudo e esboços de sermões para download para reflexão pessoal e em grupo.', comingSoon: 'Notas de estudo em breve.', back: '← Todos os Recursos' },
-      shorts: { title: 'Curtos de 1 Minuto', sub: 'Ensinamentos rápidos de um minuto para encorajamento diário.', back: '← Todos os Recursos' },
+      shorts: {
+        title: 'Curtos de 1 Minuto', sub: 'Ensinamentos rápidos de um minuto para encorajamento diário.', back: '← Todos os Recursos',
+        detail: {
+          allShorts: 'Todos os Curtos', moreShorts: 'Mais Curtos', oneMinuteShort: 'Curto de 1 Minuto',
+          defaultDesc: 'Um breve ensinamento de um minuto do Framework:ME — uma visão bíblica rápida para encorajamento diário e compartilhamento.',
+        },
+      },
       series: { title: 'Séries', sub: 'Aprofunde-se em temas bíblicos com séries completas de ensinamento para uma compreensão abrangente.', back: '← Todos os Recursos' },
+      player: {
+        prev: 'Anterior', next: 'Próximo', bibleTeaching: 'Ensino Bíblico',
+        notesTitle: 'Notas', notesSub: 'Acompanhe este ensinamento', downloadPdf: 'Baixar PDF',
+      },
     },
   },
 
@@ -449,11 +487,22 @@ export const translations: Record<Locale, LangT> = {
           'christian-living':     { label: 'الحياة المسيحية',             desc: 'تعليم عملي لاتباع المسيح في الحياة اليومية.' },
           'theology':             { label: 'اللاهوت',                     desc: 'فهم العقائد الكتابية التي تُشكّل الإيمان والممارسة المسيحية.' },
         },
+        detail: { allVideos: 'جميع المقاطع', moreFrom: 'المزيد من' },
       },
       books: { title: 'الكتب', sub: 'قراءات مقترحة للدراسة الأعمق لخطة الله للأمم والكلمة النبوية.', viewBook: 'عرض الكتاب', comingSoon: 'توصيات الكتب قريباً.', back: '← جميع الموارد', by: 'بقلم' },
       notes: { title: 'الملاحظات', sub: 'ملاحظات دراسية وخطط موعظة قابلة للتنزيل للتأمل الشخصي ودراسة المجموعات.', comingSoon: 'ملاحظات الدراسة قريباً.', back: '← جميع الموارد' },
-      shorts: { title: 'مقاطع دقيقة', sub: 'تعاليم سريعة مدتها دقيقة واحدة للتشجيع اليومي والبصيرة الكتابية.', back: '← جميع الموارد' },
+      shorts: {
+        title: 'مقاطع دقيقة', sub: 'تعاليم سريعة مدتها دقيقة واحدة للتشجيع اليومي والبصيرة الكتابية.', back: '← جميع الموارد',
+        detail: {
+          allShorts: 'جميع المقاطع القصيرة', moreShorts: 'المزيد من المقاطع', oneMinuteShort: 'مقطع دقيقة واحدة',
+          defaultDesc: 'تعليم سريع مدته دقيقة واحدة من Framework:ME — بصيرة كتابية موجزة للتشجيع اليومي والمشاركة.',
+        },
+      },
       series: { title: 'السلاسل', sub: 'تعمّق في المواضيع الكتابية من خلال سلاسل التعليم الكاملة لفهم شامل ومتعمّق.', back: '← جميع الموارد' },
+      player: {
+        prev: 'السابق', next: 'التالي', bibleTeaching: 'تعليم كتابي',
+        notesTitle: 'الملاحظات', notesSub: 'تابع مع هذا التعليم', downloadPdf: 'تحميل PDF',
+      },
     },
   },
 }

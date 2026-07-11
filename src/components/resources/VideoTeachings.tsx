@@ -90,11 +90,11 @@ const tabIcons: Record<string, () => React.ReactElement> = {
   'forerunner-message':  FlameIcon,
 }
 
-function VideoCard({ id, title, date, category, speaker }: {
-  id: string; title: string; date?: string; category: string; speaker?: string
+function VideoCard({ id, title, date, category, speaker, localePrefix = '' }: {
+  id: string; title: string; date?: string; category: string; speaker?: string; localePrefix?: string
 }) {
   return (
-    <Link href={`/resources/video-teachings/${id}`} className="ytv-card">
+    <Link href={`${localePrefix}/resources/video-teachings/${id}`} className="ytv-card">
       <div className="ytv-thumb">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" />
@@ -129,11 +129,12 @@ interface Props {
   videosLabel?: string
   searchPlaceholder?: string
   searchHints?: string[]
+  localePrefix?: string
 }
 
 const DEFAULT_HINTS = ['Israel', 'End Times', 'Theology', 'Prayer']
 
-export default function VideoTeachings({ categories: categoriesProp, categoryNames, dir, videoLabel = 'video', videosLabel = 'videos', searchPlaceholder, searchHints }: Props) {
+export default function VideoTeachings({ categories: categoriesProp, categoryNames, dir, videoLabel = 'video', videosLabel = 'videos', searchPlaceholder, searchHints, localePrefix = '' }: Props) {
   const videoCategories = categoriesProp ?? staticCategories
   const [activeId, setActiveId] = useState(videoCategories[0]?.id ?? '')
   const [query, setQuery] = useState('')
@@ -214,6 +215,7 @@ export default function VideoTeachings({ categories: categoriesProp, categoryNam
                   date={video.date}
                   speaker={video.speaker}
                   category={categoryNames?.[category.id]?.label ?? category.label}
+                  localePrefix={localePrefix}
                 />
               ))}
             </div>
@@ -264,6 +266,7 @@ export default function VideoTeachings({ categories: categoriesProp, categoryNam
                 date={v.date}
                 speaker={v.speaker}
                 category={getLabel(active)}
+                localePrefix={localePrefix}
               />
             ))}
           </div>

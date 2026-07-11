@@ -1,21 +1,10 @@
 import { notFound } from 'next/navigation'
 import { shortsData } from '@/data/videos'
 import { getShorts } from '@/lib/db'
+import { translations } from '@/data/translations'
 import ShortDetailView from '@/components/resources/ShortDetailView'
 
-const t = {
-  breadcrumbRoot: '1 Minute Shorts',
-  allShorts: 'All Shorts',
-  prev: 'Prev',
-  next: 'Next',
-  bibleTeaching: 'Bible Teaching',
-  oneMinuteShort: '1 Minute Short',
-  moreShorts: 'More Shorts',
-  defaultDesc: 'A quick one-minute teaching from Framework:ME — bite-sized biblical insight, perfect for daily encouragement and sharing.',
-  notesTitle: 'Notes',
-  notesSub: 'Follow along with this teaching',
-  downloadPdf: 'Download PDF',
-}
+const LOCALE = 'pt'
 
 export function generateStaticParams() {
   return shortsData.map(s => ({ id: s.id }))
@@ -33,10 +22,35 @@ export default async function ShortDetailPage({ params }: { params: { id: string
   const index = shorts.findIndex(s => s.id === params.id)
   if (index === -1) return notFound()
 
+  const t = translations[LOCALE]
+  const sd = t.sections.shorts.detail
+
   const short = shorts[index]
   const prev = index > 0 ? shorts[index - 1] : null
   const next = index < shorts.length - 1 ? shorts[index + 1] : null
   const related = shorts.filter(s => s.id !== params.id).slice(0, 10)
 
-  return <ShortDetailView short={short} prev={prev} next={next} related={related} t={t} />
+  return (
+    <ShortDetailView
+      short={short}
+      prev={prev}
+      next={next}
+      related={related}
+      hrefBase={`/${LOCALE}`}
+      dir={t.dir}
+      t={{
+        breadcrumbRoot: t.sections.shorts.title,
+        allShorts: sd.allShorts,
+        prev: t.sections.player.prev,
+        next: t.sections.player.next,
+        bibleTeaching: t.sections.player.bibleTeaching,
+        oneMinuteShort: sd.oneMinuteShort,
+        moreShorts: sd.moreShorts,
+        defaultDesc: sd.defaultDesc,
+        notesTitle: t.sections.player.notesTitle,
+        notesSub: t.sections.player.notesSub,
+        downloadPdf: t.sections.player.downloadPdf,
+      }}
+    />
+  )
 }
