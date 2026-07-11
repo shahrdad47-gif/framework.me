@@ -2,11 +2,13 @@
 import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import QuillEditor from './QuillEditor'
+import PdfUploadField from './PdfUploadField'
 
 interface ExistingShort {
   id: string
   title: string
   description?: string
+  notes?: string
   status: string
 }
 
@@ -29,6 +31,7 @@ export default function ShortForm({ mode, initial }: ShortFormProps) {
   const [youtubeUrl, setYoutubeUrl] = useState(initial?.id ?? '')
   const [title, setTitle] = useState(initial?.title ?? '')
   const [description, setDescription] = useState(initial?.description ?? '')
+  const [notes, setNotes] = useState(initial?.notes ?? '')
   const [status, setStatus] = useState(initial?.status ?? 'published')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
@@ -39,7 +42,7 @@ export default function ShortForm({ mode, initial }: ShortFormProps) {
     e.preventDefault()
     setError('')
 
-    const payload = { youtubeUrl, title, description, status }
+    const payload = { youtubeUrl, title, description, notes: notes.trim() || undefined, status }
 
     setBusy(true)
     const res = mode === 'create'
@@ -95,6 +98,11 @@ export default function ShortForm({ mode, initial }: ShortFormProps) {
         <span>Description (optional)</span>
         <QuillEditor value={description} onChange={setDescription} placeholder="Write a description for this short…" />
       </label>
+
+      <div className="admin-field">
+        <span>Notes (PDF, optional)</span>
+        <PdfUploadField value={notes} onChange={setNotes} />
+      </div>
 
       <label className="admin-field">
         <span>Status</span>

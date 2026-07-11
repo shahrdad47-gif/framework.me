@@ -207,7 +207,7 @@ export async function getVideoById(id: string) {
 
   try {
     const rows = await sql`
-      SELECT v.id, v.title, v.date, v.speaker, v.description, v.category_id,
+      SELECT v.id, v.title, v.date, v.speaker, v.description, v.notes, v.category_id,
              c.label AS category_label, c.icon AS category_icon, c.description AS category_description
       FROM videos v
       JOIN video_categories c ON c.id = v.category_id
@@ -226,7 +226,7 @@ export async function getVideoById(id: string) {
     return {
       video: {
         id: r.id, title: r.title, date: r.date ?? undefined, speaker: r.speaker ?? undefined,
-        description: r.description ?? '',
+        description: r.description ?? '', notes: r.notes ?? undefined,
       },
       category: {
         id: r.category_id, label: r.category_label, icon: r.category_icon ?? '',
@@ -251,7 +251,7 @@ export async function getShorts(): Promise<Short[]> {
 
   try {
     const rows = await sql`
-      SELECT id, title, description
+      SELECT id, title, description, notes
       FROM shorts
       WHERE status = 'published'
       ORDER BY display_order ASC
@@ -260,6 +260,7 @@ export async function getShorts(): Promise<Short[]> {
       id:          r.id,
       title:       r.title,
       description: r.description ?? '',
+      notes:       r.notes ?? undefined,
     }))
   } catch {
     return staticShorts

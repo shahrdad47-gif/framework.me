@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { shortsData } from '@/data/videos'
 import { getShorts } from '@/lib/db'
+import ArticlePdfChip from '@/components/ui/ArticlePdfChip'
 
 export function generateStaticParams() {
   return shortsData.map(s => ({ id: s.id }))
@@ -84,6 +85,7 @@ export default async function ShortDetailPage({ params }: { params: { id: string
           <div className="vd-meta-row">
             <span className="vd-meta-cat">1 Minute Short</span>
             <span className="vd-meta-tag">Bible Teaching</span>
+            {short.notes && <ArticlePdfChip href={short.notes} />}
           </div>
 
           {short.description ? (

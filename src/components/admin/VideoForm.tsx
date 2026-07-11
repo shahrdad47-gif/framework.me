@@ -2,6 +2,7 @@
 import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import QuillEditor from './QuillEditor'
+import PdfUploadField from './PdfUploadField'
 
 interface VideoCategoryOption {
   id: string
@@ -14,6 +15,7 @@ interface ExistingVideo {
   date?: string
   speaker?: string
   description?: string
+  notes?: string
   categoryId: string
   status: string
 }
@@ -40,6 +42,7 @@ export default function VideoForm({ mode, categories, initial }: VideoFormProps)
   const [date, setDate] = useState(initial?.date ?? '')
   const [speaker, setSpeaker] = useState(initial?.speaker ?? '')
   const [description, setDescription] = useState(initial?.description ?? '')
+  const [notes, setNotes] = useState(initial?.notes ?? '')
   const [categoryId, setCategoryId] = useState(initial?.categoryId ?? categories[0]?.id ?? '')
   const [status, setStatus] = useState(initial?.status ?? 'published')
   const [error, setError] = useState('')
@@ -57,6 +60,7 @@ export default function VideoForm({ mode, categories, initial }: VideoFormProps)
       date: date.trim() || undefined,
       speaker: speaker.trim() || undefined,
       description,
+      notes: notes.trim() || undefined,
       categoryId,
       status,
     }
@@ -115,6 +119,11 @@ export default function VideoForm({ mode, categories, initial }: VideoFormProps)
         <span>Description (optional)</span>
         <QuillEditor value={description} onChange={setDescription} placeholder="Write a description for this video…" />
       </label>
+
+      <div className="admin-field">
+        <span>Notes (PDF, optional)</span>
+        <PdfUploadField value={notes} onChange={setNotes} />
+      </div>
 
       <div className="admin-field-row">
         <label className="admin-field">

@@ -103,6 +103,7 @@ async function main() {
   `
   await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()`
   await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS description TEXT NOT NULL DEFAULT ''`
+  await sql`ALTER TABLE videos ADD COLUMN IF NOT EXISTS notes TEXT`
 
   await sql`
     CREATE TABLE IF NOT EXISTS shorts (
@@ -114,6 +115,7 @@ async function main() {
       created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `
+  await sql`ALTER TABLE shorts ADD COLUMN IF NOT EXISTS notes TEXT`
 
   await sql`
     CREATE TABLE IF NOT EXISTS video_series (

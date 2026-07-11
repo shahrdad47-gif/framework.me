@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { videoCategories } from '@/data/videos'
 import { getVideoById } from '@/lib/db'
+import ArticlePdfChip from '@/components/ui/ArticlePdfChip'
 
 export function generateStaticParams() {
   return videoCategories.flatMap(cat =>
@@ -89,6 +90,7 @@ export default async function VideoDetailPage({ params }: { params: { id: string
             <span className="vd-meta-cat">{cat.label}</span>
             {video.date && <span className="vd-meta-date">{video.date}</span>}
             <span className="vd-meta-tag">Bible Teaching</span>
+            {video.notes && <ArticlePdfChip href={video.notes} />}
           </div>
 
           {/* Description */}

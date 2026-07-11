@@ -29,6 +29,7 @@ export interface Video {
   // as Article.body — rendered with dangerouslySetInnerHTML on the video
   // detail page.
   description?: string
+  notes?: string
 }
 
 export interface VideoSeries {
@@ -54,6 +55,7 @@ export interface Short {
   // Rich-text HTML from the admin Quill editor, same allowlist/sanitization
   // as Article.body — rendered with dangerouslySetInnerHTML.
   description?: string
+  notes?: string
 }
 
 export interface Book {
