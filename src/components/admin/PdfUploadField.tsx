@@ -59,7 +59,7 @@ export default function PdfUploadField({ value, onChange }: PdfUploadFieldProps)
           onChange={handleFileChange}
           hidden
         />
-        <span className="admin-pdf-or">or paste a URL</span>
+        <span className="admin-pdf-or">or paste a URL (optional)</span>
         <input
           type="url"
           value={value}
