@@ -13,6 +13,7 @@ const navLinksEN = [
   { href: '/geopolitics',        label: 'Geopolitics' },
   { href: '/resources',          label: 'Resources' },
   { href: '/contributors',       label: 'Authors' },
+  { href: '/resources/books',    label: 'Books' },
 ]
 
 const localeMap: Record<string, Locale> = { '/fa': 'fa', '/hy': 'hy', '/pt': 'pt', '/ar': 'ar' }
@@ -107,6 +108,7 @@ export default function Header() {
         { href: `/${activeLocale}/geopolitics`,              label: navT.geopolitics },
         { href: `/${activeLocale}/resources`,                label: navT.resources },
         { href: `/${activeLocale}/contributors`,             label: navT.authors },
+        { href: `/${activeLocale}/resources/books`,          label: navT.books },
       ]
     : navLinksEN
 

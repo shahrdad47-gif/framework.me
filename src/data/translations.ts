@@ -4,7 +4,7 @@ export interface LangT {
   dir: 'ltr' | 'rtl'
   nav: {
     about: string; articles: string; nations: string; endTimes: string
-    geopolitics: string; resources: string; authors: string
+    geopolitics: string; resources: string; authors: string; books: string
     contactUs: string; donate: string
   }
   footer: {
@@ -68,7 +68,7 @@ export const translations: Record<Locale, LangT> = {
     nav: {
       about: 'درباره', articles: 'مقالات', nations: 'ملت‌ها و نبوت',
       endTimes: 'آخرالزمان', geopolitics: 'ژئوپلیتیک', resources: 'منابع',
-      authors: 'نویسندگان', contactUs: 'تماس با ما', donate: 'کمک مالی',
+      authors: 'نویسندگان', books: 'کتاب‌ها', contactUs: 'تماس با ما', donate: 'کمک مالی',
     },
     footer: {
       brand: 'یک کتابخانه رایگان آموزش و منابع برای آماده کردن کلیسای جهانی برای بازگشت مسیح.',
@@ -180,7 +180,7 @@ export const translations: Record<Locale, LangT> = {
     nav: {
       about: 'Մեր Մասին', articles: 'Հոդվածներ', nations: 'Ազգեր և Մարգարեություն',
       endTimes: 'Վերջին Ժամանակներ', geopolitics: 'Երկրաքաղաքականություն', resources: 'Ռեսուրսներ',
-      authors: 'Հեղինակներ', contactUs: 'Կապ Մեզ Հետ', donate: 'Նվիրատվություն',
+      authors: 'Հեղինակներ', books: 'Գրքեր', contactUs: 'Կապ Մեզ Հետ', donate: 'Նվիրատվություն',
     },
     footer: {
       brand: 'Ուսուցման և ռեսուրսների անվճար գրադարան՝ պատրաստելու համաշխարհային Եկեղեցուն Քրիստոսի վերադարձին:',
@@ -292,7 +292,7 @@ export const translations: Record<Locale, LangT> = {
     nav: {
       about: 'Sobre', articles: 'Artigos', nations: 'Nações e Profecia',
       endTimes: 'Tempos do Fim', geopolitics: 'Geopolítica', resources: 'Recursos',
-      authors: 'Autores', contactUs: 'Contato', donate: 'Doação',
+      authors: 'Autores', books: 'Livros', contactUs: 'Contato', donate: 'Doação',
     },
     footer: {
       brand: 'Uma biblioteca gratuita de ensino e recursos preparando a Igreja global para o retorno de Cristo.',
@@ -404,7 +404,7 @@ export const translations: Record<Locale, LangT> = {
     nav: {
       about: 'نبذة عنا', articles: 'المقالات', nations: 'الأمم والنبوة',
       endTimes: 'الأزمنة الأخيرة', geopolitics: 'الجيوسياسة', resources: 'الموارد',
-      authors: 'المؤلفون', contactUs: 'اتصل بنا', donate: 'تبرع',
+      authors: 'المؤلفون', books: 'الكتب', contactUs: 'اتصل بنا', donate: 'تبرع',
     },
     footer: {
       brand: 'مكتبة تعليمية ومواردية مجانية لإعداد الكنيسة العالمية لعودة المسيح.',
